@@ -26,7 +26,7 @@ public class StudentService implements CommonDao {
 
     @Override
     public void save(Student obj) {
-        String sql = "insert into student(name) values(?)";
+        String sql = "insert into student (name) values(?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, obj.getName());
