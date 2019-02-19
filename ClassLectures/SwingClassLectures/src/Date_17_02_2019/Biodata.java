@@ -59,7 +59,6 @@ public class Biodata extends javax.swing.JFrame {
         jCheckJava = new javax.swing.JCheckBox();
         jCheckHTML = new javax.swing.JCheckBox();
         jCheckJS = new javax.swing.JCheckBox();
-        jtxtResult = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 204));
@@ -183,6 +182,7 @@ public class Biodata extends javax.swing.JFrame {
         });
         getContentPane().add(jcmbRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 200, -1));
 
+        jtblDisplay.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtblDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -193,7 +193,7 @@ public class Biodata extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtblDisplay);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 460, 400));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 710, 400));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Message:");
@@ -223,9 +223,6 @@ public class Biodata extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckJS, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
-
-        jtxtResult.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        getContentPane().add(jtxtResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, 200, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -375,6 +372,5 @@ public class Biodata extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtEmail;
     private javax.swing.JTextField jtxtMsg;
     private javax.swing.JTextField jtxtName;
-    private javax.swing.JTextField jtxtResult;
     // End of variables declaration//GEN-END:variables
 }
