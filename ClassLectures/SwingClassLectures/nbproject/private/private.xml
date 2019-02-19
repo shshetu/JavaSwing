@@ -3,7 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Idb/git/Shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Practice_ClassLectures/Student/Student.java</file>
+=======
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_18_02_2019/Student/StudentView.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_18_02_2019/Student/DBConnection.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_16_02_2019/DblConnection.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_18_02_2019/Student/Student.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_18_02_2019/Student/StudentService.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_13_02_2019/SwingClassLectures.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_18_02_2019/Student/CommonDAO.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_16_02_2019/CreateStudentTable.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_16_02_2019/service/StudentService.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_18_02_2019/Student/CreateStudentTable.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/ClassLectures/SwingClassLectures/src/Date_16_02_2019/View/StudentView.java</file>
+>>>>>>> 92459a1c4d424335423567918413da98ac5f592f
         </group>
     </open-files>
 </project-private>
