@@ -21,9 +21,10 @@ public class FirstSwingExample {
      b.setBounds(130,100,100,40); //x axis, y axis, width, height
      f.setSize(400,500); //width, height
      
-     //add 
+     //Action
      f.add(b);
-     
+     b.setEnabled(true);
+   
      ///love
      f.setLayout(null);//using no layout manager
      f.setVisible(true);
