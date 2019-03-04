@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -20,7 +21,7 @@ import javax.swing.JTextField;
  * @author User
  */
 public class JLabelActionListener extends Frame implements ActionListener{
-
+JFrame f;
   JLabel l;
     JButton b;
     JTextField tf;
@@ -41,8 +42,8 @@ public class JLabelActionListener extends Frame implements ActionListener{
    add(tf);
    add(b);
    add(l);
-   
-   //Love
+//f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+//Love
        setLayout(null);
        setVisible(true);
    }
