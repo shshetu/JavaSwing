@@ -23,6 +23,7 @@ public class Form extends javax.swing.JFrame {
         initComponents();
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -378,17 +379,22 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClearTableActionPerformed
 
     private void jButtonReadFromFIleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReadFromFIleActionPerformed
-        // TODO add your handling code here:
-        //Taking an Array 
-        String columns[] = {"Id","Name","Age","Email","Password","Gender","C.Course","Round","Comments"};
-        //Create an object of default table model
-        DefaultTableModel tableModel;
-        tableModel = new DefaultTableModel(0,8); //inclusive 0-7 will be taken
-        
-        //setting the columns
-        tableModel.setColumnIdentifiers(columns);
-        jTableDisplay.setModel(tableModel);
-        Utils.displayStudentDataFromFile("shetu", tableModel);
+//        // TODO add your handling code here:
+//        //Taking an Array 
+//        String columns[] = {"Id","Name","Age","Email","Password","Gender","C.Course","Round","Comments"};
+//        //Create an object of default table model
+//        DefaultTableModel tableModel;
+//        tableModel = new DefaultTableModel(0,8); //inclusive 0-7 will be taken
+//        
+//        //setting the columns
+//        tableModel.setColumnIdentifiers(columns);
+//        jTableDisplay.setModel(tableModel);
+//        Utils.displayStudentDataFromFile("shetu", tableModel);
+
+/////My Attmpt:
+  DefaultTableModel model = (DefaultTableModel) jTableDisplay.getModel();
+  model.setRowCount(0);
+  Utils.displayStudentDataFromFile("shetu", model);
     }//GEN-LAST:event_jButtonReadFromFIleActionPerformed
 
     /**

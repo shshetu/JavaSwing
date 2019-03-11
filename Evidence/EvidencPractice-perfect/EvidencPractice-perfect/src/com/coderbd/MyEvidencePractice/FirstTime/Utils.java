@@ -26,14 +26,14 @@ public class Utils {
         File destFile = new File(filename+".txt");
         try {
             if(destFile.exists() == false){
-                System.out.println("We had to make a new file");
+                System.out.println("We had to make a new file!");
                 destFile.createNewFile();
                 
                 //using printwriter 
                 PrintWriter out = new PrintWriter(new FileWriter(destFile,true));
-               //student type for each loop
+               //Writing Student type data using for each loop
                 for(Student s:student){
-                out.append(s.getId()+","+s.getName()+","+s.getAge()+","+s.getEmail()+","+s.getGender()+","+s.getCourse()+","+s.getRound()+","+s.getComments()+"\n");
+                out.append(s.getId()+", "+s.getName()+", "+s.getAge()+", "+s.getEmail()+", "+s.getGender()+", "+s.getCourse()+", "+s.getRound()+", "+s.getComments()+"\n");
                 }
                 out.close();
             }
@@ -49,7 +49,7 @@ public class Utils {
             try {
                 reader = new BufferedReader(new FileReader(filename+".txt"));
                 while((line = reader.readLine()) != null){
-                model.addRow(line.split(" ,"));
+                model.addRow(line.split(", "));
                 }
                 reader.close();
             } catch (Exception e) {
