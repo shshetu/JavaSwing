@@ -47,14 +47,39 @@ public class Dashboard extends javax.swing.JFrame {
         jLabelAfterLoginIcon.setText("Login Icon");
 
         jButtonMedicines.setText("Medicines");
+        jButtonMedicines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMedicinesActionPerformed(evt);
+            }
+        });
 
         jButtonCompanies.setText("Companies");
+        jButtonCompanies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompaniesActionPerformed(evt);
+            }
+        });
 
         jButtonViewSaleRecords.setText("View Sale Records");
+        jButtonViewSaleRecords.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewSaleRecordsActionPerformed(evt);
+            }
+        });
 
         jButtonNewSales.setText("New Sales");
+        jButtonNewSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewSalesActionPerformed(evt);
+            }
+        });
 
         jButtonChangePassword.setText("Change Password");
+        jButtonChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangePasswordActionPerformed(evt);
+            }
+        });
 
         jButtonCreateAUser.setText("Create a User");
 
@@ -142,6 +167,31 @@ public class Dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonMedicinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedicinesActionPerformed
+        // TODO add your handling code here:
+        new MedicinesPage().setVisible(true);
+    }//GEN-LAST:event_jButtonMedicinesActionPerformed
+
+    private void jButtonCompaniesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompaniesActionPerformed
+        // TODO add your handling code here:
+        new CompanyPage().setVisible(true);
+    }//GEN-LAST:event_jButtonCompaniesActionPerformed
+
+    private void jButtonViewSaleRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewSaleRecordsActionPerformed
+        // TODO add your handling code here:
+        new ViewSaleRecord().setVisible(true);
+    }//GEN-LAST:event_jButtonViewSaleRecordsActionPerformed
+
+    private void jButtonNewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewSalesActionPerformed
+        // TODO add your handling code here:
+        new NewSales().setVisible(true);
+    }//GEN-LAST:event_jButtonNewSalesActionPerformed
+
+    private void jButtonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangePasswordActionPerformed
+        // TODO add your handling code here:
+        new ChangePassword().setVisible(true);
+    }//GEN-LAST:event_jButtonChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments

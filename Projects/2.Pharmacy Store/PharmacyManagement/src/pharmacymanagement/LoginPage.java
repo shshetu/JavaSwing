@@ -16,6 +16,7 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+       
     }
 
     /**
@@ -62,6 +63,11 @@ public class LoginPage extends javax.swing.JFrame {
 
         jButtonSignIn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSignIn1.setText("Sign in");
+        jButtonSignIn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSignIn1ActionPerformed(evt);
+            }
+        });
 
         jLabelLogoIcon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelLogoIcon.setText("Login Icon");
@@ -121,6 +127,12 @@ public class LoginPage extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButtonSignIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSignIn1ActionPerformed
+        // TODO add your handling code here:
+         new Dashboard().setVisible(true);
+         
+    }//GEN-LAST:event_jButtonSignIn1ActionPerformed
 
     /**
      * @param args the command line arguments
