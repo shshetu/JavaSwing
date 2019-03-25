@@ -5,10 +5,15 @@
  */
 package pharmacymanagement.Dao;
 
+import pharmacymanagement.Pojo.UpdateCompany;
+
 /**
  *
  * @author shshe
  */
 public interface UpdateCompanyDao {
-    
+    //crude operation
+    void createTable();
+    void updateContact(UpdateCompany updateCompany);
+    void updateEmailId(UpdateCompany updateCompany);
 }
