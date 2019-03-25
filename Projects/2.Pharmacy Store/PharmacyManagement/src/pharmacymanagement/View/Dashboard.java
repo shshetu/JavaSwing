@@ -37,9 +37,9 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonSearch = new javax.swing.JButton();
         jTextFieldSearch = new javax.swing.JTextField();
         jButtonLogout1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProductDisplay = new javax.swing.JTable();
         jLabelDisplayLoggedInUser = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableMedicineDisplay = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,18 +90,18 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButtonLogout1.setText("Log Out");
 
-        jTableProductDisplay.setModel(new javax.swing.table.DefaultTableModel(
+        jLabelDisplayLoggedInUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelDisplayLoggedInUser.setText("You are looged in as: shetu");
+
+        jTableMedicineDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Company Name", "Product Category", "Quantity", "Price Per Unit"
+                "Product ID", "Product Name", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
-        jScrollPane1.setViewportView(jTableProductDisplay);
-
-        jLabelDisplayLoggedInUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelDisplayLoggedInUser.setText("You are looged in as: shetu");
+        jScrollPane1.setViewportView(jTableMedicineDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,23 +119,24 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jButtonChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCreateAUser, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1))
-                        .addContainerGap(34, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabelDisplayLoggedInUser, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))))
+                        .addGap(71, 71, 71))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
@@ -148,7 +149,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jButtonNewSales)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonChangePassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addComponent(jButtonCreateAUser)
                 .addGap(7, 7, 7)
                 .addComponent(jButtonLogout1)
@@ -160,9 +161,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jButtonSearch))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDisplayLoggedInUser)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -241,7 +241,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelAfterLoginIcon;
     private javax.swing.JLabel jLabelDisplayLoggedInUser;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableProductDisplay;
+    private javax.swing.JTable jTableMedicineDisplay;
     private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }

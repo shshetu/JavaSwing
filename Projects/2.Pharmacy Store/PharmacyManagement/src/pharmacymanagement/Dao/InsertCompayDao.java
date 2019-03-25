@@ -5,6 +5,7 @@
  */
 package pharmacymanagement.Dao;
 
+import java.util.List;
 import pharmacymanagement.Pojo.InsertCompany;
 
 /**
@@ -14,4 +15,7 @@ import pharmacymanagement.Pojo.InsertCompany;
 public interface InsertCompayDao {
     void createTable();
     void insert(InsertCompany insertCompany);
+    
+    //get the list
+     List<InsertCompany> getInsertCompany();
 }

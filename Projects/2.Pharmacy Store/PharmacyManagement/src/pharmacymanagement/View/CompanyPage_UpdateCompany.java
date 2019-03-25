@@ -5,6 +5,12 @@
  */
 package pharmacymanagement.View;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pharmacymanagement.Dao.InsertCompayDao;
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
+
 /**
  *
  * @author shshe
@@ -16,6 +22,39 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
      */
     public CompanyPage_UpdateCompany() {
         initComponents();
+        displayDataIntoComboBox();
+        displayDataintoTable();
+    }
+
+    public void displayDataIntoComboBox() {
+        InsertCompayDao ic = new InsertCompanyDaoImp();
+        List<InsertCompany> list = ic.getInsertCompany();
+        jComboBoxCompany.addItem("Select A Company");
+        for (InsertCompany i : list) {
+            jComboBoxCompany.addItem(i.getCompanyName());
+
+        }
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyUpdateDisplay.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataintoTable() {
+        InsertCompayDao ic = new InsertCompanyDaoImp();
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyUpdateDisplay.getModel();
+        List<InsertCompany> list = ic.getInsertCompany();
+        Object[] cols = new Object[6];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getId();
+            cols[1] = list.get(i).getCompanyName();
+            cols[2] = list.get(i).getCompanyCountry();
+            cols[3] = list.get(i).getCompanyEmail();
+            cols[4] = list.get(i).getCompanyContactNo();
+            cols[5] = list.get(i).getCompanyAddress();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -30,13 +69,13 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         jLabelAfterLoginIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxCompany = new javax.swing.JComboBox<>();
         jTextFieldUpdatePrice = new javax.swing.JTextField();
         jButtonUpdateContact = new javax.swing.JButton();
         jTextFieldUpdateQuantity = new javax.swing.JTextField();
         jButtonUpdateEmail = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableCompanyDisplay = new javax.swing.JTable();
+        jTableCompanyUpdateDisplay = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,13 +83,12 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         jLabelAfterLoginIcon.setText("Login Icon");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("PRODUCT NAME");
+        jLabel1.setText("COMPANY NAME");
 
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Napa", "Ace Plus", "Xorel" }));
+        jComboBoxCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jTextFieldUpdatePrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldUpdatePrice.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +101,6 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         jButtonUpdateContact.setText("Update Contact");
 
         jTextFieldUpdateQuantity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUpdateQuantity.setText("Enter Email ID");
         jTextFieldUpdateQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUpdateQuantityActionPerformed(evt);
@@ -73,7 +110,7 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         jButtonUpdateEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateEmail.setText("Update Email ID");
 
-        jTableCompanyDisplay.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCompanyUpdateDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -81,7 +118,12 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
                 "Company ID", "Company  Name", "Company Country", "Company Email", "Company Contact Number", "Company Address"
             }
         ));
-        jScrollPane2.setViewportView(jTableCompanyDisplay);
+        jTableCompanyUpdateDisplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCompanyUpdateDisplayMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableCompanyUpdateDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,12 +134,12 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldUpdatePrice)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +162,7 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -150,6 +192,12 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
     private void jTextFieldUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateQuantityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUpdateQuantityActionPerformed
+
+    private void jTableCompanyUpdateDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCompanyUpdateDisplayMouseClicked
+        int i = jTableCompanyUpdateDisplay.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyUpdateDisplay.getModel();
+
+    }//GEN-LAST:event_jTableCompanyUpdateDisplayMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,11 +269,11 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonUpdateContact;
     private javax.swing.JButton jButtonUpdateEmail;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxCompany;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAfterLoginIcon;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableCompanyDisplay;
+    private javax.swing.JTable jTableCompanyUpdateDisplay;
     private javax.swing.JTextField jTextFieldUpdatePrice;
     private javax.swing.JTextField jTextFieldUpdateQuantity;
     // End of variables declaration//GEN-END:variables

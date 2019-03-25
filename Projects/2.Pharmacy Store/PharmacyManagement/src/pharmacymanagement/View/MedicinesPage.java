@@ -60,7 +60,7 @@ public class MedicinesPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Company Name", "Product Category", "Quantity", "Price Per Unit"
+                "Product ID", "Product Name", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
         jScrollPane1.setViewportView(jTableMedicineDisplay);

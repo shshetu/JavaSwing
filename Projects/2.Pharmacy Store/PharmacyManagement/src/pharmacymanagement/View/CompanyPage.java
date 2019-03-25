@@ -5,6 +5,13 @@
  */
 package pharmacymanagement.View;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pharmacymanagement.Dao.InsertCompayDao;
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
+
+
 /**
  *
  * @author shshe
@@ -16,8 +23,27 @@ public class CompanyPage extends javax.swing.JFrame {
      */
     public CompanyPage() {
         initComponents();
+        displayDataintoTable();
     }
-
+    public void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
+        model.setRowCount(0);
+    }
+    public void displayDataintoTable(){
+        InsertCompayDao ic = new InsertCompanyDaoImp();
+       DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
+       List<InsertCompany> list = ic.getInsertCompany();
+       Object[] cols = new Object[6];
+        for (int i = 0; i < list.size(); i++) {
+           cols[0] = list.get(i).getId();
+           cols[1] = list.get(i).getCompanyName();
+           cols[2] = list.get(i).getCompanyCountry();
+           cols[3] = list.get(i).getCompanyEmail();
+           cols[4] = list.get(i).getCompanyContactNo();
+           cols[5] = list.get(i).getCompanyAddress();
+           model.addRow(cols);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +76,11 @@ public class CompanyPage extends javax.swing.JFrame {
         });
 
         jButtonUpdateCompany.setText("Update Company");
+        jButtonUpdateCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateCompanyActionPerformed(evt);
+            }
+        });
 
         jButtonDeleteCompany.setText("Delete Company");
 
@@ -131,6 +162,10 @@ public class CompanyPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         new CompanyPage_InsertCompany().setVisible(true);
     }//GEN-LAST:event_jButtonInsertCompanyActionPerformed
+
+    private void jButtonUpdateCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCompanyActionPerformed
+      new CompanyPage_UpdateCompany().setVisible(true);
+    }//GEN-LAST:event_jButtonUpdateCompanyActionPerformed
 
     /**
      * @param args the command line arguments

@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabelAfterLoginIcon" min="-2" pref="151" max="-2" attributes="0"/>
                       <EmptySpace pref="300" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -45,14 +45,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButtonBack" min="-2" pref="134" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="866" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="804" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,10 +79,11 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="67" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="132" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Component id="jButtonBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jButtonBack" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="1" min="-2" pref="301" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -170,23 +168,27 @@
         <Property name="text" type="java.lang.String" value="Update Quantity"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTableMedicineDisplay">
+        <Component class="javax.swing.JTable" name="jTableMedicineDisplay1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
+              <Table columnCount="10" rowCount="0">
                 <Column editable="true" title="Product ID" type="java.lang.Object"/>
                 <Column editable="true" title="Product Name" type="java.lang.Object"/>
+                <Column editable="true" title="Medicine Group" type="java.lang.Object"/>
                 <Column editable="true" title="Company Name" type="java.lang.Object"/>
                 <Column editable="true" title="Product Category" type="java.lang.Object"/>
                 <Column editable="true" title="Quantity" type="java.lang.Object"/>
                 <Column editable="true" title="Price Per Unit" type="java.lang.Object"/>
+                <Column editable="true" title="Expire Date" type="java.lang.Object"/>
+                <Column editable="true" title="DoseType" type="java.lang.Object"/>
+                <Column editable="true" title="Remarks" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

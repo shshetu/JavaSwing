@@ -11,6 +11,15 @@ package pharmacymanagement.Pojo;
  */
 public class InsertCompany {
 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private String companyName;
     private String companyCountry;
     private String companyEmail;
@@ -66,6 +75,15 @@ public class InsertCompany {
     }
 
     public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+
+    public InsertCompany(int id, String companyName, String companyCountry, String companyEmail, String companyContactNo, String companyAddress) {
+        this.id = id;
+        this.companyName = companyName;
+        this.companyCountry = companyCountry;
+        this.companyEmail = companyEmail;
+        this.companyContactNo = companyContactNo;
         this.companyAddress = companyAddress;
     }
 
