@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pharmacymanagement;
+package pharmacymanagement.View;
 
 /**
  *
  * @author shshe
  */
-public class MedicinesPage_UpdateCompany extends javax.swing.JFrame {
+public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
 
     /**
      * Creates new form ProductAdd
      */
-    public MedicinesPage_UpdateCompany() {
+    public CompanyPage_UpdateCompany() {
         initComponents();
     }
 
@@ -168,14 +168,30 @@ public class MedicinesPage_UpdateCompany extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MedicinesPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MedicinesPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MedicinesPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MedicinesPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_UpdateCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -196,7 +212,7 @@ public class MedicinesPage_UpdateCompany extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MedicinesPage_UpdateCompany().setVisible(true);
+                new CompanyPage_UpdateCompany().setVisible(true);
             }
         });
     }

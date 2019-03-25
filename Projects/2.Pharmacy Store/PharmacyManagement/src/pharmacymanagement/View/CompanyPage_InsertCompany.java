@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pharmacymanagement;
+package pharmacymanagement.View;
+
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
 
 /**
  *
  * @author shshe
  */
-public class ChangePassword extends javax.swing.JFrame {
+public class CompanyPage_InsertCompany extends javax.swing.JFrame {
 
     /**
      * Creates new form ProductAdd
      */
-    public ChangePassword() {
+    public CompanyPage_InsertCompany() {
         initComponents();
+        new InsertCompanyDaoImp().createTable();
     }
 
     /**
@@ -29,16 +33,17 @@ public class ChangePassword extends javax.swing.JFrame {
 
         jLabelAfterLoginIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldNewPassword = new javax.swing.JTextField();
+        jTextFieldCompanyEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldRepeatPassword = new javax.swing.JTextField();
+        jTextFieldCompanyContactNo = new javax.swing.JTextField();
+        jTextFieldCompanyAddress = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
-        jButtonChangePassword = new javax.swing.JButton();
-        jTextFieldCurrentPassword = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBoxUserName = new javax.swing.JComboBox<>();
+        jButtonInsert1 = new javax.swing.JButton();
+        jTextFieldCompanyName = new javax.swing.JTextField();
+        jTextFieldCompanyCountry = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,33 +51,45 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabelAfterLoginIcon.setText("Login Icon");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("User Name");
+        jLabel1.setText("COMPANY NAME");
 
-        jTextFieldNewPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldCompanyEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("COMPANY COUNTRY");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("New Password");
+        jLabel3.setText("COMPANY EMAIL");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Repeat Password");
+        jLabel4.setText("COMPANY CONTACT NO.");
 
-        jTextFieldRepeatPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldCompanyContactNo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jTextFieldCompanyAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("COMPANY ADDRESS");
 
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
-        jButtonChangePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonChangePassword.setText("Change Password");
+        jButtonInsert1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonInsert1.setText("Insert");
+        jButtonInsert1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsert1ActionPerformed(evt);
+            }
+        });
 
-        jTextFieldCurrentPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldCompanyName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Current Password");
-
-        jComboBoxUserName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxUserName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "shetu", "sagor" }));
+        jTextFieldCompanyCountry.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,24 +107,27 @@ public class ChangePassword extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)))
+                                    .addComponent(jLabel4)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(202, 202, 202)
-                                .addComponent(jLabel1)))
-                        .addGap(94, 94, 94)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(363, 363, 363)
+                                .addComponent(jLabel5)))
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(jTextFieldRepeatPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCurrentPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(jComboBoxUserName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(426, Short.MAX_VALUE))
+                            .addComponent(jTextFieldCompanyEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCompanyContactNo, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCompanyCountry, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCompanyAddress))))
+                .addContainerGap(399, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(916, Short.MAX_VALUE)
-                    .addComponent(jButtonChangePassword)
+                    .addContainerGap(998, Short.MAX_VALUE)
+                    .addComponent(jButtonInsert1)
                     .addGap(115, 115, 115)))
         );
         layout.setVerticalGroup(
@@ -119,34 +139,55 @@ public class ChangePassword extends javax.swing.JFrame {
                         .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBoxUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldCurrentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jTextFieldCompanyCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextFieldNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCompanyEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCompanyContactNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldCompanyAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButtonBack)
                 .addGap(59, 59, 59))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(404, Short.MAX_VALUE)
-                    .addComponent(jButtonChangePassword)
+                    .addComponent(jButtonInsert1)
                     .addGap(61, 61, 61)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsert1ActionPerformed
+        // TODO add your handling code here:
+        String companyName = jTextFieldCompanyName.getText().trim();
+        String companyCountry = jTextFieldCompanyCountry.getText().trim();
+        String companyEmail = jTextFieldCompanyEmail.getText().trim();
+        String companyContactNo = jTextFieldCompanyContactNo.getText().trim();
+        String companyAddress = jTextFieldCompanyAddress.getText().trim();
+        
+        InsertCompany ic = new InsertCompany(companyName, companyCountry, companyEmail, companyContactNo, companyAddress);
+        new InsertCompanyDaoImp().insert(ic);
+    }//GEN-LAST:event_jButtonInsert1ActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        new CompanyPage().setVisible(true);
+       
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,22 +206,14 @@ public class ChangePassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_InsertCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_InsertCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_InsertCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyPage_InsertCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -193,23 +226,24 @@ public class ChangePassword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePassword().setVisible(true);
+                new CompanyPage_InsertCompany().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonChangePassword;
-    private javax.swing.JComboBox<String> jComboBoxUserName;
+    private javax.swing.JButton jButtonInsert1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelAfterLoginIcon;
-    private javax.swing.JTextField jTextFieldCurrentPassword;
-    private javax.swing.JTextField jTextFieldNewPassword;
-    private javax.swing.JTextField jTextFieldRepeatPassword;
+    private javax.swing.JTextField jTextFieldCompanyAddress;
+    private javax.swing.JTextField jTextFieldCompanyContactNo;
+    private javax.swing.JTextField jTextFieldCompanyCountry;
+    private javax.swing.JTextField jTextFieldCompanyEmail;
+    private javax.swing.JTextField jTextFieldCompanyName;
     // End of variables declaration//GEN-END:variables
 }

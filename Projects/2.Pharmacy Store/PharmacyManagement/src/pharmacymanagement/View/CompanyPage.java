@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pharmacymanagement;
+package pharmacymanagement.View;
 
 /**
  *
@@ -43,6 +43,11 @@ public class CompanyPage extends javax.swing.JFrame {
         jLabelAfterLoginIcon.setText("Login Icon");
 
         jButtonInsertCompany.setText("Insert Company");
+        jButtonInsertCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertCompanyActionPerformed(evt);
+            }
+        });
 
         jButtonUpdateCompany.setText("Update Company");
 
@@ -121,6 +126,11 @@ public class CompanyPage extends javax.swing.JFrame {
     private void jTextFieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
+
+    private void jButtonInsertCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertCompanyActionPerformed
+        // TODO add your handling code here:
+        new CompanyPage_InsertCompany().setVisible(true);
+    }//GEN-LAST:event_jButtonInsertCompanyActionPerformed
 
     /**
      * @param args the command line arguments

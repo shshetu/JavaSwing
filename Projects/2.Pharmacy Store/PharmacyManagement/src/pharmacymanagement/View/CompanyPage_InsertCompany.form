@@ -51,12 +51,12 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextFieldCompanyAddress" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCompanyEmail" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCompanyContactNo" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCompanyName1" min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCompanyCountry1" min="-2" pref="196" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTextFieldCompanyEmail" pref="196" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCompanyContactNo" pref="196" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCompanyName" pref="196" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCompanyCountry" pref="196" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCompanyAddress" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -83,14 +83,14 @@
                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCompanyName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldCompanyName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldCompanyCountry1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldCompanyCountry" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -143,7 +143,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Enter Company Email Address"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -175,7 +174,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Enter Company Contact no."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldCompanyAddress">
@@ -183,7 +181,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Enter Company Address"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -201,6 +198,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBackActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonInsert1">
       <Properties>
@@ -209,20 +209,22 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Insert"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInsert1ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldCompanyName1">
+    <Component class="javax.swing.JTextField" name="jTextFieldCompanyName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldCompanyCountry1">
+    <Component class="javax.swing.JTextField" name="jTextFieldCompanyCountry">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Enter Company Country"/>
       </Properties>
     </Component>
   </SubComponents>
