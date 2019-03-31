@@ -25,6 +25,15 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
     public MedicinesPage_UpdateMedicines() {
         initComponents();
         displayDataintoTable();
+        displayDataIntoCompanyNameComboBox();
+    }
+   public void displayDataIntoCompanyNameComboBox() {
+        List<InsertMedicine> list = new InsertMedicineDaoImp().getInsertMedicine();
+        jComboBoxProductName.addItem("Select A Product");
+        for (InsertMedicine ic : list) {
+//     jComboBoxCompanyName.addItem(ic.getId()+" "+ic.getCompanyName());
+            jComboBoxProductName.addItem(ic.getProductName());
+        }
     }
 
     public void clearTable() {
@@ -89,7 +98,6 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
         jButtonBack.setText("Back");
 
         jComboBoxProductName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxProductName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Napa", "Ace Plus", "Xorel" }));
 
         jTextFieldUpdatePrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldUpdatePrice.addActionListener(new java.awt.event.ActionListener() {

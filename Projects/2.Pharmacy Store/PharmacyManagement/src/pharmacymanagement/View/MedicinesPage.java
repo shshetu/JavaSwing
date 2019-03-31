@@ -89,6 +89,11 @@ public class MedicinesPage extends javax.swing.JFrame {
         jButtonDeleteMedicines.setText("Delete Medicines");
 
         jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
         jButtonSearch.setText("Search");
 
@@ -152,6 +157,12 @@ public class MedicinesPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        new MedicinesPage().setVisible(false);
+        new Dashboard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments

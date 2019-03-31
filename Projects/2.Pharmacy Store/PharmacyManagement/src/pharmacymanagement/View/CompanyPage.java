@@ -86,6 +86,11 @@ public class CompanyPage extends javax.swing.JFrame {
         jButtonDeleteCompany.setText("Delete Company");
 
         jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
         jButtonSearch.setText("Search");
 
@@ -167,6 +172,11 @@ public class CompanyPage extends javax.swing.JFrame {
     private void jButtonUpdateCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCompanyActionPerformed
       new CompanyPage_UpdateCompany().setVisible(true);
     }//GEN-LAST:event_jButtonUpdateCompanyActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+          new Dashboard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
