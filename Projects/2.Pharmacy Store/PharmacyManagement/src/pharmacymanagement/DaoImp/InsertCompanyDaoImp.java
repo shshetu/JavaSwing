@@ -27,7 +27,7 @@ public class InsertCompanyDaoImp implements InsertCompayDao {
 
     @Override
     public void createTable() {
-        String sql = "create table if not exists insertcompany(id int(5) auto_increment  primary key,companyName varchar(20),companyCountry varchar(20),companyEmail varchar(20),companyContactNo varchar(20),companyAddress varchar(20))";
+        String sql = "create table if not exists company(company_id int(5) auto_increment  primary key,company_name varchar(20),company_country varchar(20),company_email varchar(20),company_contactNo varchar(20),company_address varchar(20))";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
@@ -39,7 +39,7 @@ public class InsertCompanyDaoImp implements InsertCompayDao {
 
     @Override
     public void insert(InsertCompany insertCompany) {
-        String sql = "insert into insertcompany(companyName,companyCountry,companyEmail,companyContactNo,companyAddress) values(?,?,?,?,?)";
+        String sql = "insert into company(company_name,company_country,company_email,company_contactNo,company_address) values(?,?,?,?,?)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, insertCompany.getCompanyName());
@@ -48,7 +48,7 @@ public class InsertCompanyDaoImp implements InsertCompayDao {
             pstm.setString(4, insertCompany.getCompanyContactNo());
             pstm.setString(5, insertCompany.getCompanyAddress());
             pstm.executeUpdate();
-            System.out.println("Data inserted into insertCompany table successfully!");
+            System.out.println("Data inserted into company table successfully!");
         } catch (SQLException ex) {
             Logger.getLogger(InsertCompanyDaoImp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,7 +58,7 @@ public class InsertCompanyDaoImp implements InsertCompayDao {
     @Override
     public List<InsertCompany> getInsertCompany() {
         List<InsertCompany> list = new ArrayList<InsertCompany>();
-        String sql = "select * from insertcompany";
+        String sql = "select * from company";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
@@ -71,5 +71,45 @@ public class InsertCompanyDaoImp implements InsertCompayDao {
         }
 
         return list;
+    }
+
+    @Override
+    public InsertCompany getInsertCompanyById(int id) {
+
+        InsertCompany iC = null;
+        String sql = "select * from company where company_id = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                iC = new InsertCompany(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertCompanyDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return iC;
+    }
+
+    @Override
+    public InsertCompany getInsertCompanyByName(String companyName) {
+
+        InsertCompany ic = null;
+        String sql = "select * from company where company_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, companyName);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                ic = new InsertCompany(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertCompanyDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ic;
     }
 }

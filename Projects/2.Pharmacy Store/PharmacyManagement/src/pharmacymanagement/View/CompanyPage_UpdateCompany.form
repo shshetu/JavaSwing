@@ -32,9 +32,9 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldUpdatePrice" max="32767" attributes="0"/>
-                          <Component id="jComboBoxCompany" max="32767" attributes="0"/>
-                          <Component id="jTextFieldUpdateQuantity" min="-2" pref="178" max="-2" attributes="0"/>
+                          <Component id="jTextFieldUpdateContact" max="32767" attributes="0"/>
+                          <Component id="jComboBoxCompanyName" max="32767" attributes="0"/>
+                          <Component id="jTextFieldUpdateEmailID" min="-2" pref="178" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="69" pref="69" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -64,17 +64,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jComboBoxCompany" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxCompanyName" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldUpdatePrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldUpdateContact" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonUpdateContact" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldUpdateQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldUpdateEmailID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonUpdateEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -119,7 +119,7 @@
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxCompany">
+    <Component class="javax.swing.JComboBox" name="jComboBoxCompanyName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
@@ -128,18 +128,21 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxCompanyNameItemStateChanged"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldUpdatePrice">
+    <Component class="javax.swing.JTextField" name="jTextFieldUpdateContact">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUpdatePriceActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUpdateContactActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonUpdateContact">
@@ -149,15 +152,18 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Update Contact"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateContactActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldUpdateQuantity">
+    <Component class="javax.swing.JTextField" name="jTextFieldUpdateEmailID">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUpdateQuantityActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldUpdateEmailIDActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonUpdateEmail">
@@ -167,6 +173,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Update Email ID"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateEmailActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>

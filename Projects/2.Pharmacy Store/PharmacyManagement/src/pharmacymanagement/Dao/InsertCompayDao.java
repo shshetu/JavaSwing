@@ -18,4 +18,9 @@ public interface InsertCompayDao {
     
     //get the list
      List<InsertCompany> getInsertCompany();
+     
+     //validation
+     InsertCompany getInsertCompanyById(int id);
+     InsertCompany getInsertCompanyByName(String companyName);
+     
 }

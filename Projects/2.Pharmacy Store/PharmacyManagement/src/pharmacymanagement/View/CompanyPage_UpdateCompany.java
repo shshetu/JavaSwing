@@ -6,6 +6,7 @@
 package pharmacymanagement.View;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pharmacymanagement.Dao.InsertCompayDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
@@ -29,9 +30,9 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
     public void displayDataIntoComboBox() {
         InsertCompayDao ic = new InsertCompanyDaoImp();
         List<InsertCompany> list = ic.getInsertCompany();
-        jComboBoxCompany.addItem("Select A Company");
+        jComboBoxCompanyName.addItem("Select A Company");
         for (InsertCompany i : list) {
-            jComboBoxCompany.addItem(i.getCompanyName());
+            jComboBoxCompanyName.addItem(i.getCompanyName());
 
         }
     }
@@ -69,10 +70,10 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         jLabelAfterLoginIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
-        jComboBoxCompany = new javax.swing.JComboBox<>();
-        jTextFieldUpdatePrice = new javax.swing.JTextField();
+        jComboBoxCompanyName = new javax.swing.JComboBox<>();
+        jTextFieldUpdateContact = new javax.swing.JTextField();
         jButtonUpdateContact = new javax.swing.JButton();
-        jTextFieldUpdateQuantity = new javax.swing.JTextField();
+        jTextFieldUpdateEmailID = new javax.swing.JTextField();
         jButtonUpdateEmail = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCompanyUpdateDisplay = new javax.swing.JTable();
@@ -88,27 +89,42 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
 
-        jComboBoxCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxCompanyName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxCompanyName.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCompanyNameItemStateChanged(evt);
+            }
+        });
 
-        jTextFieldUpdatePrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUpdatePrice.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldUpdateContact.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldUpdateContact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUpdatePriceActionPerformed(evt);
+                jTextFieldUpdateContactActionPerformed(evt);
             }
         });
 
         jButtonUpdateContact.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateContact.setText("Update Contact");
-
-        jTextFieldUpdateQuantity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUpdateQuantity.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpdateContact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUpdateQuantityActionPerformed(evt);
+                jButtonUpdateContactActionPerformed(evt);
+            }
+        });
+
+        jTextFieldUpdateEmailID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldUpdateEmailID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUpdateEmailIDActionPerformed(evt);
             }
         });
 
         jButtonUpdateEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateEmail.setText("Update Email ID");
+        jButtonUpdateEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateEmailActionPerformed(evt);
+            }
+        });
 
         jTableCompanyUpdateDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,9 +154,9 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldUpdatePrice)
-                            .addComponent(jComboBoxCompany, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldUpdateContact)
+                            .addComponent(jComboBoxCompanyName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldUpdateEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonUpdateContact, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,15 +178,15 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBoxCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldUpdatePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldUpdateContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonUpdateContact))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldUpdateEmailID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonUpdateEmail))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,19 +201,40 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUpdatePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdatePriceActionPerformed
+    private void jTextFieldUpdateContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateContactActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUpdatePriceActionPerformed
+    }//GEN-LAST:event_jTextFieldUpdateContactActionPerformed
 
-    private void jTextFieldUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateQuantityActionPerformed
+    private void jTextFieldUpdateEmailIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateEmailIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUpdateQuantityActionPerformed
-
+    }//GEN-LAST:event_jTextFieldUpdateEmailIDActionPerformed
+    int selectedId;
     private void jTableCompanyUpdateDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCompanyUpdateDisplayMouseClicked
         int i = jTableCompanyUpdateDisplay.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTableCompanyUpdateDisplay.getModel();
-
+        jTextFieldUpdateEmailID.setText(model.getValueAt(i, 3).toString());
+        jTextFieldUpdateContact.setText(model.getValueAt(i, 4).toString());
+        selectedId = Integer.parseInt(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_jTableCompanyUpdateDisplayMouseClicked
+
+    private void jComboBoxCompanyNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCompanyNameItemStateChanged
+       
+    }//GEN-LAST:event_jComboBoxCompanyNameItemStateChanged
+
+    private void jButtonUpdateContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateContactActionPerformed
+        // TODO add your handling code here:
+        String contactNo = jTextFieldUpdateContact.getText().trim();
+        InsertCompany ic = new InsertCompanyDaoImp().getInsertCompanyById(selectedId);
+        if(ic.getCompanyName() != null){
+//        new InsertCompanyDaoImp().;
+        displayDataintoTable();
+            JOptionPane.showMessageDialog(null, "Contact Number is updated!");
+        }
+    }//GEN-LAST:event_jButtonUpdateContactActionPerformed
+
+    private void jButtonUpdateEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUpdateEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,12 +306,12 @@ public class CompanyPage_UpdateCompany extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonUpdateContact;
     private javax.swing.JButton jButtonUpdateEmail;
-    private javax.swing.JComboBox<String> jComboBoxCompany;
+    private javax.swing.JComboBox<String> jComboBoxCompanyName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAfterLoginIcon;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCompanyUpdateDisplay;
-    private javax.swing.JTextField jTextFieldUpdatePrice;
-    private javax.swing.JTextField jTextFieldUpdateQuantity;
+    private javax.swing.JTextField jTextFieldUpdateContact;
+    private javax.swing.JTextField jTextFieldUpdateEmailID;
     // End of variables declaration//GEN-END:variables
 }

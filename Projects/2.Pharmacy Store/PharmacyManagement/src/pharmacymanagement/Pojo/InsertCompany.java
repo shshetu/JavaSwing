@@ -12,6 +12,11 @@ package pharmacymanagement.Pojo;
 public class InsertCompany {
 
     private int id;
+    private String companyName;
+    private String companyCountry;
+    private String companyEmail;
+    private String companyContactNo;
+    private String companyAddress;
 
     public int getId() {
         return id;
@@ -19,15 +24,6 @@ public class InsertCompany {
 
     public void setId(int id) {
         this.id = id;
-    }
-    private String companyName;
-    private String companyCountry;
-    private String companyEmail;
-    private String companyContactNo;
-    private String companyAddress;
-
-    public InsertCompany() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getCompanyName() {
@@ -85,6 +81,10 @@ public class InsertCompany {
         this.companyEmail = companyEmail;
         this.companyContactNo = companyContactNo;
         this.companyAddress = companyAddress;
+    }
+
+    public InsertCompany(int id) {
+        this.id = id;
     }
 
 }

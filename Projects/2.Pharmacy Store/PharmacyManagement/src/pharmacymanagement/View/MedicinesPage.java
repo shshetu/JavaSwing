@@ -5,6 +5,15 @@
  */
 package pharmacymanagement.View;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pharmacymanagement.Dao.InsertCompayDao;
+import pharmacymanagement.Dao.InsertMedicineDao;
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
+import pharmacymanagement.Pojo.InsertMedicine;
+
 /**
  *
  * @author shshe
@@ -16,6 +25,37 @@ public class MedicinesPage extends javax.swing.JFrame {
      */
     public MedicinesPage() {
         initComponents();
+        displayDataintoTable();
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataintoTable() {
+        clearTable();
+        InsertMedicineDao ic = new InsertMedicineDaoImp();
+        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay.getModel();
+        List<InsertMedicine> list = ic.getInsertMedicine();
+        Object[] cols = new Object[11];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getProductId();
+            cols[1] = list.get(i).getProductName();
+            cols[2] = list.get(i).getProductCode();
+            cols[3] = list.get(i).getMedicineGroup();
+            InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
+            cols[4] = ik.getCompanyName();
+            InsertMedicine im = new InsertMedicineDaoImp().getMedicineByid(list.get(i).getProductId());
+            cols[5] = im.getProductName();
+
+            cols[6] = list.get(i).getProductQuantity();
+            cols[7] = list.get(i).getProductPrice();
+            cols[8] = list.get(i).getExpireDate();
+            cols[9] = list.get(i).getDoseType();
+            cols[10] = list.get(i).getRemarks();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -60,7 +100,7 @@ public class MedicinesPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
+                "Product ID", "Product Name", "Proudct Code", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
         jScrollPane1.setViewportView(jTableMedicineDisplay);

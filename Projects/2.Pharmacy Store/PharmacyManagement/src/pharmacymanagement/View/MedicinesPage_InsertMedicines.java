@@ -5,6 +5,17 @@
  */
 package pharmacymanagement.View;
 
+import java.sql.Date;
+import java.util.List;
+import pharmacymanagement.Dao.InsertMedicineDao;
+import pharmacymanagement.Dao.ProductCategoryDao;
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
+import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
+import pharmacymanagement.Pojo.InsertMedicine;
+import pharmacymanagement.Pojo.ProductCategory;
+
 /**
  *
  * @author shshe
@@ -16,6 +27,28 @@ public class MedicinesPage_InsertMedicines extends javax.swing.JFrame {
      */
     public MedicinesPage_InsertMedicines() {
         initComponents();
+        new InsertMedicineDaoImp().createTable();
+        displayDataIntoCompanyNameComboBox();
+        displayDataIntoProductCategoryComboBox();
+    }
+
+    public void displayDataIntoCompanyNameComboBox() {
+        List<InsertCompany> list = new InsertCompanyDaoImp().getInsertCompany();
+        jComboBoxCompanyName.addItem("Select A Company");
+        for (InsertCompany ic : list) {
+//     jComboBoxCompanyName.addItem(ic.getId()+" "+ic.getCompanyName());
+            jComboBoxCompanyName.addItem(ic.getCompanyName());
+        }
+    }
+
+    public void displayDataIntoProductCategoryComboBox() {
+
+        List<ProductCategory> list = new ProductCategoryDaoImp().getProductCategory();
+        jComboBoxProductCategory.addItem("Select A Product Category");
+        for (ProductCategory ic : list) {
+//     jComboBoxProductCategory.addItem(ic.getProductId()+" "+ic.getProductCategoryName());
+            jComboBoxProductCategory.addItem(ic.getProductCategoryName());
+        }
     }
 
     /**
@@ -79,16 +112,24 @@ public class MedicinesPage_InsertMedicines extends javax.swing.JFrame {
         jLabel5.setText("PRODUCT PRICE");
 
         jComboBoxProductCategory.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxProductCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Product Category", "Syrup", "Tablet", "Cream" }));
+        jComboBoxProductCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProductCategoryActionPerformed(evt);
+            }
+        });
 
         jComboBoxCompanyName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxCompanyName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Company", "Beximco", "Square", "Incepta" }));
 
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
 
         jButtonInsert1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonInsert1.setText("Insert");
+        jButtonInsert1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsert1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("MEDICINE GROUP");
@@ -139,12 +180,11 @@ public class MedicinesPage_InsertMedicines extends javax.swing.JFrame {
                             .addComponent(jTextFieldMedicineGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldProductQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxProductCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxCompanyName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jTextFieldDoseType, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                                .addComponent(jTextFieldDoseType, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                                .addComponent(jComboBoxCompanyName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxProductCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jTextFieldProductCode, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(363, 363, 363)
@@ -238,6 +278,32 @@ public class MedicinesPage_InsertMedicines extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBoxProductCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProductCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxProductCategoryActionPerformed
+
+    private void jButtonInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsert1ActionPerformed
+        String productName = jTextFieldProductName.getText().trim();
+        String productCode = jTextFieldProductCode.getText().trim();
+        String medicineGroup = jTextFieldMedicineGroup.getText().trim();
+        String companyName = jComboBoxCompanyName.getItemAt(jComboBoxCompanyName.getSelectedIndex());
+        String productCategoryName = jComboBoxProductCategory.getItemAt(jComboBoxProductCategory.getSelectedIndex());
+        int productQty = Integer.parseInt(jTextFieldProductQuantity.getText().trim());
+        double productPrice = Double.parseDouble(jTextFieldProductPrice.getText().trim());
+        Date date = Date.valueOf(jTextFieldExpireDate.getText().trim());
+        String doseType = jTextFieldDoseType.getText().trim();
+        String remarks = jTextAreaRemarks.getText().trim();
+
+        ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyName(productCategoryName);
+        InsertCompany ic = new InsertCompanyDaoImp().getInsertCompanyByName(companyName);
+        //validation
+
+        //insert
+        InsertMedicine im = new InsertMedicine(productName, productCode, medicineGroup, ic, pc, productQty, productPrice, date, doseType, remarks);
+        InsertMedicineDao isDao = new InsertMedicineDaoImp();
+        isDao.insert(im);
+    }//GEN-LAST:event_jButtonInsert1ActionPerformed
 
     /**
      * @param args the command line arguments

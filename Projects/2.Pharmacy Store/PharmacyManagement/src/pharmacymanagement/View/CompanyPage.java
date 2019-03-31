@@ -30,6 +30,7 @@ public class CompanyPage extends javax.swing.JFrame {
         model.setRowCount(0);
     }
     public void displayDataintoTable(){
+        clearTable();
         InsertCompayDao ic = new InsertCompanyDaoImp();
        DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
        List<InsertCompany> list = ic.getInsertCompany();

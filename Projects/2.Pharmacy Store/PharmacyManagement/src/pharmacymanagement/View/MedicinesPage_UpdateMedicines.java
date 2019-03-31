@@ -5,6 +5,14 @@
  */
 package pharmacymanagement.View;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pharmacymanagement.Dao.InsertMedicineDao;
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
+import pharmacymanagement.Pojo.InsertMedicine;
+
 /**
  *
  * @author shshe
@@ -16,6 +24,37 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
      */
     public MedicinesPage_UpdateMedicines() {
         initComponents();
+        displayDataintoTable();
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay1.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataintoTable() {
+        clearTable();
+        InsertMedicineDao ic = new InsertMedicineDaoImp();
+        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay1.getModel();
+        List<InsertMedicine> list = ic.getInsertMedicine();
+        Object[] cols = new Object[11];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getProductId();
+            cols[1] = list.get(i).getProductName();
+            cols[2] = list.get(i).getProductCode();
+            cols[3] = list.get(i).getMedicineGroup();
+            InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
+            cols[4] = ik.getCompanyName();
+            InsertMedicine im = new InsertMedicineDaoImp().getMedicineByid(list.get(i).getProductId());
+            cols[5] = im.getProductName();
+
+            cols[6] = list.get(i).getProductQuantity();
+            cols[7] = list.get(i).getProductPrice();
+            cols[8] = list.get(i).getExpireDate();
+            cols[9] = list.get(i).getDoseType();
+            cols[10] = list.get(i).getRemarks();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -30,7 +69,7 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
         jLabelAfterLoginIcon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxProductName = new javax.swing.JComboBox<>();
         jTextFieldUpdatePrice = new javax.swing.JTextField();
         jButtonUpdatePrice = new javax.swing.JButton();
         jTextFieldUpdateQuantity = new javax.swing.JTextField();
@@ -49,8 +88,8 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Napa", "Ace Plus", "Xorel" }));
+        jComboBoxProductName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxProductName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Napa", "Ace Plus", "Xorel" }));
 
         jTextFieldUpdatePrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldUpdatePrice.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +102,6 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
         jButtonUpdatePrice.setText("Update Price");
 
         jTextFieldUpdateQuantity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUpdateQuantity.setText("Enter Quantity");
         jTextFieldUpdateQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUpdateQuantityActionPerformed(evt);
@@ -81,6 +119,11 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
                 "Product ID", "Product Name", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
+        jTableMedicineDisplay1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMedicineDisplay1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableMedicineDisplay1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,7 +140,7 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
                         .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldUpdatePrice)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxProductName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldUpdateQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +163,7 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,6 +190,14 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
     private void jTextFieldUpdateQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUpdateQuantityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUpdateQuantityActionPerformed
+    int selectedId;
+    private void jTableMedicineDisplay1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMedicineDisplay1MouseClicked
+        int i = jTableMedicineDisplay1.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay1.getModel();
+        jTextFieldUpdatePrice.setText(model.getValueAt(i, 6).toString());
+        jTextFieldUpdateQuantity.setText(model.getValueAt(i, 5).toString());
+        selectedId = Integer.parseInt(model.getValueAt(i, 0).toString());
+    }//GEN-LAST:event_jTableMedicineDisplay1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -194,7 +245,7 @@ public class MedicinesPage_UpdateMedicines extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonUpdatePrice;
     private javax.swing.JButton jButtonUpdateQuantity;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxProductName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAfterLoginIcon;
     private javax.swing.JScrollPane jScrollPane2;
