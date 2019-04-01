@@ -178,6 +178,7 @@ public class CompanyPage_InsertCompany extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
+       this.setVisible(false);
         new CompanyPage().setVisible(true);
        
     }//GEN-LAST:event_jButtonBackActionPerformed

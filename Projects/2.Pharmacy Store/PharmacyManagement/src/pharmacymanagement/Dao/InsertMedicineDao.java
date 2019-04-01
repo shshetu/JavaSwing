@@ -21,9 +21,11 @@ public interface InsertMedicineDao {
     
     //get data from database
     List<InsertMedicine> getInsertMedicine();
-    
+   
     //validation
     InsertMedicine getMedicineByid(int id);
     InsertMedicine getMedicineByProductCode(String productCode);
     InsertMedicine getMedicineByProductName(String productName);
+    
+    
 }

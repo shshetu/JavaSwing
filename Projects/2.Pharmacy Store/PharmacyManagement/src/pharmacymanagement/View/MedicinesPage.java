@@ -7,12 +7,13 @@ package pharmacymanagement.View;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import pharmacymanagement.Dao.InsertCompayDao;
 import pharmacymanagement.Dao.InsertMedicineDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
 import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
+import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
 import pharmacymanagement.Pojo.InsertMedicine;
+import pharmacymanagement.Pojo.ProductCategory;
 
 /**
  *
@@ -46,8 +47,8 @@ public class MedicinesPage extends javax.swing.JFrame {
             cols[3] = list.get(i).getMedicineGroup();
             InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
             cols[4] = ik.getCompanyName();
-            InsertMedicine im = new InsertMedicineDaoImp().getMedicineByid(list.get(i).getProductId());
-            cols[5] = im.getProductName();
+            ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
+            cols[5] = pc.getProductCategoryName();
 
             cols[6] = list.get(i).getProductQuantity();
             cols[7] = list.get(i).getProductPrice();
@@ -83,8 +84,18 @@ public class MedicinesPage extends javax.swing.JFrame {
         jLabelAfterLoginIcon.setText("Login Icon");
 
         jButtonInsertMedicines.setText("Insert Medicines");
+        jButtonInsertMedicines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertMedicinesActionPerformed(evt);
+            }
+        });
 
         jButtonUpdateMedicines.setText("UpdateMedicines");
+        jButtonUpdateMedicines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateMedicinesActionPerformed(evt);
+            }
+        });
 
         jButtonDeleteMedicines.setText("Delete Medicines");
 
@@ -122,14 +133,17 @@ public class MedicinesPage extends javax.swing.JFrame {
                     .addComponent(jButtonInsertMedicines, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonDeleteMedicines, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
                         .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(69, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1014, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +156,7 @@ public class MedicinesPage extends javax.swing.JFrame {
                 .addComponent(jButtonUpdateMedicines)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonDeleteMedicines)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(jButtonBack)
                 .addGap(99, 99, 99))
             .addGroup(layout.createSequentialGroup()
@@ -150,9 +164,9 @@ public class MedicinesPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSearch))
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -160,9 +174,20 @@ public class MedicinesPage extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        new MedicinesPage().setVisible(false);
+        this.setVisible(false);
         new Dashboard().setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jButtonInsertMedicinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertMedicinesActionPerformed
+        // TODO add your handling code here:
+        new MedicinesPage_InsertMedicines().setVisible(true);
+
+    }//GEN-LAST:event_jButtonInsertMedicinesActionPerformed
+
+    private void jButtonUpdateMedicinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateMedicinesActionPerformed
+        // TODO add your handling code here:
+        new MedicinesPage_UpdateMedicines().setVisible(true);
+    }//GEN-LAST:event_jButtonUpdateMedicinesActionPerformed
 
     /**
      * @param args the command line arguments

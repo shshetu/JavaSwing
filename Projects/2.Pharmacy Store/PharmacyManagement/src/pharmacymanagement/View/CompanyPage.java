@@ -11,7 +11,6 @@ import pharmacymanagement.Dao.InsertCompayDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
 
-
 /**
  *
  * @author shshe
@@ -25,26 +24,29 @@ public class CompanyPage extends javax.swing.JFrame {
         initComponents();
         displayDataintoTable();
     }
-    public void clearTable(){
+
+    public void clearTable() {
         DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
         model.setRowCount(0);
     }
-    public void displayDataintoTable(){
+
+    public void displayDataintoTable() {
         clearTable();
         InsertCompayDao ic = new InsertCompanyDaoImp();
-       DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
-       List<InsertCompany> list = ic.getInsertCompany();
-       Object[] cols = new Object[6];
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
+        List<InsertCompany> list = ic.getInsertCompany();
+        Object[] cols = new Object[6];
         for (int i = 0; i < list.size(); i++) {
-           cols[0] = list.get(i).getId();
-           cols[1] = list.get(i).getCompanyName();
-           cols[2] = list.get(i).getCompanyCountry();
-           cols[3] = list.get(i).getCompanyEmail();
-           cols[4] = list.get(i).getCompanyContactNo();
-           cols[5] = list.get(i).getCompanyAddress();
-           model.addRow(cols);
+            cols[0] = list.get(i).getId();
+            cols[1] = list.get(i).getCompanyName();
+            cols[2] = list.get(i).getCompanyCountry();
+            cols[3] = list.get(i).getCompanyEmail();
+            cols[4] = list.get(i).getCompanyContactNo();
+            cols[5] = list.get(i).getCompanyAddress();
+            model.addRow(cols);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,16 +168,19 @@ public class CompanyPage extends javax.swing.JFrame {
 
     private void jButtonInsertCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertCompanyActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new CompanyPage_InsertCompany().setVisible(true);
     }//GEN-LAST:event_jButtonInsertCompanyActionPerformed
 
     private void jButtonUpdateCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCompanyActionPerformed
-      new CompanyPage_UpdateCompany().setVisible(true);
+        this.setVisible(false);
+        new CompanyPage_UpdateCompany().setVisible(true);
     }//GEN-LAST:event_jButtonUpdateCompanyActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-          new Dashboard().setVisible(true);
+        this.setVisible(false);
+        new Dashboard().setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**

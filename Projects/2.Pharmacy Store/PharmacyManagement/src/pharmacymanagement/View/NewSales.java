@@ -5,6 +5,16 @@
  */
 package pharmacymanagement.View;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pharmacymanagement.Dao.InsertMedicineDao;
+import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
+import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
+import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
+import pharmacymanagement.Pojo.InsertCompany;
+import pharmacymanagement.Pojo.InsertMedicine;
+import pharmacymanagement.Pojo.ProductCategory;
+
 /**
  *
  * @author shshe
@@ -16,6 +26,45 @@ public class NewSales extends javax.swing.JFrame {
      */
     public NewSales() {
         initComponents();
+        displayDataintoTable();
+        displayDataIntoComboBox();
+    }
+
+    public void displayDataIntoComboBox() {
+        List<InsertMedicine> list = new InsertMedicineDaoImp().getInsertMedicine();
+        jComboBoxProductName.addItem("Select A Product");
+        for (InsertMedicine i : list) {
+            jComboBoxProductName.addItem(i.getProductName());
+        }
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableNewSales.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataintoTable() {
+        clearTable();
+        InsertMedicineDao ic = new InsertMedicineDaoImp();
+        DefaultTableModel model = (DefaultTableModel) jTableNewSales.getModel();
+        List<InsertMedicine> list = ic.getInsertMedicine();
+        Object[] cols = new Object[10];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getProductId();
+            cols[1] = list.get(i).getProductName();
+            ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
+            cols[2] = pc.getProductCategoryName();
+            cols[3] = list.get(i).getMedicineGroup();
+            InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
+            cols[4] = ik.getCompanyName();
+            cols[5] = list.get(i).getProductQuantity();
+
+            cols[6] = list.get(i).getProductPrice();
+            cols[7] = list.get(i).getExpireDate();
+            cols[8] = list.get(i).getDoseType();
+            cols[9] = list.get(i).getRemarks();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -39,7 +88,7 @@ public class NewSales extends javax.swing.JFrame {
         jButtonPrint1 = new javax.swing.JButton();
         jButtonDone = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTableMedicineDisplay1 = new javax.swing.JTable();
+        jTableNewSales = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,12 +96,16 @@ public class NewSales extends javax.swing.JFrame {
         jLabelAfterLoginIcon.setText("Login Icon");
 
         jButtonAddToCart.setText("Add To Cart");
+        jButtonAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddToCartActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Product Name");
 
-        jComboBoxProductName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxProductName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Product", "Napa", "Xorel" }));
+        jComboBoxProductName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Enter Quantity");
@@ -62,26 +115,31 @@ public class NewSales extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bill", "Values"
+                "Medicine Name", "Quantity", "Price per unit", "Total"
             }
         ));
         jScrollPane2.setViewportView(jTableDisplayBillAndValues);
 
         jButtonBack1.setText("Back");
+        jButtonBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBack1ActionPerformed(evt);
+            }
+        });
 
         jButtonPrint1.setText("Print");
 
         jButtonDone.setText("Done");
 
-        jTableMedicineDisplay1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableNewSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
+                "Product ID", "Product Name", "Product Category", "Medicine Group", "Company Name", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
-        jScrollPane3.setViewportView(jTableMedicineDisplay1);
+        jScrollPane3.setViewportView(jTableNewSales);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +218,36 @@ public class NewSales extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ public void diplayDataIntoBillTable() {
+        String productName = jComboBoxProductName.getItemAt(jComboBoxProductName.getSelectedIndex());
+        int quantity = Integer.parseInt(jTextFieldEnterQuantity.getText());
+        DefaultTableModel model = (DefaultTableModel) jTableDisplayBillAndValues.getModel();
+        InsertMedicine ic = new InsertMedicineDaoImp().getMedicineByProductName(productName);
+        double productPrice = ic.getProductPrice();
+        Object[] cols = new Object[4];
+        //list 
+        List<InsertMedicine> list = new InsertMedicineDaoImp().getInsertMedicine();
+        for (int i = 0; i < 1; i++) {
+            cols[0] = productName;
+            cols[1] = quantity;
+            cols[2] = productPrice;
+            cols[3] = quantity * productPrice;
+            model.addRow(cols);
+        }
+
+    }
+
+    private void jButtonAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddToCartActionPerformed
+        // TODO add your handling code here:
+        diplayDataIntoBillTable();
+
+    }//GEN-LAST:event_jButtonAddToCartActionPerformed
+
+    private void jButtonBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBack1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new Dashboard().setVisible(true);
+    }//GEN-LAST:event_jButtonBack1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,16 +263,24 @@ public class NewSales extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewSales.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewSales.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewSales.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewSales.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -215,7 +311,7 @@ public class NewSales extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableDisplayBillAndValues;
-    private javax.swing.JTable jTableMedicineDisplay1;
+    private javax.swing.JTable jTableNewSales;
     private javax.swing.JTextField jTextFieldEnterQuantity;
     // End of variables declaration//GEN-END:variables
 }

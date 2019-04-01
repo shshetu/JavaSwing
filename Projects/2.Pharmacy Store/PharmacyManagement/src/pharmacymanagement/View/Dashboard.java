@@ -10,8 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import pharmacymanagement.Dao.InsertMedicineDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
 import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
+import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
 import pharmacymanagement.Pojo.InsertMedicine;
+import pharmacymanagement.Pojo.ProductCategory;
 
 /**
  *
@@ -26,15 +28,16 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         displayDataintoTable();
     }
-  public void clearTable() {
-        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay.getModel();
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableDashBoardDipsplay.getModel();
         model.setRowCount(0);
     }
 
     public void displayDataintoTable() {
         clearTable();
         InsertMedicineDao ic = new InsertMedicineDaoImp();
-        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTableDashBoardDipsplay.getModel();
         List<InsertMedicine> list = ic.getInsertMedicine();
         Object[] cols = new Object[11];
         for (int i = 0; i < list.size(); i++) {
@@ -44,8 +47,8 @@ public class Dashboard extends javax.swing.JFrame {
             cols[3] = list.get(i).getMedicineGroup();
             InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
             cols[4] = ik.getCompanyName();
-            InsertMedicine im = new InsertMedicineDaoImp().getMedicineByid(list.get(i).getProductId());
-            cols[5] = im.getProductName();
+            ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
+            cols[5] = pc.getProductCategoryName();
 
             cols[6] = list.get(i).getProductQuantity();
             cols[7] = list.get(i).getProductPrice();
@@ -55,6 +58,7 @@ public class Dashboard extends javax.swing.JFrame {
             model.addRow(cols);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +80,8 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonLogout1 = new javax.swing.JButton();
         jLabelDisplayLoggedInUser = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMedicineDisplay = new javax.swing.JTable();
+        jTableDashBoardDipsplay = new javax.swing.JTable();
+        jButtonProductCategory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,19 +131,31 @@ public class Dashboard extends javax.swing.JFrame {
         jTextFieldSearch.setText("If i search by 'a' it wil show all medicines  start with a");
 
         jButtonLogout1.setText("Log Out");
+        jButtonLogout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogout1ActionPerformed(evt);
+            }
+        });
 
         jLabelDisplayLoggedInUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelDisplayLoggedInUser.setText("You are looged in as: shetu");
 
-        jTableMedicineDisplay.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDashBoardDipsplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
+                "Product ID", "Product Name", "Product Code", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
-        jScrollPane1.setViewportView(jTableMedicineDisplay);
+        jScrollPane1.setViewportView(jTableDashBoardDipsplay);
+
+        jButtonProductCategory.setText("Product Category");
+        jButtonProductCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProductCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +171,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jButtonViewSaleRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNewSales, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCreateAUser, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCreateAUser, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonProductCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -174,32 +192,37 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jButtonMedicines)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCompanies)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonViewSaleRecords)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonNewSales)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonChangePassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addComponent(jButtonCreateAUser)
-                .addGap(7, 7, 7)
-                .addComponent(jButtonLogout1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSearch))
-                .addGap(18, 18, 18)
-                .addComponent(jLabelDisplayLoggedInUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSearch))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelDisplayLoggedInUser))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonProductCategory)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMedicines)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCompanies)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonViewSaleRecords)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonNewSales)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonChangePassword)
+                        .addGap(105, 105, 105)
+                        .addComponent(jButtonCreateAUser)
+                        .addGap(7, 7, 7)
+                        .addComponent(jButtonLogout1)
+                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -207,28 +230,45 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButtonMedicinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedicinesActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new MedicinesPage().setVisible(true);
     }//GEN-LAST:event_jButtonMedicinesActionPerformed
 
     private void jButtonCompaniesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompaniesActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new CompanyPage().setVisible(true);
     }//GEN-LAST:event_jButtonCompaniesActionPerformed
 
     private void jButtonViewSaleRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewSaleRecordsActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new ViewSaleRecord().setVisible(true);
     }//GEN-LAST:event_jButtonViewSaleRecordsActionPerformed
 
     private void jButtonNewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewSalesActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new NewSales().setVisible(true);
     }//GEN-LAST:event_jButtonNewSalesActionPerformed
 
     private void jButtonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangePasswordActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new ChangePassword().setVisible(true);
     }//GEN-LAST:event_jButtonChangePasswordActionPerformed
+
+    private void jButtonProductCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProductCategoryActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ProductCategoryView().setVisible(true);
+    }//GEN-LAST:event_jButtonProductCategoryActionPerformed
+
+    private void jButtonLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogout1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new LoginPage().setVisible(true);
+    }//GEN-LAST:event_jButtonLogout1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,12 +313,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogout1;
     private javax.swing.JButton jButtonMedicines;
     private javax.swing.JButton jButtonNewSales;
+    private javax.swing.JButton jButtonProductCategory;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonViewSaleRecords;
     private javax.swing.JLabel jLabelAfterLoginIcon;
     private javax.swing.JLabel jLabelDisplayLoggedInUser;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMedicineDisplay;
+    private javax.swing.JTable jTableDashBoardDipsplay;
     private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }
