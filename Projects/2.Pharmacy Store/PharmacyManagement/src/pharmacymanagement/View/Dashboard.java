@@ -82,6 +82,7 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDashBoardDipsplay = new javax.swing.JTable();
         jButtonProductCategory = new javax.swing.JButton();
+        jButtonChangeSummary = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +158,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButtonChangeSummary.setText("Summary ");
+        jButtonChangeSummary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeSummaryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,7 +180,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jButtonNewSales, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCreateAUser, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonProductCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonProductCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonChangeSummary, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,7 +212,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelAfterLoginIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonProductCategory)
@@ -217,12 +226,14 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(jButtonNewSales)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonChangePassword)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonChangeSummary)
                         .addGap(105, 105, 105)
                         .addComponent(jButtonCreateAUser)
                         .addGap(7, 7, 7)
-                        .addComponent(jButtonLogout1)
-                        .addContainerGap())
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonLogout1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -270,6 +281,12 @@ public class Dashboard extends javax.swing.JFrame {
         new LoginPage().setVisible(true);
     }//GEN-LAST:event_jButtonLogout1ActionPerformed
 
+    private void jButtonChangeSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeSummaryActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SummaryView().setVisible(true);
+    }//GEN-LAST:event_jButtonChangeSummaryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +325,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonChangePassword;
+    private javax.swing.JButton jButtonChangeSummary;
     private javax.swing.JButton jButtonCompanies;
     private javax.swing.JButton jButtonCreateAUser;
     private javax.swing.JButton jButtonLogout1;

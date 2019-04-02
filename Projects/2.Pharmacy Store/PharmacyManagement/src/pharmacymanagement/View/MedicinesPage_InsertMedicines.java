@@ -7,11 +7,14 @@ package pharmacymanagement.View;
 
 import java.sql.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import pharmacymanagement.Dao.InsertMedicineDao;
 import pharmacymanagement.Dao.ProductCategoryDao;
+import pharmacymanagement.Dao.SummaryDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
 import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
 import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
+import pharmacymanagement.DaoImp.SummaryDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
 import pharmacymanagement.Pojo.InsertMedicine;
 import pharmacymanagement.Pojo.ProductCategory;
@@ -308,6 +311,12 @@ public class MedicinesPage_InsertMedicines extends javax.swing.JFrame {
         InsertMedicine im = new InsertMedicine(productName, productCode, medicineGroup, ic, pc, productQty, productPrice, date, doseType, remarks);
         InsertMedicineDao isDao = new InsertMedicineDaoImp();
         isDao.insert(im);
+        JOptionPane.showMessageDialog(null, "Data successfully inserted into Medicine Table!");
+//        SummaryDao summaryDao = new SummaryDaoImp().g;
+//        try {
+//            if(summaryDao.get){}
+//        } catch (Exception e) {
+//        }
     }//GEN-LAST:event_jButtonInsert1ActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
