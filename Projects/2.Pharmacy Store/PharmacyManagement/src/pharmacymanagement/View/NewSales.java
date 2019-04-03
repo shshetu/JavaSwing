@@ -7,13 +7,13 @@ package pharmacymanagement.View;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import pharmacymanagement.Dao.InsertMedicineDao;
+import pharmacymanagement.Dao.SalesDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
-import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
 import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
+import pharmacymanagement.DaoImp.SalesDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
-import pharmacymanagement.Pojo.InsertMedicine;
 import pharmacymanagement.Pojo.ProductCategory;
+import pharmacymanagement.Pojo.Sales;
 
 /**
  *
@@ -26,14 +26,15 @@ public class NewSales extends javax.swing.JFrame {
      */
     public NewSales() {
         initComponents();
+        new SalesDaoImp().createTable();
         displayDataintoTable();
         displayDataIntoComboBox();
     }
 
     public void displayDataIntoComboBox() {
-        List<InsertMedicine> list = new InsertMedicineDaoImp().getInsertMedicine();
+        List<Sales> list = new SalesDaoImp().getSales();
         jComboBoxProductName.addItem("Select A Product");
-        for (InsertMedicine i : list) {
+        for (Sales i : list) {
             jComboBoxProductName.addItem(i.getProductName());
         }
     }
@@ -45,24 +46,25 @@ public class NewSales extends javax.swing.JFrame {
 
     public void displayDataintoTable() {
         clearTable();
-        InsertMedicineDao ic = new InsertMedicineDaoImp();
+        SalesDao ic = new SalesDaoImp();
         DefaultTableModel model = (DefaultTableModel) jTableNewSales.getModel();
-        List<InsertMedicine> list = ic.getInsertMedicine();
-        Object[] cols = new Object[10];
+        List<Sales> list = ic.getSales();
+        Object[] cols = new Object[11];
         for (int i = 0; i < list.size(); i++) {
             cols[0] = list.get(i).getProductId();
             cols[1] = list.get(i).getProductName();
-            ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
-            cols[2] = pc.getProductCategoryName();
+            cols[2] = list.get(i).getProductCode();
             cols[3] = list.get(i).getMedicineGroup();
             InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
             cols[4] = ik.getCompanyName();
-            cols[5] = list.get(i).getProductQuantity();
+            ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
+            cols[5] = pc.getProductCategoryName();
 
-            cols[6] = list.get(i).getProductPrice();
-            cols[7] = list.get(i).getExpireDate();
-            cols[8] = list.get(i).getDoseType();
-            cols[9] = list.get(i).getRemarks();
+            cols[6] = list.get(i).getProductQuantity();
+            cols[7] = list.get(i).getProductPrice();
+            cols[8] = list.get(i).getExpireDate();
+            cols[9] = list.get(i).getDoseType();
+            cols[10] = list.get(i).getRemarks();
             model.addRow(cols);
         }
     }
@@ -130,13 +132,18 @@ public class NewSales extends javax.swing.JFrame {
         jButtonPrint1.setText("Print");
 
         jButtonDone.setText("Done");
+        jButtonDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDoneActionPerformed(evt);
+            }
+        });
 
         jTableNewSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Product Category", "Medicine Group", "Company Name", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
+                "Product ID", "Product Name", "Product Code", "Medicine Group", "Company Name", "Product Category", "Quantity", "Price Per Unit", "Expire Date", "DoseType", "Remarks"
             }
         ));
         jScrollPane3.setViewportView(jTableNewSales);
@@ -167,7 +174,7 @@ public class NewSales extends javax.swing.JFrame {
                 .addGap(371, 371, 371))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -222,11 +229,11 @@ public class NewSales extends javax.swing.JFrame {
         String productName = jComboBoxProductName.getItemAt(jComboBoxProductName.getSelectedIndex());
         int quantity = Integer.parseInt(jTextFieldEnterQuantity.getText());
         DefaultTableModel model = (DefaultTableModel) jTableDisplayBillAndValues.getModel();
-        InsertMedicine ic = new InsertMedicineDaoImp().getMedicineByProductName(productName);
+        Sales ic = new SalesDaoImp().getSalesByProductName(productName);
         double productPrice = ic.getProductPrice();
         Object[] cols = new Object[4];
         //list 
-        List<InsertMedicine> list = new InsertMedicineDaoImp().getInsertMedicine();
+        List<Sales> list = new SalesDaoImp().getSales();
         for (int i = 0; i < 1; i++) {
             cols[0] = productName;
             cols[1] = quantity;
@@ -248,6 +255,11 @@ public class NewSales extends javax.swing.JFrame {
         this.setVisible(false);
         new Dashboard().setVisible(true);
     }//GEN-LAST:event_jButtonBack1ActionPerformed
+
+    private void jButtonDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoneActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonDoneActionPerformed
 
     /**
      * @param args the command line arguments

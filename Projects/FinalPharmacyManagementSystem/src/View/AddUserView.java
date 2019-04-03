@@ -327,33 +327,34 @@ public class AddUserView extends javax.swing.JFrame {
         // TODO add your handling code here:
         UserDao us = new UserDaoImp();
 
-        //collect data
-        String user_name = jTextFieldUsername.getText().trim();
-        String d = jComboBoxDay.getItemAt(jComboBoxDay.getSelectedIndex());
-        String m = jComboBoxMonth.getItemAt(jComboBoxMonth.getSelectedIndex());
-        String y = jComboBoxYear.getItemAt(jComboBoxYear.getSelectedIndex());
-
-        String address = jTextAreaAddress.getText().trim();
-        int phone = Integer.parseInt(jTextFieldPhone.getText().trim());
-        double salary = Double.valueOf(jTextFieldSalary.getText().trim());
-        String pass = jTextFieldPassword.getText().trim();
         //validation
         //problem in validation
         try {
-            if (user_name.length() < 3) {
+            if (jTextFieldUsername.getText().trim().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Username should be atleast 3 charcters!");
-            } else if (d.equals("Day:") || m.equals("Month:") || y.equals("Year:")) {
+            } else if (jComboBoxDay.getItemAt(jComboBoxDay.getSelectedIndex()).equals("Day:") || jComboBoxMonth.getItemAt(jComboBoxMonth.getSelectedIndex()).equals("Month:") || jComboBoxYear.getItemAt(jComboBoxYear.getSelectedIndex()).equals("Year:")) {
                 JOptionPane.showMessageDialog(null, "Please select the date correctly!");
-            } else if (address.length() < 3) {
+            } else if (jTextAreaAddress.getText().trim().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Address should be atleast 3 charcters!");
-            } else if (String.valueOf(phone).length() < 4) {
+            } else if (String.valueOf(Integer.parseInt(jTextFieldPhone.getText().trim())).length() < 4) {
                 JOptionPane.showMessageDialog(null, "Phone number should be atleast 4 charcters!");
-            } else if (String.valueOf(salary).length() < 3) {
+            } else if (String.valueOf(Double.valueOf(jTextFieldSalary.getText().trim())).length() < 3) {
                 JOptionPane.showMessageDialog(null, "Salary should be atleast 3 charcters!");
-            } else if (pass.length() < 6) {
+            } else if (jTextFieldPassword.getText().trim().length() < 6) {
                 JOptionPane.showMessageDialog(null, "Password should be atleast 6 charcters!");
             } else {
                 try {
+                    //collect data
+                    String user_name = jTextFieldUsername.getText().trim();
+                    String d = jComboBoxDay.getItemAt(jComboBoxDay.getSelectedIndex());
+                    String m = jComboBoxMonth.getItemAt(jComboBoxMonth.getSelectedIndex());
+                    String y = jComboBoxYear.getItemAt(jComboBoxYear.getSelectedIndex());
+
+                    String address = jTextAreaAddress.getText().trim();
+                    int phone = Integer.parseInt(jTextFieldPhone.getText().trim());
+                    double salary = Double.valueOf(jTextFieldSalary.getText().trim());
+                    String pass = jTextFieldPassword.getText().trim();
+                    ////////////////////////
                     int day = Integer.parseInt(jComboBoxDay.getItemAt(jComboBoxDay.getSelectedIndex()));
                     int month = Integer.parseInt(jComboBoxMonth.getItemAt(jComboBoxMonth.getSelectedIndex()));
                     int year = Integer.parseInt(jComboBoxYear.getItemAt(jComboBoxYear.getSelectedIndex()));
@@ -390,7 +391,7 @@ public class AddUserView extends javax.swing.JFrame {
         jTextFieldPhone.setText("");
         jTextFieldSalary.setText("");
         jTextFieldPassword.setText("");
-        
+
     }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**

@@ -5,6 +5,12 @@
  */
 package View;
 
+import daoImp.CompanyDaoImp;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pojo.Company;
+
 /**
  *
  * @author shshe
@@ -17,8 +23,32 @@ public class AddCompanyView extends javax.swing.JFrame {
     public AddCompanyView() {
         initComponents();
         //drug button
-        jButtonUpdateDrug.setEnabled(false);
-        jButtonDeleteDrug.setEnabled(false);
+        jButtonUpdateCompany.setEnabled(false);
+        jButtonDeleteCompany.setEnabled(false);
+        ///
+        new CompanyDaoImp().createTable();
+        displayDataIntoTable();
+
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
+        List<Company> list = new CompanyDaoImp().getCompany();
+        Object[] cols = new Object[6];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getCompany_id();
+            cols[1] = list.get(i).getCompany_name();
+            cols[2] = list.get(i).getCompany_country();
+            cols[3] = list.get(i).getComapany_email();
+            cols[4] = list.get(i).getComapany_contact();
+            cols[5] = list.get(i).getComapany_address();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -37,24 +67,25 @@ public class AddCompanyView extends javax.swing.JFrame {
         jTextFieldCompanyName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldCompanyCountry = new javax.swing.JTextField();
-        jTextFieldDrugBarCode = new javax.swing.JTextField();
+        jTextFieldCompanyEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldDrugDose = new javax.swing.JTextField();
+        jTextFieldCompanyContact = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButtonUpdateDrug = new javax.swing.JButton();
-        jButtonDeleteDrug = new javax.swing.JButton();
-        jButtonAddDrug = new javax.swing.JButton();
+        jButtonUpdateCompany = new javax.swing.JButton();
+        jButtonDeleteCompany = new javax.swing.JButton();
+        jButtonAddCompany = new javax.swing.JButton();
         jTextFieldCompanyAddress = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCompanyDisplay = new javax.swing.JTable();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Company Form");
+        jLabel1.setText("Add Company Form");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,7 +94,7 @@ public class AddCompanyView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(317, 317, 317)
                 .addComponent(jLabel1)
-                .addContainerGap(520, Short.MAX_VALUE))
+                .addContainerGap(467, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,15 +120,15 @@ public class AddCompanyView extends javax.swing.JFrame {
         jTextFieldCompanyCountry.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldCompanyCountry.setText("Drink");
 
-        jTextFieldDrugBarCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugBarCode.setText("AnyBarcodeDaf");
+        jTextFieldCompanyEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldCompanyEmail.setText("AnyBarcodeDaf");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Company Email:");
 
-        jTextFieldDrugDose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugDose.setText("2 Days");
+        jTextFieldCompanyContact.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldCompanyContact.setText("2 Days");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,29 +138,39 @@ public class AddCompanyView extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Company Address:");
 
-        jButtonUpdateDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUpdateDrug.setText("Update Drug");
+        jButtonUpdateCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonUpdateCompany.setText("Update Company");
 
-        jButtonDeleteDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDeleteDrug.setText("Delete Drug");
+        jButtonDeleteCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonDeleteCompany.setText("Delete Company");
 
-        jButtonAddDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonAddDrug.setText("Add Drug");
+        jButtonAddCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonAddCompany.setText("Add Company");
+        jButtonAddCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddCompanyActionPerformed(evt);
+            }
+        });
 
         jTextFieldCompanyAddress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jTableCompanyDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Company Name", "Company Country", "Company Email", "Company Conatact No.", "Company Address"
+                "ID", "NAME", "COUNTRY", "EMAIL", "CONTACT", "ADDRESS"
             }
         ));
         jScrollPane1.setViewportView(jTableCompanyDisplay);
+
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -139,31 +180,36 @@ public class AddCompanyView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonAddDrug)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButtonUpdateDrug)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButtonDeleteDrug))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldCompanyCountry)
-                            .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldDrugDose)
-                            .addComponent(jTextFieldDrugBarCode, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCompanyAddress))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                            .addComponent(jTextFieldCompanyContact)
+                            .addComponent(jTextFieldCompanyEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCompanyAddress))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(59, 59, 59)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldCompanyCountry)
+                                    .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButtonAddCompany)
+                                .addGap(31, 31, 31)
+                                .addComponent(jButtonUpdateCompany)
+                                .addGap(44, 44, 44)
+                                .addComponent(jButtonDeleteCompany)
+                                .addGap(102, 102, 102)
+                                .addComponent(jButtonBack)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,31 +223,32 @@ public class AddCompanyView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldCompanyCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldCompanyEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(211, 211, 211)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextFieldDrugDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldCompanyContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextFieldCompanyAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonUpdateDrug)
-                            .addComponent(jButtonDeleteDrug)
-                            .addComponent(jButtonAddDrug))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldDrugBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonUpdateCompany)
+                    .addComponent(jButtonDeleteCompany)
+                    .addComponent(jButtonAddCompany)
+                    .addComponent(jButtonBack))
                 .addContainerGap())
         );
 
@@ -222,6 +269,49 @@ public class AddCompanyView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AdministrationDashBoard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jButtonAddCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCompanyActionPerformed
+        // TODO add your handling code here:
+        //validation
+        try {
+            if (jTextFieldCompanyName.getText().trim().length() < 3) {
+                JOptionPane.showMessageDialog(null, "Company Name should be atleast 3 charcters!");
+
+            } else if (jTextFieldCompanyCountry.getText().trim().length() < 3) {
+                JOptionPane.showMessageDialog(null, "Company country should be atleast 3 charcters!");
+
+            } else if (jTextFieldCompanyEmail.getText().trim().length() < 3) {
+                JOptionPane.showMessageDialog(null, "Email should be atleast 3 charcters!");
+
+            } else if (String.valueOf(jTextFieldCompanyContact).trim().length() < 3) {
+                JOptionPane.showMessageDialog(null, "Company contact should be atleast 3 charcters!");
+
+            } else if (jTextFieldCompanyAddress.getText().trim().length() < 3) {
+                JOptionPane.showMessageDialog(null, "Company Address should be atleast 3 charcters!");
+
+            } else {
+                String companyName = jTextFieldCompanyName.getText().trim();
+                String companyCountry = jTextFieldCompanyCountry.getText().trim();
+                String companyEmail = jTextFieldCompanyEmail.getText().trim();
+                int companyContact = Integer.parseInt(jTextFieldCompanyContact.getText().trim());
+                String address = jTextFieldCompanyAddress.getText().trim();
+                Company com = new Company(companyName, companyCountry, companyEmail, companyContact, address);
+                new CompanyDaoImp().insert(com);
+                displayDataIntoTable();
+                JOptionPane.showMessageDialog(null, "Data is inserted successfully into company table!");
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Insert nubmers correctly in the fields!");
+        }
+        //call insert method
+
+    }//GEN-LAST:event_jButtonAddCompanyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,9 +350,10 @@ public class AddCompanyView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddDrug;
-    private javax.swing.JButton jButtonDeleteDrug;
-    private javax.swing.JButton jButtonUpdateDrug;
+    private javax.swing.JButton jButtonAddCompany;
+    private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonDeleteCompany;
+    private javax.swing.JButton jButtonUpdateCompany;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -274,9 +365,9 @@ public class AddCompanyView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCompanyDisplay;
     private javax.swing.JTextField jTextFieldCompanyAddress;
+    private javax.swing.JTextField jTextFieldCompanyContact;
     private javax.swing.JTextField jTextFieldCompanyCountry;
+    private javax.swing.JTextField jTextFieldCompanyEmail;
     private javax.swing.JTextField jTextFieldCompanyName;
-    private javax.swing.JTextField jTextFieldDrugBarCode;
-    private javax.swing.JTextField jTextFieldDrugDose;
     // End of variables declaration//GEN-END:variables
 }

@@ -259,9 +259,19 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateUser.setText("Update User");
+        jButtonUpdateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateUserActionPerformed(evt);
+            }
+        });
 
         jButtonAddDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddDrug.setText("Add Drug");
+        jButtonAddDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddDrugActionPerformed(evt);
+            }
+        });
 
         jButtonDeleteDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteDrug.setText("Delete Drug");
@@ -334,6 +344,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonAddCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddCompany.setText("Add Company");
+        jButtonAddCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddCompanyActionPerformed(evt);
+            }
+        });
 
         jButtonEndWith.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonEndWith.setText("Update Company");
@@ -612,6 +627,24 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
     private void jButtonEndWithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEndWithActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEndWithActionPerformed
+
+    private void jButtonUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateUserActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new UpdateUserView().setVisible(true);
+    }//GEN-LAST:event_jButtonUpdateUserActionPerformed
+
+    private void jButtonAddDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDrugActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddDrugView().setVisible(true);
+    }//GEN-LAST:event_jButtonAddDrugActionPerformed
+
+    private void jButtonAddCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCompanyActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddCompanyView().setVisible(true);
+    }//GEN-LAST:event_jButtonAddCompanyActionPerformed
 
     /**
      * @param args the command line arguments

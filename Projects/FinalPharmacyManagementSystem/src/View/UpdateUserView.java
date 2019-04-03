@@ -335,7 +335,10 @@ public class UpdateUserView extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
         int i = jTableUserDisplay.getSelectedRow();
+        /////////////////////
+        selecttedId = Integer.parseInt(model.getValueAt(i, 0).toString());
         String username = model.getValueAt(i, 1).toString();
+        ////////////////////////////////////
         jTextFieldUsername.setText(model.getValueAt(i, 1).toString());
         //Date conversion
         String date = model.getValueAt(i, 2).toString();

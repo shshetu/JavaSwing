@@ -8,11 +8,9 @@ package pharmacymanagement.View;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
-import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
 import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
 import pharmacymanagement.DaoImp.SummaryDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
-import pharmacymanagement.Pojo.InsertMedicine;
 import pharmacymanagement.Pojo.ProductCategory;
 import pharmacymanagement.Pojo.Summary;
 
@@ -35,11 +33,11 @@ public class SummaryView extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
         model.setRowCount(0);
     }
-    
+
     public void displayDataIntoTable() {
         DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
         List<Summary> list = new SummaryDaoImp().getSummary();
-        Object[] cols = new Object[10];
+        Object[] cols = new Object[9];
         for (int i = 0; i < list.size(); i++) {
             cols[0] = list.get(i).getProductId();
             cols[1] = list.get(i).getProductName();
@@ -52,7 +50,6 @@ public class SummaryView extends javax.swing.JFrame {
             cols[6] = list.get(i).getAvailableQty();
             cols[7] = list.get(i).getSoldQty();
             cols[8] = list.get(i).getPricePerUnit();
-            cols[9] = list.get(i).getDate();
             model.addRow(cols);
         }
     }
@@ -101,7 +98,7 @@ public class SummaryView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Prouduct Code", "Medicine Group", "Company Name", "Product Category", "Available Quantity", "Sold Quantity", "Price Per Unit", "Date"
+                "Product ID", "Product Name", "Prouduct Code", "Medicine Group", "Company Name", "Product Category", "Available Quantity", "Sold Quantity", "Price Per Unit"
             }
         ));
         jScrollPane1.setViewportView(jTableSummaryDisplay);

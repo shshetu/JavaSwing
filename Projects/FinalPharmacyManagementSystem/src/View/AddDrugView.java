@@ -5,6 +5,8 @@
  */
 package View;
 
+import daoImp.DrugDaoImp;
+
 /**
  *
  * @author shshe
@@ -19,6 +21,8 @@ public class AddDrugView extends javax.swing.JFrame {
         //drug button
         jButtonUpdateDrug.setEnabled(false);
         jButtonDeleteDrug.setEnabled(false);
+        /////
+        new DrugDaoImp().createTable();
     }
 
     /**

@@ -29,7 +29,7 @@ public class SummaryDaoImp implements SummaryDao {
 
     @Override
     public void createTable() {
-        String sql = "create table if not exists summary(id int(20) auto_increment primary key,product_name varchar(20),product_code varchar(20),medicine_group varchar(20),com_id int(20),p_id int(20),available_qty int(20),sold_qty int(20),price_per_unit double,buy_sell_date date)";
+        String sql = "create table if not exists summary(id int(20) auto_increment primary key,product_name varchar(20),product_code varchar(20),medicine_group varchar(20),com_id int(20),p_id int(20),available_qty int(20),sold_qty int(20),price_per_unit double)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
@@ -41,7 +41,7 @@ public class SummaryDaoImp implements SummaryDao {
 
     @Override
     public void insert(Summary summary) {
-        String sql = "insert into summary(product_name,product_code,medicine_group,com_id,p_id,available_qty,sold_qty,price_per_unit,buy_sell_date) values(?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into summary(product_name,product_code,medicine_group,com_id,p_id,available_qty,sold_qty,price_per_unit) values(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, summary.getProductName());
@@ -52,7 +52,6 @@ public class SummaryDaoImp implements SummaryDao {
             pstm.setInt(6, summary.getAvailableQty());
             pstm.setInt(7, summary.getSoldQty());
             pstm.setDouble(8, summary.getPricePerUnit());
-            pstm.setDate(9, summary.getDate());
             pstm.executeUpdate();
             System.out.println("Data is successfully inserted into summary table!");
         } catch (SQLException ex) {
@@ -62,7 +61,7 @@ public class SummaryDaoImp implements SummaryDao {
 
     @Override
     public Summary getSummaryByProductCode(String productCode) {
-        
+
         Summary summary = null;
         String sql = "select * from summary where product_code = ?";
         try {
@@ -70,7 +69,8 @@ public class SummaryDaoImp implements SummaryDao {
             pstm.setString(1, productCode);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                
+                summary = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new InsertCompany(rs.getInt(5)), new ProductCategory(rs.getString(6)), rs.getInt(7), rs.getInt(8), rs.getDouble(9));
+
             }
 
         } catch (SQLException ex) {
@@ -87,7 +87,8 @@ public class SummaryDaoImp implements SummaryDao {
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-     Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new InsertCompany(rs.getInt(5)), new ProductCategory(rs.getString(6)), 0, 0, 0, date);
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new InsertCompany(rs.getInt(5)), new ProductCategory(rs.getString(6)), rs.getInt(7), rs.getInt(8), rs.getDouble(9));
+                list.add(sum);
             }
 
         } catch (SQLException ex) {

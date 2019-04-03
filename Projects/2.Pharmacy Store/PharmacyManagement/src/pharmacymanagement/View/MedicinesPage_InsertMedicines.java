@@ -10,14 +10,18 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import pharmacymanagement.Dao.InsertMedicineDao;
 import pharmacymanagement.Dao.ProductCategoryDao;
+import pharmacymanagement.Dao.SalesDao;
 import pharmacymanagement.Dao.SummaryDao;
 import pharmacymanagement.DaoImp.InsertCompanyDaoImp;
 import pharmacymanagement.DaoImp.InsertMedicineDaoImp;
 import pharmacymanagement.DaoImp.ProductCategoryDaoImp;
+import pharmacymanagement.DaoImp.SalesDaoImp;
 import pharmacymanagement.DaoImp.SummaryDaoImp;
 import pharmacymanagement.Pojo.InsertCompany;
 import pharmacymanagement.Pojo.InsertMedicine;
 import pharmacymanagement.Pojo.ProductCategory;
+import pharmacymanagement.Pojo.Sales;
+import pharmacymanagement.Pojo.Summary;
 
 /**
  *
@@ -307,16 +311,38 @@ public class MedicinesPage_InsertMedicines extends javax.swing.JFrame {
         InsertCompany ic = new InsertCompanyDaoImp().getInsertCompanyByName(companyName);
         //validation
 
-        //insert
+        //insert into Medicine table
         InsertMedicine im = new InsertMedicine(productName, productCode, medicineGroup, ic, pc, productQty, productPrice, date, doseType, remarks);
         InsertMedicineDao isDao = new InsertMedicineDaoImp();
         isDao.insert(im);
         JOptionPane.showMessageDialog(null, "Data successfully inserted into Medicine Table!");
-//        SummaryDao summaryDao = new SummaryDaoImp().g;
-//        try {
-//            if(summaryDao.get){}
-//        } catch (Exception e) {
-//        }
+
+        //insert into salses table
+        Sales sm = new Sales(productName, productCode, medicineGroup, ic, pc, productQty, productPrice, date, doseType, remarks);
+        new SalesDaoImp().insert(sm);
+        JOptionPane.showMessageDialog(null, "Data successfully inserted into Sales Table!");
+
+        Summary summary = new SummaryDaoImp().getSummaryByProductCode(productCode);
+        try {
+            if (summary.getProductName() != null) {
+
+            } else {
+                ProductCategory pcD = new ProductCategoryDaoImp().getProductCategorybyName(productCategoryName);
+                InsertCompany ick = new InsertCompanyDaoImp().getInsertCompanyByName(companyName);
+                //Summary(String productName, String productCode, String MedicineGroup, InsertCompany company, ProductCategory productCategory, int availableQty, int soldQty, double pricePerUnit, Date date) 
+                Summary sum4 = new Summary(productName, productCode, medicineGroup, ick, pcD, productQty, 0, productPrice);
+                new SummaryDaoImp().insert(sum4);
+                JOptionPane.showMessageDialog(null, "Data inserted successfully into summary table!");
+            }
+        } catch (Exception e) {
+
+            ProductCategory pcD = new ProductCategoryDaoImp().getProductCategorybyName(productCategoryName);
+            InsertCompany ick = new InsertCompanyDaoImp().getInsertCompanyByName(companyName);
+            //Summary(String productName, String productCode, String MedicineGroup, InsertCompany company, ProductCategory productCategory, int availableQty, int soldQty, double pricePerUnit, Date date) 
+            Summary sum4 = new Summary(productName, productCode, medicineGroup, ick, pcD, productQty, 0, productPrice);
+            new SummaryDaoImp().insert(sum4);
+            JOptionPane.showMessageDialog(null, "Data inserted successfully into summary table!");
+        }
     }//GEN-LAST:event_jButtonInsert1ActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed

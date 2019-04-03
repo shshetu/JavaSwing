@@ -448,6 +448,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Update User"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateUserActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAddDrug">
       <Properties>
@@ -456,6 +459,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Add Drug"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddDrugActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonDeleteDrug">
       <Properties>
@@ -617,6 +623,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Add Company"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddCompanyActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonEndWith">
       <Properties>

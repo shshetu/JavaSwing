@@ -22,7 +22,6 @@ public class Summary {
     private int availableQty;
     private int soldQty;
     private double pricePerUnit;
-    private Date date;
 
     public int getProductId() {
         return productId;
@@ -96,15 +95,7 @@ public class Summary {
         this.pricePerUnit = pricePerUnit;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Summary(int productId, String productName, String productCode, String MedicineGroup, InsertCompany company, ProductCategory productCategory, int availableQty, int soldQty, double pricePerUnit, Date date) {
+    public Summary(int productId, String productName, String productCode, String MedicineGroup, InsertCompany company, ProductCategory productCategory, int availableQty, int soldQty, double pricePerUnit) {
         this.productId = productId;
         this.productName = productName;
         this.productCode = productCode;
@@ -114,10 +105,9 @@ public class Summary {
         this.availableQty = availableQty;
         this.soldQty = soldQty;
         this.pricePerUnit = pricePerUnit;
-        this.date = date;
     }
 
-    public Summary(String productName, String productCode, String MedicineGroup, InsertCompany company, ProductCategory productCategory, int availableQty, int soldQty, double pricePerUnit, Date date) {
+    public Summary(String productName, String productCode, String MedicineGroup, InsertCompany company, ProductCategory productCategory, int availableQty, int soldQty, double pricePerUnit) {
         this.productName = productName;
         this.productCode = productCode;
         this.MedicineGroup = MedicineGroup;
@@ -126,7 +116,9 @@ public class Summary {
         this.availableQty = availableQty;
         this.soldQty = soldQty;
         this.pricePerUnit = pricePerUnit;
-        this.date = date;
     }
+  
+
+    
 
 }

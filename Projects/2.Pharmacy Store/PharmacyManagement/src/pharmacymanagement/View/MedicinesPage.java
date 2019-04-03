@@ -107,9 +107,18 @@ public class MedicinesPage extends javax.swing.JFrame {
         });
 
         jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldSearch.setText("If i search by 'a' it wil show all medicines  start with a");
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyTyped(evt);
+            }
+        });
 
         jTableMedicineDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,6 +197,37 @@ public class MedicinesPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         new MedicinesPage_UpdateMedicines().setVisible(true);
     }//GEN-LAST:event_jButtonUpdateMedicinesActionPerformed
+
+    private void jTextFieldSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyTyped
+
+    }//GEN-LAST:event_jTextFieldSearchKeyTyped
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+        
+        clearTable();
+        InsertMedicineDao ic = new InsertMedicineDaoImp();
+        DefaultTableModel model = (DefaultTableModel) jTableMedicineDisplay.getModel();
+        List<InsertMedicine> list =  ic.getMedicineByProductName(jTextFieldSearch.getText().trim());
+        Object[] cols = new Object[11];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getProductId();
+            cols[1] = list.get(i).getProductName();
+            cols[2] = list.get(i).getProductCode();
+            cols[3] = list.get(i).getMedicineGroup();
+            InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
+            cols[4] = ik.getCompanyName();
+            ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
+            cols[5] = pc.getProductCategoryName();
+
+            cols[6] = list.get(i).getProductQuantity();
+            cols[7] = list.get(i).getProductPrice();
+            cols[8] = list.get(i).getExpireDate();
+            cols[9] = list.get(i).getDoseType();
+            cols[10] = list.get(i).getRemarks();
+            model.addRow(cols);
+        }
+    }//GEN-LAST:event_jButtonSearchActionPerformed
 
     /**
      * @param args the command line arguments

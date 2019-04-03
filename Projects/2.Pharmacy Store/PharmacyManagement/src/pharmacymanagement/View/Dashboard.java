@@ -45,7 +45,7 @@ public class Dashboard extends javax.swing.JFrame {
             cols[1] = list.get(i).getProductName();
             cols[2] = list.get(i).getProductCode();
             cols[3] = list.get(i).getMedicineGroup();
-            InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
+             InsertCompany ik = new InsertCompanyDaoImp().getInsertCompanyById(list.get(i).getProductId());
             cols[4] = ik.getCompanyName();
             ProductCategory pc = new ProductCategoryDaoImp().getProductCategorybyId(list.get(i).getProductId());
             cols[5] = pc.getProductCategoryName();
