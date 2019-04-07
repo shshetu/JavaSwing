@@ -233,4 +233,9 @@ public class Summary {
         this.sold_qty = sold_qty;
     }
 
+    public Summary(String drug_name, String drug_place) {
+        this.drug_name = drug_name;
+        this.drug_place = drug_place;
+    }
+
 }

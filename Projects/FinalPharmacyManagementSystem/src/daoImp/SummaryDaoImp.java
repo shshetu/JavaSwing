@@ -265,4 +265,59 @@ public class SummaryDaoImp implements SummaryDao {
         }
     }
 
+    @Override
+    public List<Summary> getSummarySearchingName(String name) {
+
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, name);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Summary> getSummarySearchingBarcode(String name) {
+
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary where drug_barcode = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, name);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    @Override
+    public void updatePlace(Summary sum) {
+
+        String sql = "update summary set drug_place = ? where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, sum.getDrug_place());
+            pstm.setString(2, sum.getDrug_name());
+            pstm.executeUpdate();
+            System.out.println("Data is updated again successfully into summary table!");
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

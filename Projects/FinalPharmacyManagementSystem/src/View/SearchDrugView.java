@@ -8,6 +8,7 @@ package View;
 import daoImp.CompanyDaoImp;
 import daoImp.SummaryDaoImp;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import pojo.Company;
 import pojo.Summary;
@@ -43,6 +44,7 @@ public class SearchDrugView extends javax.swing.JFrame {
         jTextFieldDrugBarcode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,7 +77,7 @@ public class SearchDrugView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Type", "Barcode", "Price", "Place", "Available Qty", "Expire Date", "Validity", "Company"
+                "Name", "Type", "Barcode", "Buy Price", "Sell Price", "Place", "Available Qty", "Expire Date", "Validity", "Company"
             }
         ));
         jScrollPane1.setViewportView(jTableSearchDrug);
@@ -84,6 +86,11 @@ public class SearchDrugView extends javax.swing.JFrame {
         jLabel2.setText("Drug Barcode:");
 
         jTextFieldDrugBarcode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldDrugBarcode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugBarcodeKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Name:");
@@ -97,6 +104,17 @@ public class SearchDrugView extends javax.swing.JFrame {
         jTextFieldName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldNameKeyReleased(evt);
+            }
+        });
+
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
             }
         });
 
@@ -119,6 +137,10 @@ public class SearchDrugView extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(333, 333, 333)
+                .addComponent(jButtonBack)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +153,9 @@ public class SearchDrugView extends javax.swing.JFrame {
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonBack)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,7 +173,7 @@ public class SearchDrugView extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,22 +190,81 @@ public class SearchDrugView extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
             model.setRowCount(0);
-            Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
-
+            List<Summary> list = new SummaryDaoImp().getSummarySearchingName(name);
             Object[] cols = new Object[10];
-            for (int i = 0; i < 1; i++) {
-                cols[0] = sum.getDrug_id();
-                cols[1] = sum.getDrug_name();
-                cols[2] = sum.getDrug_type();
-                cols[3] = sum.getDrug_barcode();
-                cols[4] = sum.getDrug_dose();
-                cols[5] = sum.getDrug_code();
-                cols[6] = sum.getBuy_price();
+            for (int i = 0; i < list.size(); i++) {
+                cols[0] = list.get(i).getDrug_name();
+                cols[1] = list.get(i).getDrug_type();
+                cols[2] = list.get(i).getDrug_barcode();
+                cols[3] = list.get(i).getBuy_price();
+                cols[4] = list.get(i).getSell_price();
+                cols[5] = list.get(i).getDrug_place();
+                cols[6] = list.get(i).getAvailable_qty();
+                cols[7] = list.get(i).getExpire_date();
+                cols[8] = list.get(i).getValidity();
+                Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+                cols[9] = com.getCompany_name();
                 model.addRow(cols);
             }
 
         }
     }//GEN-LAST:event_jTextFieldNameKeyPressed
+
+    private void jTextFieldNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyReleased
+        // TODO add your handling code here:
+        String name = jTextFieldName.getText().trim();
+
+        DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
+        model.setRowCount(0);
+        List<Summary> list = new SummaryDaoImp().getSummarySearchingName(name);
+        Object[] cols = new Object[10];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_name();
+            cols[1] = list.get(i).getDrug_type();
+            cols[2] = list.get(i).getDrug_barcode();
+            cols[3] = list.get(i).getBuy_price();
+            cols[4] = list.get(i).getSell_price();
+            cols[5] = list.get(i).getDrug_place();
+            cols[6] = list.get(i).getAvailable_qty();
+            cols[7] = list.get(i).getExpire_date();
+            cols[8] = list.get(i).getValidity();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            cols[9] = com.getCompany_name();
+            model.addRow(cols);
+        }
+
+
+    }//GEN-LAST:event_jTextFieldNameKeyReleased
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AdministrationDashBoard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jTextFieldDrugBarcodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugBarcodeKeyReleased
+        // TODO add your handling code here:
+        String barcode = jTextFieldDrugBarcode.getText().trim();
+
+        DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
+        model.setRowCount(0);
+        List<Summary> list = new SummaryDaoImp().getSummarySearchingBarcode(barcode);
+        Object[] cols = new Object[10];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_name();
+            cols[1] = list.get(i).getDrug_type();
+            cols[2] = list.get(i).getDrug_barcode();
+            cols[3] = list.get(i).getBuy_price();
+            cols[4] = list.get(i).getSell_price();
+            cols[5] = list.get(i).getDrug_place();
+            cols[6] = list.get(i).getAvailable_qty();
+            cols[7] = list.get(i).getExpire_date();
+            cols[8] = list.get(i).getValidity();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            cols[9] = com.getCompany_name();
+            model.addRow(cols);
+        }
+    }//GEN-LAST:event_jTextFieldDrugBarcodeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -219,6 +302,7 @@ public class SearchDrugView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

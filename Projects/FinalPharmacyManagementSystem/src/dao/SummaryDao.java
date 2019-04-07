@@ -20,7 +20,7 @@ public interface SummaryDao {
     void delete (Summary sum);
     //for summary table
     void updateSum(Summary sum);
-    
+    void updatePlace(Summary sum);
     //validation
     Summary getSummaryByDrugId(int id);
     Summary getSummaryByDrugName(String name);
@@ -33,4 +33,10 @@ public interface SummaryDao {
     List<Summary> getSummarySelectingName();
     List<Summary> getSummarySelectingType();
     List<Summary> getSummarySelectingExpiration();
+    
+    //search by 
+    List<Summary> getSummarySearchingName(String name);
+    List<Summary> getSummarySearchingBarcode(String name);
+    
+    
 }
