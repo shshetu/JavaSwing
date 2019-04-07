@@ -19,4 +19,6 @@ public interface SummaryDao {
     void insert(Summary summary);
     Summary getSummaryByProductCode(String productCode);
     List<Summary> getSummary();
+    
+    ///summary dao validation
 }

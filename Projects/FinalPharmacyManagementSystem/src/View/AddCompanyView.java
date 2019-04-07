@@ -37,6 +37,7 @@ public class AddCompanyView extends javax.swing.JFrame {
     }
 
     public void displayDataIntoTable() {
+        clearTable();
         DefaultTableModel model = (DefaultTableModel) jTableCompanyDisplay.getModel();
         List<Company> list = new CompanyDaoImp().getCompany();
         Object[] cols = new Object[6];
@@ -303,8 +304,8 @@ public class AddCompanyView extends javax.swing.JFrame {
                 String address = jTextFieldCompanyAddress.getText().trim();
                 Company com = new Company(companyName, companyCountry, companyEmail, companyContact, address);
                 new CompanyDaoImp().insert(com);
-                displayDataIntoTable();
                 JOptionPane.showMessageDialog(null, "Data is inserted successfully into company table!");
+                displayDataIntoTable();
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Insert nubmers correctly in the fields!");

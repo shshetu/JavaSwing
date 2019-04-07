@@ -82,6 +82,10 @@ public class Company {
         this.comapany_address = comapany_address;
     }
 
+    public Company(int company_id) {
+        this.company_id = company_id;
+    }
+
     
 
 }

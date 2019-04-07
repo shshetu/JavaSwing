@@ -195,7 +195,7 @@ public class UpdateUserView extends javax.swing.JFrame {
         jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         jComboBoxYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
+        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year: 2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -343,9 +343,12 @@ public class UpdateUserView extends javax.swing.JFrame {
         //Date conversion
         String date = model.getValueAt(i, 2).toString();
         String[] d1 = date.split("-");
-        jComboBoxDay.setSelectedIndex(Integer.parseInt(d1[d1.length - 1]));
-        jComboBoxMonth.setSelectedIndex(Integer.parseInt(d1[d1.length - 2]));
-        jComboBoxYear.setSelectedIndex(Integer.parseInt(d1[0]));
+        int a1 = Integer.parseInt(d1[d1.length - 1]);
+        int a2 = Integer.parseInt(d1[d1.length - 2]);
+        int a3 = Integer.parseInt(d1[d1.length - 3]);
+        jComboBoxDay.setSelectedIndex(a1);
+        jComboBoxMonth.setSelectedIndex(a2);
+        jComboBoxYear.setSelectedIndex(a3);
 
         jTextAreaAddress.setText(model.getValueAt(i, 3).toString());
         jTextFieldPhone.setText(model.getValueAt(i, 4).toString());

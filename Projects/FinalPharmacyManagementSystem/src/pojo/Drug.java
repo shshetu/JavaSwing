@@ -184,6 +184,7 @@ public class Drug {
         this.drug_quantity = drug_quantity;
     }
 
-   
+    public Drug() {
+    }
 
 }

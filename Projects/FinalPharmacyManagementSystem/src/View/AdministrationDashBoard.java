@@ -329,6 +329,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonSalesBill.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSalesBill.setText("Sales Bill");
+        jButtonSalesBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalesBillActionPerformed(evt);
+            }
+        });
 
         jButtonShiftSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonShiftSales.setText("Shift Sales");
@@ -371,6 +376,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonSummary.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSummary.setText("Summary");
+        jButtonSummary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSummaryActionPerformed(evt);
+            }
+        });
 
         jButtonDailyRecord1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDailyRecord1.setText("Daily Record");
@@ -384,28 +394,32 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonSettings)
-                        .addGap(67, 67, 67)
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButtonLoginDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addComponent(jButtonSettingCompany)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButtonSales)
-                        .addGap(67, 67, 67))
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButtonAddCompany, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonEndWith)
+                        .addComponent(jButtonDeleteCompany)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonLoginDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonAddCompany, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEndWith, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonDeleteCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonSalesBill, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonShiftSales, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonSales)
                         .addGap(37, 37, 37)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonBuyDrugs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -430,21 +444,23 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                     .addComponent(jButtonUpdateDrug, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAddUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButtonSummary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonDailyRecord1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addComponent(jButtonClientList, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonRecord)
-                        .addGap(43, 43, 43)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAddUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButtonSummary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonDailyRecord1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(jButtonClientList, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonRecord)
+                                .addGap(43, 43, 43))))
+                    .addComponent(jButtonUpdateUser))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,12 +471,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSettings)
-                            .addComponent(jButtonSettingCompany)
-                            .addComponent(jButtonSales)
                             .addComponent(jButtonPurchases)
                             .addComponent(jButtonDrugDetails)
                             .addComponent(jButtonDrugs)
-                            .addComponent(jButtonUser))
+                            .addComponent(jButtonUser)
+                            .addComponent(jButtonSales))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -482,15 +497,9 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButtonExpireDrugs))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jButtonBuyDrugs)
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(jButtonUpdateDeals))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jButtonSalesBill)
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(jButtonShiftSales)))
+                                                .addComponent(jButtonBuyDrugs)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jButtonUpdateDeals)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButtonDealList))
                                             .addGroup(layout.createSequentialGroup()
@@ -498,13 +507,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                                                 .addGap(10, 10, 10)
                                                 .addComponent(jButtonChangePassword)
                                                 .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jButtonLogout)
-                                                    .addComponent(jButtonDeleteCompany)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButtonAddCompany)
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jButtonEndWith)))
+                                                .addComponent(jButtonLogout)))
                                         .addGap(18, 18, 18)
                                         .addComponent(jButtonRenewValidity)
                                         .addGap(10, 10, 10)
@@ -523,13 +526,30 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                                         .addComponent(jButtonDrugsList)))
                                 .addContainerGap(125, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonRecord)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSummary)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDailyRecord1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonClientList)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonRecord)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonSummary)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonDailyRecord1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonClientList))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonSettingCompany)
+                                .addGap(109, 109, 109)
+                                .addComponent(jButtonDeleteCompany))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonSalesBill)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jButtonShiftSales))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonAddCompany)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonEndWith)))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -645,6 +665,18 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
         this.setVisible(false);
         new AddCompanyView().setVisible(true);
     }//GEN-LAST:event_jButtonAddCompanyActionPerformed
+
+    private void jButtonSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSummaryActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SummaryView().setVisible(true);
+    }//GEN-LAST:event_jButtonSummaryActionPerformed
+
+    private void jButtonSalesBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalesBillActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SalesBillView().setVisible(true);
+    }//GEN-LAST:event_jButtonSalesBillActionPerformed
 
     /**
      * @param args the command line arguments

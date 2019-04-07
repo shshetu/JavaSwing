@@ -5,6 +5,13 @@
  */
 package View;
 
+import daoImp.CompanyDaoImp;
+import daoImp.SummaryDaoImp;
+import java.awt.event.KeyEvent;
+import javax.swing.table.DefaultTableModel;
+import pojo.Company;
+import pojo.Summary;
+
 /**
  *
  * @author shshe
@@ -68,7 +75,7 @@ public class SearchDrugView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Type", "Barcode", "Price", "Place", "Expire Date"
+                "Name", "Type", "Barcode", "Price", "Place", "Available Qty", "Expire Date", "Validity", "Company"
             }
         ));
         jScrollPane1.setViewportView(jTableSearchDrug);
@@ -82,6 +89,16 @@ public class SearchDrugView extends javax.swing.JFrame {
         jLabel3.setText("Name:");
 
         jTextFieldName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNameActionPerformed(evt);
+            }
+        });
+        jTextFieldName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNameKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -137,6 +154,34 @@ public class SearchDrugView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTextFieldNameActionPerformed
+
+    private void jTextFieldNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyPressed
+        // TODO add your handling code here:
+        String name = jTextFieldName.getText().trim();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
+            model.setRowCount(0);
+            Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
+
+            Object[] cols = new Object[10];
+            for (int i = 0; i < 1; i++) {
+                cols[0] = sum.getDrug_id();
+                cols[1] = sum.getDrug_name();
+                cols[2] = sum.getDrug_type();
+                cols[3] = sum.getDrug_barcode();
+                cols[4] = sum.getDrug_dose();
+                cols[5] = sum.getDrug_code();
+                cols[6] = sum.getBuy_price();
+                model.addRow(cols);
+            }
+
+        }
+    }//GEN-LAST:event_jTextFieldNameKeyPressed
 
     /**
      * @param args the command line arguments

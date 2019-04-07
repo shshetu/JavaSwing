@@ -66,10 +66,13 @@ public class DrugListView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Type", "Barcode", "Selling Price", "Expiry", "Company Name"
+                "Name", "Type", "Barcode", "Selling Price", "Available Qty", "Expiry", "Company Name"
             }
         ));
         jScrollPane1.setViewportView(jTableSearchDrug);
+        if (jTableSearchDrug.getColumnModel().getColumnCount() > 0) {
+            jTableSearchDrug.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Sort By:");
@@ -84,7 +87,7 @@ public class DrugListView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(33, 33, 33)
