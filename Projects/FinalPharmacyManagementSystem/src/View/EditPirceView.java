@@ -49,6 +49,7 @@ public class EditPirceView extends javax.swing.JFrame {
         jTextFieldNewPrice = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldDrugName = new javax.swing.JTextField();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +145,14 @@ public class EditPirceView extends javax.swing.JFrame {
             }
         });
 
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -162,11 +171,7 @@ public class EditPirceView extends javax.swing.JFrame {
                                 .addGap(29, 29, 29)
                                 .addComponent(jTextFieldNewPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(308, 308, 308)
-                                .addComponent(jButtonUpdate)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -177,6 +182,12 @@ public class EditPirceView extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jButtonBack)
+                .addGap(256, 256, 256)
+                .addComponent(jButtonUpdate)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,9 +210,15 @@ public class EditPirceView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(jTextFieldOldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jButtonUpdate)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(jButtonBack)
+                        .addGap(47, 47, 47))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButtonUpdate)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,7 +232,7 @@ public class EditPirceView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -292,6 +309,12 @@ public class EditPirceView extends javax.swing.JFrame {
         jTextFieldOldPrice.setText(price);
     }//GEN-LAST:event_jTableEditPriceDisplayMouseClicked
 
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AdministrationDashBoard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -331,6 +354,7 @@ public class EditPirceView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

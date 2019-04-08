@@ -40,6 +40,7 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
         jComboBoxDate = new javax.swing.JComboBox<>();
         jComboBoxMonth = new javax.swing.JComboBox<>();
         jComboBoxDate2 = new javax.swing.JComboBox<>();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,12 +102,22 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
         jComboBoxDate2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxDate2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
 
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(jButtonBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDailyGain)
@@ -149,7 +160,8 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabelDailyGain))
+                    .addComponent(jLabelDailyGain)
+                    .addComponent(jButtonBack))
                 .addGap(32, 32, 32))
         );
 
@@ -173,6 +185,12 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AdministrationDashBoard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +235,7 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JComboBox<String> jComboBoxDate;
     private javax.swing.JComboBox<String> jComboBoxDate2;
     private javax.swing.JComboBox<String> jComboBoxMonth;

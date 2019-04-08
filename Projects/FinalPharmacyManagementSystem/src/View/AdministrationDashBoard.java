@@ -307,6 +307,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonDeleteDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteDrug.setText("Delete Drug");
+        jButtonDeleteDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteDrugActionPerformed(evt);
+            }
+        });
 
         jButtonUpdateDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateDrug.setText("Update Drug");
@@ -409,15 +414,35 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonShiftSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonShiftSales.setText("Shift Sales");
+        jButtonShiftSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonShiftSalesActionPerformed(evt);
+            }
+        });
 
         jButtonLoginDetails.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLoginDetails.setText("Login Details");
+        jButtonLoginDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginDetailsActionPerformed(evt);
+            }
+        });
 
         jButtonChangePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonChangePassword.setText("Change Password");
+        jButtonChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangePasswordActionPerformed(evt);
+            }
+        });
 
         jButtonLogout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLogout.setText("Logout");
+        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogoutActionPerformed(evt);
+            }
+        });
 
         jButtonAddCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddCompany.setText("Add Company");
@@ -827,7 +852,37 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
     private void jButtonInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInboxActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        new InboxView().setVisible(true);
     }//GEN-LAST:event_jButtonInboxActionPerformed
+
+    private void jButtonLoginDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginDetailsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new LoginDetailsView().setVisible(true);
+    }//GEN-LAST:event_jButtonLoginDetailsActionPerformed
+
+    private void jButtonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangePasswordActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ChangePasswordView().setVisible(true);
+    }//GEN-LAST:event_jButtonChangePasswordActionPerformed
+
+    private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new LoginView().setVisible(true);
+    }//GEN-LAST:event_jButtonLogoutActionPerformed
+
+    private void jButtonShiftSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShiftSalesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ShiftSalesBillView().setVisible(true);
+    }//GEN-LAST:event_jButtonShiftSalesActionPerformed
+
+    private void jButtonDeleteDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteDrugActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteDrugActionPerformed
 
     /**
      * @param args the command line arguments

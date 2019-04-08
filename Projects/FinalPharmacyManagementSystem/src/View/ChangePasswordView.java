@@ -28,18 +28,10 @@ public class ChangePasswordView extends javax.swing.JFrame {
     public ChangePasswordView() {
         initComponents();
         jButtonUpdatePassword.setEnabled(false);
-        new BuyDrugDaoImp().createTable();
-        displayDataAtComboBox();
+       
     }
 
-    public void displayDataAtComboBox() {
-        List<Company> list = new CompanyDaoImp().getCompany();
-        jComboBoxCompanyName.addItem("Select A Company:");
-        for (Company c : list) {
-            jComboBoxCompanyName.addItem(c.getCompany_name());
-        }
-
-    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
