@@ -21,6 +21,8 @@ public interface SummaryDao {
     //for summary table
     void updateSum(Summary sum);
     void updatePlace(Summary sum);
+    void updatePrice(Summary sum);
+    
     //validation
     Summary getSummaryByDrugId(int id);
     Summary getSummaryByDrugName(String name);

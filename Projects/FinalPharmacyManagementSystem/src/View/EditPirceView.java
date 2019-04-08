@@ -5,6 +5,14 @@
  */
 package View;
 
+import daoImp.CompanyDaoImp;
+import daoImp.SummaryDaoImp;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pojo.Company;
+import pojo.Summary;
+
 /**
  *
  * @author shshe
@@ -73,19 +81,32 @@ public class EditPirceView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Barcode", "Selling Price"
+                "Name", "Barcode", "Selling Price", "Company name"
             }
         ));
+        jTableEditPriceDisplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEditPriceDisplayMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableEditPriceDisplay);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Drug Barcode:");
 
         jTextFieldDrugBarcode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugBarcode.setText("Any barcode");
+        jTextFieldDrugBarcode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugBarcodeKeyReleased(evt);
+            }
+        });
 
         jTextFieldOldPrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldOldPrice.setText("14");
+        jTextFieldOldPrice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldOldPriceMouseClicked(evt);
+            }
+        });
         jTextFieldOldPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOldPriceActionPerformed(evt);
@@ -100,9 +121,13 @@ public class EditPirceView extends javax.swing.JFrame {
 
         jButtonUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         jTextFieldNewPrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldNewPrice.setText("20");
         jTextFieldNewPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNewPriceActionPerformed(evt);
@@ -113,7 +138,11 @@ public class EditPirceView extends javax.swing.JFrame {
         jLabel3.setText("Drug Name:");
 
         jTextFieldDrugName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugName.setText("Any drugName");
+        jTextFieldDrugName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugNameKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -147,18 +176,19 @@ public class EditPirceView extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(33, 33, 33)
                         .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))))
+                        .addGap(30, 30, 30))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldDrugBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextFieldDrugBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -169,7 +199,7 @@ public class EditPirceView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(jTextFieldOldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(jButtonUpdate)
                 .addContainerGap())
         );
@@ -179,17 +209,14 @@ public class EditPirceView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -202,6 +229,68 @@ public class EditPirceView extends javax.swing.JFrame {
     private void jTextFieldNewPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNewPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNewPriceActionPerformed
+
+    private void jTextFieldDrugBarcodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugBarcodeKeyReleased
+        // TODO add your handling code here:
+        String barcode = jTextFieldDrugBarcode.getText().trim();
+
+        DefaultTableModel model = (DefaultTableModel) jTableEditPriceDisplay.getModel();
+        model.setRowCount(0);
+        List<Summary> list = new SummaryDaoImp().getSummarySearchingBarcode(barcode);
+        Object[] cols = new Object[4];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_name();
+            cols[1] = list.get(i).getDrug_barcode();
+            cols[2] = list.get(i).getSell_price();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            cols[3] = com.getCompany_name();
+            model.addRow(cols);
+        }
+    }//GEN-LAST:event_jTextFieldDrugBarcodeKeyReleased
+
+    private void jTextFieldDrugNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyReleased
+        // TODO add your handling code here:
+        String name = jTextFieldDrugName.getText().trim();
+
+        DefaultTableModel model = (DefaultTableModel) jTableEditPriceDisplay.getModel();
+        model.setRowCount(0);
+        List<Summary> list = new SummaryDaoImp().getSummarySearchingName(name);
+        Object[] cols = new Object[4];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_name();
+            cols[1] = list.get(i).getDrug_barcode();
+            cols[2] = list.get(i).getSell_price();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            cols[3] = com.getCompany_name();
+            model.addRow(cols);
+        }
+    }//GEN-LAST:event_jTextFieldDrugNameKeyReleased
+
+    private void jTextFieldOldPriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldOldPriceMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextFieldOldPriceMouseClicked
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+        String name = jTextFieldDrugName.getText();
+        String new_price = jTextFieldNewPrice.getText();
+        Summary sumExist = new SummaryDaoImp().getSummaryByDrugName(name);
+        Summary sum = new Summary(name, new_price);
+        if (sumExist.getDrug_name() != null) {
+            new SummaryDaoImp().updatePrice(sum);
+            JOptionPane.showMessageDialog(null, "Drug price is updated successfully!");
+
+        }
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jTableEditPriceDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEditPriceDisplayMouseClicked
+        // TODO add your handling code here:
+        int i = jTableEditPriceDisplay.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTableEditPriceDisplay.getModel();
+        String price = model.getValueAt(i, 2).toString();
+        jTextFieldOldPrice.setText(price);
+    }//GEN-LAST:event_jTableEditPriceDisplayMouseClicked
 
     /**
      * @param args the command line arguments

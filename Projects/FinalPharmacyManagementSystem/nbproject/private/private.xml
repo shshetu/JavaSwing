@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/pojo/Summary.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/SummaryView.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/dao/DrugDao.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/dao/SummaryDao.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/MoveDrugView.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/DrugListView.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/dao/CompanyDao.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/AdministrationDashBoard.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/pojo/Drug.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/AddDrugView.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/daoImp/SummaryDaoImp.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/daoImp/CompanyDaoImp.java</file>
-            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/daoImp/DrugDaoImp.java</file>
+            <file>file:/D:/Idb/git/Shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/SalesBillView.java</file>
+            <file>file:/D:/Idb/git/Shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/SummaryView.java</file>
+            <file>file:/D:/Idb/git/Shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/EditPirceView.java</file>
+            <file>file:/D:/Idb/git/Shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/AdministrationDashBoard.java</file>
+            <file>file:/D:/Idb/git/Shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/SearchDrugView.java</file>
         </group>
     </open-files>
 </project-private>

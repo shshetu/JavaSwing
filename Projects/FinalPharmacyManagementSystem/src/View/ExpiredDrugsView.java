@@ -5,6 +5,13 @@
  */
 package View;
 
+import daoImp.CompanyDaoImp;
+import daoImp.SummaryDaoImp;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pojo.Company;
+import pojo.Summary;
+
 /**
  *
  * @author shshe
@@ -16,6 +23,31 @@ public class ExpiredDrugsView extends javax.swing.JFrame {
      */
     public ExpiredDrugsView() {
         initComponents();
+        displayDataIntoTable();
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableExpiredDrugsDisplay.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataIntoTable() {
+        clearTable();
+        List<Summary> list = new SummaryDaoImp().getSummary();
+        DefaultTableModel model = (DefaultTableModel) jTableExpiredDrugsDisplay.getModel();
+        Object[] cols = new Object[7];
+        if(){}
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_name();
+            cols[1] = list.get(i).getDrug_barcode();
+            cols[2] = list.get(i).getProduction_date();
+            cols[3] = list.get(i).getExpire_date();
+            cols[4] = list.get(i).getExpire_time();
+            cols[5] = list.get(i).getValidity();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            cols[6] = com.getCompany_name();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -64,11 +96,11 @@ public class ExpiredDrugsView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Barcode", "Production Date", "Expiration Date", "Expiration Time", "Expiry"
+                "Name", "Barcode", "Production Date", "Expiration Date", "Expiration Time", "Validity", "Company"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, false, true
+                true, true, true, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

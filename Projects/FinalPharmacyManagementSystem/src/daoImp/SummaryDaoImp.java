@@ -320,4 +320,19 @@ public class SummaryDaoImp implements SummaryDao {
         }
     }
 
+    @Override
+    public void updatePrice(Summary sum) {
+
+        String sql = "update summary set sell_price =? where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setDouble(1, sum.getSell_price());
+            pstm.setString(2, sum.getDrug_name());
+            pstm.executeUpdate();
+            System.out.println("price is updated again successfully into summary table!");
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

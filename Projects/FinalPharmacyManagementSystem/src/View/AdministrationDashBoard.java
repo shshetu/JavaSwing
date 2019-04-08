@@ -46,14 +46,18 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         //Company
         jButtonAddCompany.setVisible(false);
-        jButtonEndWith.setVisible(false);
+        jButtonUpdateCompany.setVisible(false);
         jButtonDeleteCompany.setVisible(false);
-       
 
         //Settings
         jButtonLoginDetails.setVisible(false);
         jButtonChangePassword.setVisible(false);
         jButtonLogout.setVisible(false);
+
+        //Record
+        jButtonSummary.setVisible(false);
+        jButtonDailyRecord.setVisible(false);
+        jButtonClientList.setVisible(false);
     }
 
     /**
@@ -73,6 +77,8 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
         jLabelTime = new javax.swing.JLabel();
         jLabelDay = new javax.swing.JLabel();
         jButtonExit = new javax.swing.JButton();
+        jLabelDay1 = new javax.swing.JLabel();
+        jButtonInbox = new javax.swing.JButton();
         jButtonSettings = new javax.swing.JButton();
         jButtonSettingCompany = new javax.swing.JButton();
         jButtonSales = new javax.swing.JButton();
@@ -103,11 +109,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
         jButtonChangePassword = new javax.swing.JButton();
         jButtonLogout = new javax.swing.JButton();
         jButtonAddCompany = new javax.swing.JButton();
-        jButtonEndWith = new javax.swing.JButton();
+        jButtonUpdateCompany = new javax.swing.JButton();
         jButtonDeleteCompany = new javax.swing.JButton();
         jButtonRecord = new javax.swing.JButton();
         jButtonSummary = new javax.swing.JButton();
-        jButtonDailyRecord1 = new javax.swing.JButton();
+        jButtonDailyRecord = new javax.swing.JButton();
         jButtonClientList = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -140,22 +146,37 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
             }
         });
 
+        jLabelDay1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelDay1.setText("Logged in: Shetu");
+
+        jButtonInbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonInbox.setText("Inbox");
+        jButtonInbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButtonExit)
+                        .addGap(60, 60, 60)
+                        .addComponent(jButtonInbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(62, 62, 62)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(125, 125, 125))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabelDay1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(118, 118, 118)
                         .addComponent(jLabelTime)
@@ -177,7 +198,9 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonExit))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonExit)
+                        .addComponent(jButtonInbox)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -188,6 +211,10 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                             .addComponent(jLabelTime, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelDay1)
+                .addContainerGap())
         );
 
         jButtonSettings.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -256,6 +283,11 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonDeleteUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteUser.setText("Delete User");
+        jButtonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteUserActionPerformed(evt);
+            }
+        });
 
         jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateUser.setText("Update User");
@@ -281,27 +313,67 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
         jButtonSearchDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSearchDrug.setText("Search Drug");
+        jButtonSearchDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchDrugActionPerformed(evt);
+            }
+        });
 
         jButtonDrugsList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDrugsList.setText("Drugs List");
+        jButtonDrugsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDrugsListActionPerformed(evt);
+            }
+        });
 
         jButtonMoveDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonMoveDrug.setText("Move Drug");
+        jButtonMoveDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMoveDrugActionPerformed(evt);
+            }
+        });
 
         jButtonCheckPlaces.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCheckPlaces.setText("Check Places");
+        jButtonCheckPlaces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckPlacesActionPerformed(evt);
+            }
+        });
 
         jButtonEditPrices.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonEditPrices.setText("Edit Prices");
+        jButtonEditPrices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditPricesActionPerformed(evt);
+            }
+        });
 
         jButtonExpireDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonExpireDrugs.setText("Expired Drugs");
+        jButtonExpireDrugs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExpireDrugsActionPerformed(evt);
+            }
+        });
 
         jButtonRenewValidity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonRenewValidity.setText("Renew Validity");
+        jButtonRenewValidity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRenewValidityActionPerformed(evt);
+            }
+        });
 
         jButtonAlmostFinished.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAlmostFinished.setText("Almost Finished");
+        jButtonAlmostFinished.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlmostFinishedActionPerformed(evt);
+            }
+        });
 
         jButtonBuyDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBuyDrugs.setText("Buy Drugs");
@@ -355,16 +427,21 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
             }
         });
 
-        jButtonEndWith.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonEndWith.setText("Update Company");
-        jButtonEndWith.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpdateCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonUpdateCompany.setText("Update Company");
+        jButtonUpdateCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEndWithActionPerformed(evt);
+                jButtonUpdateCompanyActionPerformed(evt);
             }
         });
 
         jButtonDeleteCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteCompany.setText("Delete Company");
+        jButtonDeleteCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteCompanyActionPerformed(evt);
+            }
+        });
 
         jButtonRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonRecord.setText("Record");
@@ -382,8 +459,8 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
             }
         });
 
-        jButtonDailyRecord1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDailyRecord1.setText("Daily Record");
+        jButtonDailyRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonDailyRecord.setText("Daily Record");
 
         jButtonClientList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClientList.setText("Client List");
@@ -410,7 +487,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                                 .addComponent(jButtonSettingCompany))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jButtonEndWith, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonUpdateCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonAddCompany)))
@@ -460,7 +537,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButtonSummary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonDailyRecord1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(jButtonDailyRecord, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                                 .addComponent(jButtonClientList, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButtonRecord)
@@ -540,7 +617,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonSummary)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonDailyRecord1)
+                                .addComponent(jButtonDailyRecord)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonClientList))
                             .addComponent(jButtonSettingCompany)
@@ -553,7 +630,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                                         .addComponent(jButtonShiftSales))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(43, 43, 43)
-                                        .addComponent(jButtonEndWith)))))
+                                        .addComponent(jButtonUpdateCompany)))))
                         .addGap(23, 23, 23)
                         .addComponent(jButtonDeleteCompany)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -612,7 +689,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
     private void jButtonSettingCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingCompanyActionPerformed
         // TODO add your handling code here:
         jButtonAddCompany.setVisible(true);
-        jButtonEndWith.setVisible(true);
+        jButtonUpdateCompany.setVisible(true);
         jButtonDeleteCompany.setVisible(true);
     }//GEN-LAST:event_jButtonSettingCompanyActionPerformed
 
@@ -625,6 +702,9 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
     private void jButtonRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecordActionPerformed
         // TODO add your handling code here:
+        jButtonSummary.setVisible(true);
+        jButtonDailyRecord.setVisible(true);
+        jButtonClientList.setVisible(true);
     }//GEN-LAST:event_jButtonRecordActionPerformed
 
     private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
@@ -635,13 +715,14 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
     private void jButtonUpdateDealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateDealsActionPerformed
         // TODO add your handling code here:
-    
-      
+
+
     }//GEN-LAST:event_jButtonUpdateDealsActionPerformed
 
     private void jButtonDealListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDealListActionPerformed
         // TODO add your handling code here:
-        
+        this.setVisible(false);
+        new DealListView().setVisible(true);
     }//GEN-LAST:event_jButtonDealListActionPerformed
 
     private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
@@ -650,9 +731,12 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
         new AddUserView().setVisible(true);
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
-    private void jButtonEndWithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEndWithActionPerformed
+    private void jButtonUpdateCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCompanyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEndWithActionPerformed
+        this.setVisible(false);
+        new UpdateCompanyView().setVisible(true);
+
+    }//GEN-LAST:event_jButtonUpdateCompanyActionPerformed
 
     private void jButtonUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateUserActionPerformed
         // TODO add your handling code here:
@@ -683,6 +767,67 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
         this.setVisible(false);
         new SalesBillView().setVisible(true);
     }//GEN-LAST:event_jButtonSalesBillActionPerformed
+
+    private void jButtonSearchDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchDrugActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SearchDrugView().setVisible(true);
+    }//GEN-LAST:event_jButtonSearchDrugActionPerformed
+
+    private void jButtonMoveDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoveDrugActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new MoveDrugView().setVisible(true);
+    }//GEN-LAST:event_jButtonMoveDrugActionPerformed
+
+    private void jButtonDrugsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDrugsListActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DrugListView().setVisible(true);
+    }//GEN-LAST:event_jButtonDrugsListActionPerformed
+
+    private void jButtonEditPricesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditPricesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new EditPirceView().setVisible(true);
+    }//GEN-LAST:event_jButtonEditPricesActionPerformed
+
+    private void jButtonDeleteCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteCompanyActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DeleteCompanyView().setVisible(true);
+    }//GEN-LAST:event_jButtonDeleteCompanyActionPerformed
+
+    private void jButtonCheckPlacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckPlacesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCheckPlacesActionPerformed
+
+    private void jButtonExpireDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExpireDrugsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ExpiredDrugsView().setVisible(true);
+    }//GEN-LAST:event_jButtonExpireDrugsActionPerformed
+
+    private void jButtonRenewValidityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewValidityActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonRenewValidityActionPerformed
+
+    private void jButtonAlmostFinishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlmostFinishedActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AlmostFinishedDrugsView().setVisible(true);
+    }//GEN-LAST:event_jButtonAlmostFinishedActionPerformed
+
+    private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DeleteUserView().setVisible(true);
+    }//GEN-LAST:event_jButtonDeleteUserActionPerformed
+
+    private void jButtonInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonInboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -728,7 +873,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonChangePassword;
     private javax.swing.JButton jButtonCheckPlaces;
     private javax.swing.JButton jButtonClientList;
-    private javax.swing.JButton jButtonDailyRecord1;
+    private javax.swing.JButton jButtonDailyRecord;
     private javax.swing.JButton jButtonDealList;
     private javax.swing.JButton jButtonDeleteCompany;
     private javax.swing.JButton jButtonDeleteDrug;
@@ -737,9 +882,9 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDrugs;
     private javax.swing.JButton jButtonDrugsList;
     private javax.swing.JButton jButtonEditPrices;
-    private javax.swing.JButton jButtonEndWith;
     private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonExpireDrugs;
+    private javax.swing.JButton jButtonInbox;
     private javax.swing.JButton jButtonLoginDetails;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonMoveDrug;
@@ -753,6 +898,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JButton jButtonShiftSales;
     private javax.swing.JButton jButtonSummary;
+    private javax.swing.JButton jButtonUpdateCompany;
     private javax.swing.JButton jButtonUpdateDeals;
     private javax.swing.JButton jButtonUpdateDrug;
     private javax.swing.JButton jButtonUpdateUser;
@@ -762,6 +908,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelDay;
+    private javax.swing.JLabel jLabelDay1;
     private javax.swing.JLabel jLabelTime;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
