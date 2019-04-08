@@ -17,94 +17,137 @@ import pojo.Summary;
  *
  * @author shshe
  */
-public class DrugListView extends javax.swing.JFrame {
+public class DailyRecordViw extends javax.swing.JFrame {
 
     /**
      * Creates new form SearchDrugView
      */
-    public DrugListView() {
+    public DailyRecordViw() {
         initComponents();
+        new SummaryDaoImp().createTable();
         displayDataIntoTable();
     }
 
     public void clearTable() {
-        DefaultTableModel model = (DefaultTableModel) jTableDrugList.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
         model.setRowCount(0);
     }
 
     public void displayDataIntoTable() {
         clearTable();
-        DefaultTableModel model = (DefaultTableModel) jTableDrugList.getModel();
         List<Summary> list = new SummaryDaoImp().getSummary();
-        Object[] cols = new Object[8];
+        DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
+        Object[] cols = new Object[18];
         for (int i = 0; i < list.size(); i++) {
-            cols[0] = list.get(i).getDrug_name();
-            cols[1] = list.get(i).getDrug_type();
-            cols[2] = list.get(i).getDrug_barcode();
-            cols[3] = list.get(i).getBuy_price();
-            cols[4] = list.get(i).getSell_price();
-            cols[5] = list.get(i).getAvailable_qty();
-            cols[6] = list.get(i).getValidity();
+            cols[0] = list.get(i).getDrug_id();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_type();
+            cols[3] = list.get(i).getDrug_barcode();
+            cols[4] = list.get(i).getDrug_dose();
+            cols[5] = list.get(i).getDrug_code();
+            cols[6] = list.get(i).getBuy_price();
+            cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
-            cols[7] = com.getCompany_name();
+            cols[8] = com.getCompany_name();
+            cols[9] = list.get(i).getProduction_date();
+            cols[10] = list.get(i).getExpire_date();
+            cols[11] = list.get(i).getExpire_time();
+            cols[12] = list.get(i).getValidity();
+            cols[13] = list.get(i).getDrug_tax();
+            cols[14] = list.get(i).getDrug_place();
+            cols[15] = list.get(i).getTotal_qty();
+            cols[16] = list.get(i).getAvailable_qty();
+            cols[17] = list.get(i).getSold_qty();
             model.addRow(cols);
         }
-
     }
 
+    ///selecting for name
     public void displayDataIntoTableSelectingName() {
         clearTable();
-        DefaultTableModel model = (DefaultTableModel) jTableDrugList.getModel();
         List<Summary> list = new SummaryDaoImp().getSummarySelectingName();
-        Object[] cols = new Object[8];
+        DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
+        Object[] cols = new Object[18];
         for (int i = 0; i < list.size(); i++) {
-            cols[0] = list.get(i).getDrug_name();
-            cols[1] = list.get(i).getDrug_type();
-            cols[2] = list.get(i).getDrug_barcode();
-            cols[3] = list.get(i).getBuy_price();
-            cols[4] = list.get(i).getSell_price();
-            cols[5] = list.get(i).getAvailable_qty();
-            cols[6] = list.get(i).getValidity();
+            cols[0] = list.get(i).getDrug_id();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_type();
+            cols[3] = list.get(i).getDrug_barcode();
+            cols[4] = list.get(i).getDrug_dose();
+            cols[5] = list.get(i).getDrug_code();
+            cols[6] = list.get(i).getBuy_price();
+            cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
-            cols[7] = com.getCompany_name();
+            cols[8] = com.getCompany_name();
+            cols[9] = list.get(i).getProduction_date();
+            cols[10] = list.get(i).getExpire_date();
+            cols[11] = list.get(i).getExpire_time();
+            cols[12] = list.get(i).getValidity();
+            cols[13] = list.get(i).getDrug_tax();
+            cols[14] = list.get(i).getDrug_place();
+            cols[15] = list.get(i).getTotal_qty();
+            cols[16] = list.get(i).getAvailable_qty();
+            cols[17] = list.get(i).getSold_qty();
             model.addRow(cols);
         }
     }
 
+    ///selecting for type
     public void displayDataIntoTableSelectingType() {
         clearTable();
-        DefaultTableModel model = (DefaultTableModel) jTableDrugList.getModel();
         List<Summary> list = new SummaryDaoImp().getSummarySelectingType();
-        Object[] cols = new Object[8];
+        DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
+        Object[] cols = new Object[18];
         for (int i = 0; i < list.size(); i++) {
-            cols[0] = list.get(i).getDrug_name();
-            cols[1] = list.get(i).getDrug_type();
-            cols[2] = list.get(i).getDrug_barcode();
-            cols[3] = list.get(i).getBuy_price();
-            cols[4] = list.get(i).getSell_price();
-            cols[5] = list.get(i).getAvailable_qty();
-            cols[6] = list.get(i).getValidity();
+            cols[0] = list.get(i).getDrug_id();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_type();
+            cols[3] = list.get(i).getDrug_barcode();
+            cols[4] = list.get(i).getDrug_dose();
+            cols[5] = list.get(i).getDrug_code();
+            cols[6] = list.get(i).getBuy_price();
+            cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
-            cols[7] = com.getCompany_name();
+            cols[8] = com.getCompany_name();
+            cols[9] = list.get(i).getProduction_date();
+            cols[10] = list.get(i).getExpire_date();
+            cols[11] = list.get(i).getExpire_time();
+            cols[12] = list.get(i).getValidity();
+            cols[13] = list.get(i).getDrug_tax();
+            cols[14] = list.get(i).getDrug_place();
+            cols[15] = list.get(i).getTotal_qty();
+            cols[16] = list.get(i).getAvailable_qty();
+            cols[17] = list.get(i).getSold_qty();
             model.addRow(cols);
         }
     }
 
+    ///selecting for expire date
     public void displayDataIntoTableSelectingExpiration() {
         clearTable();
-        DefaultTableModel model = (DefaultTableModel) jTableDrugList.getModel();
         List<Summary> list = new SummaryDaoImp().getSummarySelectingExpiration();
-        Object[] cols = new Object[8];
+        DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
+        Object[] cols = new Object[18];
         for (int i = 0; i < list.size(); i++) {
-            cols[0] = list.get(i).getDrug_name();
-            cols[1] = list.get(i).getDrug_type();
-            cols[2] = list.get(i).getDrug_barcode();
-            cols[3] = list.get(i).getBuy_price();
-            cols[4] = list.get(i).getSell_price();
-            cols[5] = list.get(i).getAvailable_qty();
-            cols[6] = list.get(i).getValidity();
+            cols[0] = list.get(i).getDrug_id();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_type();
+            cols[3] = list.get(i).getDrug_barcode();
+            cols[4] = list.get(i).getDrug_dose();
+            cols[5] = list.get(i).getDrug_code();
+            cols[6] = list.get(i).getBuy_price();
+            cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
-            cols[7] = com.getCompany_name();
+            cols[8] = com.getCompany_name();
+            cols[9] = list.get(i).getProduction_date();
+            cols[10] = list.get(i).getExpire_date();
+            cols[11] = list.get(i).getExpire_time();
+            cols[12] = list.get(i).getValidity();
+            cols[13] = list.get(i).getDrug_tax();
+            cols[14] = list.get(i).getDrug_place();
+            cols[15] = list.get(i).getTotal_qty();
+            cols[16] = list.get(i).getAvailable_qty();
+            cols[17] = list.get(i).getSold_qty();
             model.addRow(cols);
         }
     }
@@ -122,9 +165,11 @@ public class DrugListView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDrugList = new javax.swing.JTable();
+        jTableSummaryDisplay = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jComboBoxSortBy = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabelSearchByName = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,14 +177,14 @@ public class DrugListView extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Drug List ");
+        jLabel1.setText("Summary View");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
+                .addGap(462, 462, 462)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -153,18 +198,18 @@ public class DrugListView extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        jTableDrugList.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSummaryDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Type", "Barcode", "Buying Price", "Selling Price", "Available Qty", "Validity", "Company Name"
+                "Drug Id", "Name", "Type", "Barcode", "Drug Dose", "Drug_Code", "Buy_Price", "Sell_Price", "Com_Name", "Pro_Date", "Ex_ Date", "Ex_Time", "Validity ", "Tax", "Place", "Total_Qty", "Available_Qty", "Sold_Qty"
             }
         ));
-        jScrollPane1.setViewportView(jTableDrugList);
-        if (jTableDrugList.getColumnModel().getColumnCount() > 0) {
-            jTableDrugList.getColumnModel().getColumn(5).setResizable(false);
-            jTableDrugList.getColumnModel().getColumn(7).setResizable(false);
+        jScrollPane1.setViewportView(jTableSummaryDisplay);
+        if (jTableSummaryDisplay.getColumnModel().getColumnCount() > 0) {
+            jTableSummaryDisplay.getColumnModel().getColumn(4).setResizable(false);
+            jTableSummaryDisplay.getColumnModel().getColumn(15).setResizable(false);
         }
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -177,6 +222,12 @@ public class DrugListView extends javax.swing.JFrame {
                 jComboBoxSortByItemStateChanged(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Search By Name:");
+
+        jLabelSearchByName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelSearchByName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
@@ -193,30 +244,38 @@ public class DrugListView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1263, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(33, 33, 33)
                         .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabelSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(312, 312, 312)
+                .addGap(502, 502, 502)
                 .addComponent(jButtonBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
                 .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jButtonBack)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -279,21 +338,27 @@ public class DrugListView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DrugListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyRecordViw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DrugListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyRecordViw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DrugListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyRecordViw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DrugListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyRecordViw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DrugListView().setVisible(true);
+                new DailyRecordViw().setVisible(true);
             }
         });
     }
@@ -303,9 +368,11 @@ public class DrugListView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxSortBy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelSearchByName;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableDrugList;
+    private javax.swing.JTable jTableSummaryDisplay;
     // End of variables declaration//GEN-END:variables
 }

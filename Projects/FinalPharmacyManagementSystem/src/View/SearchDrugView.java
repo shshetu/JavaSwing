@@ -108,6 +108,9 @@ public class SearchDrugView extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldNameKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNameKeyTyped(evt);
+            }
         });
 
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -265,6 +268,31 @@ public class SearchDrugView extends javax.swing.JFrame {
             model.addRow(cols);
         }
     }//GEN-LAST:event_jTextFieldDrugBarcodeKeyReleased
+
+    private void jTextFieldNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyTyped
+       
+//         String name = jTextFieldName.getText().trim();
+//
+//        DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
+//        model.setRowCount(0);
+//        List<Summary> list = new SummaryDaoImp().searchDrug("n");
+//        Object[] cols = new Object[10];
+//        for (int i = 0; i < list.size(); i++) {
+//            cols[0] = list.get(i).getDrug_name();
+//            cols[1] = list.get(i).getDrug_type();
+//            cols[2] = list.get(i).getDrug_barcode();
+//            cols[3] = list.get(i).getBuy_price();
+//            cols[4] = list.get(i).getSell_price();
+//            cols[5] = list.get(i).getDrug_place();
+//            cols[6] = list.get(i).getAvailable_qty();
+//            cols[7] = list.get(i).getExpire_date();
+//            cols[8] = list.get(i).getValidity();
+//            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+//            cols[9] = com.getCompany_name();
+//            model.addRow(cols);
+//        }
+
+    }//GEN-LAST:event_jTextFieldNameKeyTyped
 
     /**
      * @param args the command line arguments

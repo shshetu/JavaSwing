@@ -86,6 +86,7 @@ public class MoveDrugView extends javax.swing.JFrame {
         jButtonUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldDrugName = new javax.swing.JTextField();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,6 +177,14 @@ public class MoveDrugView extends javax.swing.JFrame {
             }
         });
 
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -197,7 +206,9 @@ public class MoveDrugView extends javax.swing.JFrame {
                                 .addComponent(jComboBoxPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(308, 308, 308)
+                                .addGap(22, 22, 22)
+                                .addComponent(jButtonBack)
+                                .addGap(203, 203, 203)
                                 .addComponent(jButtonUpdate)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
@@ -234,7 +245,9 @@ public class MoveDrugView extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addComponent(jTextFieldOldPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonUpdate)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonUpdate)
+                    .addComponent(jButtonBack))
                 .addContainerGap())
         );
 
@@ -298,6 +311,12 @@ public class MoveDrugView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AdministrationDashBoard().setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,6 +354,7 @@ public class MoveDrugView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxPlace;
     private javax.swing.JComboBox<String> jComboBoxSection;
