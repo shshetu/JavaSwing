@@ -179,7 +179,10 @@ public class SummaryDaoImp implements SummaryDao {
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10),
+                        rs.getDate(11), rs.getString(12), rs.getString(13),
+                        rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
                 list.add(sum);
             }
         } catch (SQLException ex) {
@@ -251,13 +254,12 @@ public class SummaryDaoImp implements SummaryDao {
     @Override
     public void updateSum(Summary sum) {
 
-        String sql = "update summary set total_qty = ?,available_qty = ?,sold_qty = ? where drug_name = ?";
+        String sql = "update summary set available_qty = ?,sold_qty = ? where drug_name = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, sum.getTotal_qty());
-            pstm.setInt(2, sum.getAvailable_qty());
-            pstm.setInt(3, sum.getSold_qty());
-            pstm.setString(4, sum.getDrug_name());
+            pstm.setInt(1, sum.getAvailable_qty());
+            pstm.setInt(2, sum.getSold_qty());
+            pstm.setString(3, sum.getDrug_name());
             pstm.executeUpdate();
             System.out.println("Data is updated again successfully into summary table!");
         } catch (SQLException ex) {

@@ -35,9 +35,18 @@ public class Summary {
     private int available_qty;
     private int sold_qty;
 
+    public Summary(String drug_name, int sold_qty) {
+        this.drug_name = drug_name;
+        this.sold_qty = sold_qty;
+    }
+
     public Summary(String drug_name, double sell_price) {
         this.drug_name = drug_name;
         this.sell_price = sell_price;
+    }
+
+    public Summary() {
+      
     }
 
     public int getDrug_id() {

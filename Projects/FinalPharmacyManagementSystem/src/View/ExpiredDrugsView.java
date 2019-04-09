@@ -45,7 +45,7 @@ public class ExpiredDrugsView extends javax.swing.JFrame {
             cols[3] = list.get(i).getExpire_date();
             cols[4] = list.get(i).getExpire_time();
             cols[5] = list.get(i).getValidity();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[6] = com.getCompany_name();
             model.addRow(cols);
         }

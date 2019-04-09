@@ -13,142 +13,235 @@ import java.sql.Date;
  */
 public class Sales {
 
-    private int salesId;
-    private String barcode;
-    private String name;
-    private String type;
-    private String dose;
-    private int quantity;
-    private Double buy_price;
-    private Double sell_price;
-    private Double amount;
-    private Date date;
-    private String time;
-    private double profit;
+    private int drug_id;
+    private String drug_name;
+    private String drug_type;
+    private String drug_barcode;
+    private String drug_dose;
+    private String drug_code;
+    private double buy_price;
+    private double sell_price;
 
-    public int getSalesId() {
-        return salesId;
+    //company foreign key
+    Company company;
+
+    private Date production_date;
+    private Date expire_date;
+    private String expire_time;
+    private String validity;
+    private double drug_tax;
+    private String drug_place;
+    private int total_qty;
+    private int available_qty;
+    private int sold_qty;
+
+    //selling date and time
+    private Date sell_date;
+    private String sell_time;
+
+    public int getDrug_id() {
+        return drug_id;
     }
 
-    public void setSalesId(int salesId) {
-        this.salesId = salesId;
+    public void setDrug_id(int drug_id) {
+        this.drug_id = drug_id;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public String getDrug_name() {
+        return drug_name;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public void setDrug_name(String drug_name) {
+        this.drug_name = drug_name;
     }
 
-    public String getName() {
-        return name;
+    public String getDrug_type() {
+        return drug_type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDrug_type(String drug_type) {
+        this.drug_type = drug_type;
     }
 
-    public String getType() {
-        return type;
+    public String getDrug_barcode() {
+        return drug_barcode;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDrug_barcode(String drug_barcode) {
+        this.drug_barcode = drug_barcode;
     }
 
-    public String getDose() {
-        return dose;
+    public String getDrug_dose() {
+        return drug_dose;
     }
 
-    public void setDose(String dose) {
-        this.dose = dose;
+    public void setDrug_dose(String drug_dose) {
+        this.drug_dose = drug_dose;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getDrug_code() {
+        return drug_code;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setDrug_code(String drug_code) {
+        this.drug_code = drug_code;
     }
 
-    public Double getBuy_price() {
+    public double getBuy_price() {
         return buy_price;
     }
 
-    public void setBuy_price(Double buy_price) {
+    public void setBuy_price(double buy_price) {
         this.buy_price = buy_price;
     }
 
-    public Double getSell_price() {
+    public double getSell_price() {
         return sell_price;
     }
 
-    public void setSell_price(Double sell_price) {
+    public void setSell_price(double sell_price) {
         this.sell_price = sell_price;
     }
 
-    public Double getAmount() {
-        return amount;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getProduction_date() {
+        return production_date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setProduction_date(Date production_date) {
+        this.production_date = production_date;
     }
 
-    public String getTime() {
-        return time;
+    public Date getExpire_date() {
+        return expire_date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setExpire_date(Date expire_date) {
+        this.expire_date = expire_date;
     }
 
-    public double getProfit() {
-        return profit;
+    public String getExpire_time() {
+        return expire_time;
     }
 
-    public void setProfit(double profit) {
-        this.profit = profit;
+    public void setExpire_time(String expire_time) {
+        this.expire_time = expire_time;
     }
 
-    public Sales(int salesId, String barcode, String name, String type, String dose, int quantity, Double buy_price, Double sell_price, Double amount, Date date, String time, double profit) {
-        this.salesId = salesId;
-        this.barcode = barcode;
-        this.name = name;
-        this.type = type;
-        this.dose = dose;
-        this.quantity = quantity;
+    public String getValidity() {
+        return validity;
+    }
+
+    public void setValidity(String validity) {
+        this.validity = validity;
+    }
+
+    public double getDrug_tax() {
+        return drug_tax;
+    }
+
+    public void setDrug_tax(double drug_tax) {
+        this.drug_tax = drug_tax;
+    }
+
+    public String getDrug_place() {
+        return drug_place;
+    }
+
+    public void setDrug_place(String drug_place) {
+        this.drug_place = drug_place;
+    }
+
+    public int getTotal_qty() {
+        return total_qty;
+    }
+
+    public void setTotal_qty(int total_qty) {
+        this.total_qty = total_qty;
+    }
+
+    public int getAvailable_qty() {
+        return available_qty;
+    }
+
+    public void setAvailable_qty(int available_qty) {
+        this.available_qty = available_qty;
+    }
+
+    public int getSold_qty() {
+        return sold_qty;
+    }
+
+    public void setSold_qty(int sold_qty) {
+        this.sold_qty = sold_qty;
+    }
+
+    public Date getSell_date() {
+        return sell_date;
+    }
+
+    public void setSell_date(Date sell_date) {
+        this.sell_date = sell_date;
+    }
+
+    public String getSell_time() {
+        return sell_time;
+    }
+
+    public void setSell_time(String sell_time) {
+        this.sell_time = sell_time;
+    }
+
+    public Sales(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+        this.drug_id = drug_id;
+        this.drug_name = drug_name;
+        this.drug_type = drug_type;
+        this.drug_barcode = drug_barcode;
+        this.drug_dose = drug_dose;
+        this.drug_code = drug_code;
         this.buy_price = buy_price;
         this.sell_price = sell_price;
-        this.amount = amount;
-        this.date = date;
-        this.time = time;
-        this.profit = profit;
+        this.company = company;
+        this.production_date = production_date;
+        this.expire_date = expire_date;
+        this.expire_time = expire_time;
+        this.validity = validity;
+        this.drug_tax = drug_tax;
+        this.drug_place = drug_place;
+        this.total_qty = total_qty;
+        this.available_qty = available_qty;
+        this.sold_qty = sold_qty;
+        this.sell_date = sell_date;
+        this.sell_time = sell_time;
     }
 
-    public Sales(String barcode, String name, String type, String dose, int quantity, Double buy_price, Double sell_price, Double amount, Date date, String time, double profit) {
-        this.barcode = barcode;
-        this.name = name;
-        this.type = type;
-        this.dose = dose;
-        this.quantity = quantity;
+    public Sales(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+        this.drug_name = drug_name;
+        this.drug_type = drug_type;
+        this.drug_barcode = drug_barcode;
+        this.drug_dose = drug_dose;
+        this.drug_code = drug_code;
         this.buy_price = buy_price;
         this.sell_price = sell_price;
-        this.amount = amount;
-        this.date = date;
-        this.time = time;
-        this.profit = profit;
+        this.company = company;
+        this.production_date = production_date;
+        this.expire_date = expire_date;
+        this.expire_time = expire_time;
+        this.validity = validity;
+        this.drug_tax = drug_tax;
+        this.drug_place = drug_place;
+        this.total_qty = total_qty;
+        this.available_qty = available_qty;
+        this.sold_qty = sold_qty;
+        this.sell_date = sell_date;
+        this.sell_time = sell_time;
     }
-    
+
 }

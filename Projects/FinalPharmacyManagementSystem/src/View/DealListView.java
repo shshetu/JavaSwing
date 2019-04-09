@@ -46,7 +46,7 @@ public class DealListView extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
             cols[0] = list.get(i).getBar_code();
             cols[1] = list.get(i).getDrug_name();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getSerial());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[2] = com.getCompany_name();
             cols[3] = list.get(i).getQuantity();
             cols[4] = list.get(i).getBuy_price();

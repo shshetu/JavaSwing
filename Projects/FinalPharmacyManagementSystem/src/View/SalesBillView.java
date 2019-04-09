@@ -56,7 +56,7 @@ System.out.println(date + " " + time);*/
             cols[4] = quantity;
             cols[5] = sum.getSell_price();
             cols[6] = sum.getSell_price() * quantity;
-            Company com = new CompanyDaoImp().getCompanyById(sum.getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(sum.getCompany().getCompany_id());
             cols[7] = com.getCompany_name();
             cols[8] = date;
             cols[9] = time;
@@ -223,22 +223,6 @@ System.out.println(date + " " + time);*/
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel2)
-                .addGap(38, 38, 38)
-                .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel5)
-                .addGap(27, 27, 27)
-                .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(jButtonAddToCart)
-                .addGap(32, 32, 32))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
@@ -251,10 +235,27 @@ System.out.println(date + " " + time);*/
                 .addGap(42, 42, 42)
                 .addComponent(jButtonClear)
                 .addGap(158, 158, 158))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1061, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel2)
+                        .addGap(38, 38, 38)
+                        .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5)
+                        .addGap(27, 27, 27)
+                        .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                        .addComponent(jButtonAddToCart)))
+                .addGap(32, 32, 32))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(674, Short.MAX_VALUE)
@@ -388,18 +389,22 @@ System.out.println(date + " " + time);*/
 
     private void jButtonBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBillActionPerformed
         // TODO add your handling code here:
-        //insert into sales table
+        DefaultTableModel model = (DefaultTableModel) jTableSalesBill.getModel();
+        int rowCount = model.getRowCount();
 
-        //insert into summary table
-        String name = jTextFieldDrugName.getText().trim();
-        int qty = Integer.parseInt(jTextFieldQuantity.getText().trim());
-        Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
-        int total_qty = sum.getTotal_qty();
-        int available_qty = sum.getTotal_qty() - qty;
-        int sold_qty = sum.getSold_qty() + qty;
-        Summary sumF = new Summary(name, total_qty, available_qty, sold_qty);
-        new SummaryDaoImp().updateSum(sumF);
-        JOptionPane.showMessageDialog(null, "Sold_qty: " + sold_qty);
+        for (int i = 0; i < rowCount; i++) {
+            Summary summary = new Summary();
+            summary.setDrug_name(model.getValueAt(i, 1).toString());
+            summary.setSold_qty(Integer.parseInt(model.getValueAt(i, 4).toString()));
+            Summary sum = new SummaryDaoImp().getSummaryByDrugName(summary.getDrug_name());
+            int sold_qty = sum.getSold_qty() + Integer.parseInt(model.getValueAt(i, 4).toString());
+            int available_qty = sum.getTotal_qty() - sold_qty;
+            Summary sumF = new Summary(summary.getDrug_name(), available_qty, sold_qty);
+            new SummaryDaoImp().updateSum(summary);
+
+        }
+
+        JOptionPane.showMessageDialog(null, "Just Sales: " + rowCount + " Drugs");
     }//GEN-LAST:event_jButtonBillActionPerformed
 
     /**
