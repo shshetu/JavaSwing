@@ -5,6 +5,13 @@
  */
 package View;
 
+import daoImp.CompanyDaoImp;
+import daoImp.SummaryDaoImp;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pojo.Company;
+import pojo.Summary;
+
 /**
  *
  * @author shshe
@@ -16,6 +23,34 @@ public class AlmostFinishedDrugsView extends javax.swing.JFrame {
      */
     public AlmostFinishedDrugsView() {
         initComponents();
+        displayDataIntoTable();
+    }
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableAlmostFinishedDrugsView.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataIntoTable() {
+        clearTable();
+
+        List<Summary> list = new SummaryDaoImp().getSummaryAlmostFinished();
+        DefaultTableModel model = (DefaultTableModel) jTableAlmostFinishedDrugsView.getModel();
+        Object[] cols = new Object[9];
+//        if(){}
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_barcode();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_type();
+            cols[3] = list.get(i).getSell_price();
+            cols[4] = list.get(i).getAvailable_qty();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            cols[5] = com.getCompany_name();
+            cols[6] = list.get(i).getProduction_date();
+            cols[7] = list.get(i).getExpire_date();
+            cols[8] = list.get(i).getValidity();
+            model.addRow(cols);
+        }
     }
 
     /**
@@ -65,11 +100,11 @@ public class AlmostFinishedDrugsView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Barcode", "Name", "Type", "Company Name", "Selling Price", "Quantity"
+                "Barcode", "Name", "Type", "Selling Price", "Quantity", "Company Name", "Pro_Date", "Exp_Date", "Validity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, false, true
+                true, true, true, false, true, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -80,7 +115,7 @@ public class AlmostFinishedDrugsView extends javax.swing.JFrame {
         if (jTableAlmostFinishedDrugsView.getColumnModel().getColumnCount() > 0) {
             jTableAlmostFinishedDrugsView.getColumnModel().getColumn(0).setResizable(false);
             jTableAlmostFinishedDrugsView.getColumnModel().getColumn(1).setResizable(false);
-            jTableAlmostFinishedDrugsView.getColumnModel().getColumn(3).setResizable(false);
+            jTableAlmostFinishedDrugsView.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -89,7 +124,7 @@ public class AlmostFinishedDrugsView extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(

@@ -40,5 +40,9 @@ public interface SummaryDao {
     List<Summary> getSummarySearchingName(String name);
     List<Summary> getSummarySearchingBarcode(String name);
     
+    //expired drugs
+    List<Summary> getSummaryExpireDate();
     
+    //Almost finished drug
+    List<Summary> getSummaryAlmostFinished();
 }

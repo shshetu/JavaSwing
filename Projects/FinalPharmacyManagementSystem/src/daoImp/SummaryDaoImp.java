@@ -334,11 +334,12 @@ public class SummaryDaoImp implements SummaryDao {
             Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- public static List<Summary> searchDrug(String name) {   
-     
+
+    public static List<Summary> searchDrug(String name) {
+
         List<Summary> list = new ArrayList<>();
         //  String sql = "select * from summary where drug_name like "+"'"+name+"%"+"'";
-        String sql = "select * from summary where drug_name like "  +"'n%'";
+        String sql = "select * from summary where drug_name like " + "'n%'";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, name);
@@ -353,7 +354,50 @@ public class SummaryDaoImp implements SummaryDao {
 
         return list;
     }
+
     public static void main(String[] args) {
         System.out.println(searchDrug("n").size());
+    }
+
+    @Override
+    public List<Summary> getSummaryExpireDate() {
+
+        List<Summary> list = new ArrayList<>();
+        //  String sql = "select * from summary where drug_name like "+"'"+name+"%"+"'";
+        String sql = "select * from summary where exp_date< curdate()";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Summary> getSummaryAlmostFinished() {
+
+        List<Summary> list = new ArrayList<>();
+        //  String sql = "select * from summary where drug_name like "+"'"+name+"%"+"'";
+        String sql = "select * from summary where available_qty<=5";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
     }
 }

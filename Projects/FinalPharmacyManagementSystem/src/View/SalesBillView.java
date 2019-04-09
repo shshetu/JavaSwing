@@ -9,6 +9,9 @@ import daoImp.CompanyDaoImp;
 import daoImp.SummaryDaoImp;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,9 +35,19 @@ public class SalesBillView extends javax.swing.JFrame {
         String name = jTextFieldDrugName.getText().trim();
         int quantity = Integer.parseInt(jTextFieldQuantity.getText());
         Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        String time = formatter.format(date);
+        /*Calendar c = Calendar.getInstance();
+c.setTimeInMillis(System.currentTimeMillis());
+
+String date = c.get(Calendar.YEAR)+"-"+c.get(Calendar.MONTH)+"-"+c.get(Calendar.DAY_OF_MONTH);
+String time = c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND);
+
+System.out.println(date + " " + time);*/
+
         DefaultTableModel model = (DefaultTableModel) jTableSalesBill.getModel();
         Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
-        Object[] cols = new Object[9];
+        Object[] cols = new Object[10];
         for (int i = 0; i < 1; i++) {
             cols[0] = sum.getDrug_barcode();
             cols[1] = sum.getDrug_name();
@@ -43,7 +56,10 @@ public class SalesBillView extends javax.swing.JFrame {
             cols[4] = quantity;
             cols[5] = sum.getSell_price();
             cols[6] = sum.getSell_price() * quantity;
-            cols[7] = date;
+            Company com = new CompanyDaoImp().getCompanyById(sum.getDrug_id());
+            cols[7] = com.getCompany_name();
+            cols[8] = date;
+            cols[9] = time;
             model.addRow(cols);
         }
 //        //list 
@@ -183,7 +199,7 @@ public class SalesBillView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Barcode", "Name", "Type", "Dose", "Quantity", "Price", "Amount", "Date"
+                "Barcode", "Name", "Type", "Dose", "Quantity", "Price", "Amount", "Company", "Date", "Time"
             }
         ));
         jScrollPane2.setViewportView(jTableSalesBill);
@@ -372,15 +388,18 @@ public class SalesBillView extends javax.swing.JFrame {
 
     private void jButtonBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBillActionPerformed
         // TODO add your handling code here:
+        //insert into sales table
+
+        //insert into summary table
         String name = jTextFieldDrugName.getText().trim();
         int qty = Integer.parseInt(jTextFieldQuantity.getText().trim());
         Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
         int total_qty = sum.getTotal_qty();
         int available_qty = sum.getTotal_qty() - qty;
-        int sold_qty = sum.getSold_qty()+qty;
+        int sold_qty = sum.getSold_qty() + qty;
         Summary sumF = new Summary(name, total_qty, available_qty, sold_qty);
         new SummaryDaoImp().updateSum(sumF);
-        JOptionPane.showMessageDialog(null, "Sold_qty: "+sold_qty);
+        JOptionPane.showMessageDialog(null, "Sold_qty: " + sold_qty);
     }//GEN-LAST:event_jButtonBillActionPerformed
 
     /**

@@ -328,8 +328,8 @@ public class BuyDrugsView extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Call the update method");
                         int qty = Integer.parseInt(jComboBoxQuantity.getItemAt(jComboBoxQuantity.getSelectedIndex()));
                         Summary sumO = new SummaryDaoImp().getSummaryByDrugName(drug_name);
-                        total_qty = sumO.getTotal_qty()+qty;
-                        available_qty = sumO.getAvailable_qty()+qty;
+                        total_qty = sumO.getTotal_qty() + qty;
+                        available_qty = sumO.getAvailable_qty() + qty;
                         sold_qty = sumO.getSold_qty();
                         Summary sum = new Summary(drug_name, total_qty, available_qty, sold_qty);
                         new SummaryDaoImp().updateSum(sum);
@@ -338,13 +338,16 @@ public class BuyDrugsView extends javax.swing.JFrame {
                     } else {
                         new BuyDrugDaoImp().insert(buy_drug);
                         JOptionPane.showMessageDialog(null, "Data inserted successfully into the database!");
+                        this.setVisible(false);
+                        new AddDrugView().setVisible(true);
 
                     }
                 } catch (Exception e) {
                     BuyDrug buy_drug = new BuyDrug(bar_code, drug_name, drug_type, com, quantity, buying_price, amount);
                     new BuyDrugDaoImp().insert(buy_drug);
                     JOptionPane.showMessageDialog(null, "Data inserted successfully into the database!");
-
+                    this.setVisible(false);
+                    new AddDrugView().setVisible(true);
                 }
                 //(String bar_code, String drug_name, String drug_type, Company company, int quantity, double buy_price, double amount)
             }

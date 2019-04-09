@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -150,7 +151,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
 
     @Override
     public List<BuyDrug> getBuyDrug() {
-        List<BuyDrug> list = null;
+        List<BuyDrug> list = new ArrayList<>();
         String sql = "select * from buydrug";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);

@@ -33,7 +33,8 @@ public class ExpiredDrugsView extends javax.swing.JFrame {
 
     public void displayDataIntoTable() {
         clearTable();
-        List<Summary> list = new SummaryDaoImp().getSummary();
+        
+        List<Summary> list = new SummaryDaoImp().getSummaryExpireDate();
         DefaultTableModel model = (DefaultTableModel) jTableExpiredDrugsDisplay.getModel();
         Object[] cols = new Object[7];
 //        if(){}

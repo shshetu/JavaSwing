@@ -266,6 +266,7 @@ public class SearchDrugView extends javax.swing.JFrame {
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
             cols[9] = com.getCompany_name();
             model.addRow(cols);
+           
         }
     }//GEN-LAST:event_jTextFieldDrugBarcodeKeyReleased
 
