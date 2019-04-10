@@ -138,6 +138,9 @@ System.out.println(date + " " + time);*/
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldDrugNameKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugNameKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldDrugNameKeyTyped(evt);
             }
@@ -264,8 +267,8 @@ System.out.println(date + " " + time);*/
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1061, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(30, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,8 +340,7 @@ System.out.println(date + " " + time);*/
     }//GEN-LAST:event_jButtonCancel1ActionPerformed
 
     private void jTextFieldDrugNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyTyped
-        // TODO add your handling code here:
-        //        String name = jTextFieldDrugName.getText().trim();
+
 
     }//GEN-LAST:event_jTextFieldDrugNameKeyTyped
 
@@ -349,37 +351,7 @@ System.out.println(date + " " + time);*/
 
     private void jTextFieldDrugNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyPressed
         // TODO add your handling code here:
-        String name = jTextFieldDrugName.getText().trim();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            DefaultTableModel model = (DefaultTableModel) jTableFromSummary.getModel();
-            model.setRowCount(0);
-            Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
 
-            Object[] cols = new Object[18];
-            for (int i = 0; i < 1; i++) {
-                cols[0] = sum.getDrug_id();
-                cols[1] = sum.getDrug_name();
-                cols[2] = sum.getDrug_type();
-                cols[3] = sum.getDrug_barcode();
-                cols[4] = sum.getDrug_dose();
-                cols[5] = sum.getDrug_code();
-                cols[6] = sum.getBuy_price();
-                cols[7] = sum.getSell_price();
-                Company com = new CompanyDaoImp().getCompanyById(sum.getDrug_id());
-                cols[8] = com.getCompany_name();
-                cols[9] = sum.getProduction_date();
-                cols[10] = sum.getExpire_date();
-                cols[11] = sum.getExpire_time();
-                cols[12] = sum.getValidity();
-                cols[13] = sum.getDrug_tax();
-                cols[14] = sum.getDrug_place();
-                cols[15] = sum.getTotal_qty();
-                cols[16] = sum.getAvailable_qty();
-                cols[17] = sum.getSold_qty();
-                model.addRow(cols);
-            }
-
-        }
     }//GEN-LAST:event_jTextFieldDrugNameKeyPressed
 
     private void jButtonAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddToCartActionPerformed
@@ -393,19 +365,59 @@ System.out.println(date + " " + time);*/
         int rowCount = model.getRowCount();
 
         for (int i = 0; i < rowCount; i++) {
-            Summary summary = new Summary();
-            summary.setDrug_name(model.getValueAt(i, 1).toString());
-            summary.setSold_qty(Integer.parseInt(model.getValueAt(i, 4).toString()));
-            Summary sum = new SummaryDaoImp().getSummaryByDrugName(summary.getDrug_name());
-            int sold_qty = sum.getSold_qty() + Integer.parseInt(model.getValueAt(i, 4).toString());
-            int available_qty = sum.getTotal_qty() - sold_qty;
-            Summary sumF = new Summary(summary.getDrug_name(), available_qty, sold_qty);
-            new SummaryDaoImp().updateSum(summary);
 
+///////////////////////////////////////////////////////////////////
+            String name = model.getValueAt(i, 1).toString();
+            int qty = Integer.parseInt(model.getValueAt(i, 4).toString());
+            int available_qty1 = (new SummaryDaoImp().getSummaryByDrugName(name).getAvailable_qty()) - qty;
+            int sold_qty1 = (new SummaryDaoImp().getSummaryByDrugName(name).getSold_qty()) + qty;
+            Summary sum1 = new Summary(name, available_qty1, sold_qty1);
+            try {
+                new SummaryDaoImp().updateSum(sum1);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error!");
+            }
+        }
+        JOptionPane.showMessageDialog(null, rowCount + " products have been sold!");
+
+    }//GEN-LAST:event_jButtonBillActionPerformed
+
+    private void jTextFieldDrugNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyReleased
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        //        String name = jTextFieldDrugName.getText().trim();
+        String name = jTextFieldDrugName.getText().trim();
+
+        DefaultTableModel model = (DefaultTableModel) jTableFromSummary.getModel();
+        model.setRowCount(0);
+        Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
+
+        Object[] cols = new Object[18];
+        for (int i = 0; i < 1; i++) {
+            cols[0] = sum.getDrug_id();
+            cols[1] = sum.getDrug_name();
+            cols[2] = sum.getDrug_type();
+            cols[3] = sum.getDrug_barcode();
+            cols[4] = sum.getDrug_dose();
+            cols[5] = sum.getDrug_code();
+            cols[6] = sum.getBuy_price();
+            cols[7] = sum.getSell_price();
+            Company com = new CompanyDaoImp().getCompanyById(sum.getDrug_id());
+            cols[8] = com.getCompany_name();
+            cols[9] = sum.getProduction_date();
+            cols[10] = sum.getExpire_date();
+            cols[11] = sum.getExpire_time();
+            cols[12] = sum.getValidity();
+            cols[13] = sum.getDrug_tax();
+            cols[14] = sum.getDrug_place();
+            cols[15] = sum.getTotal_qty();
+            cols[16] = sum.getAvailable_qty();
+            cols[17] = sum.getSold_qty();
+            model.addRow(cols);
         }
 
-        JOptionPane.showMessageDialog(null, "Just Sales: " + rowCount + " Drugs");
-    }//GEN-LAST:event_jButtonBillActionPerformed
+    }//GEN-LAST:event_jTextFieldDrugNameKeyReleased
 
     /**
      * @param args the command line arguments
