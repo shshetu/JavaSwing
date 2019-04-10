@@ -64,7 +64,12 @@ public class CompanyDaoImp implements CompanyDao {
         String sql = "update company set company_name=?,company_country=?,company_email=?,company_contact=?,company_address=? where company_id = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, company.getCompany_id());
+            pstm.setString(1, company.getCompany_name());
+            pstm.setString(2, company.getCompany_country());
+            pstm.setString(3, company.getComapany_email());
+            pstm.setInt(4, company.getComapany_contact());
+            pstm.setString(5, company.getComapany_address());
+            pstm.setInt(6, company.getCompany_id());
             pstm.executeUpdate();
             System.out.println("Data is successfully updated into company table!");
 
@@ -135,7 +140,7 @@ public class CompanyDaoImp implements CompanyDao {
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                Company com = new Company(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(5));
+                Company com = new Company(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
                 list.add(com);
             }
         } catch (SQLException ex) {

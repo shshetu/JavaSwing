@@ -74,7 +74,34 @@ public class SalesDaoImp implements SalesDao {
 
     @Override
     public void update(Sales s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "update sales set drug_type = ?,drug_barcode = ?,drug_dose = ?,drug_code = ?,buy_price = ?,sell_price = ?,com_id = ?,pro_date = ?,exp_date = ?,exp_time = ?,validity = ?,drug_tax = ?,drug_place = ?,total_qty = ?,available_qty = ?,sold_qty = ?,sell_date = ?,sell_time =? where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, s.getDrug_type());
+            pstm.setString(2, s.getDrug_barcode());
+            pstm.setString(3, s.getDrug_dose());
+            pstm.setString(4, s.getDrug_code());
+            pstm.setDouble(5, s.getBuy_price());
+            pstm.setDouble(6, s.getSell_price());
+            pstm.setInt(7, s.getCompany().getCompany_id());
+            pstm.setDate(8, s.getProduction_date());
+            pstm.setDate(9, s.getExpire_date());
+            pstm.setString(10, s.getExpire_time());
+            pstm.setString(11, s.getValidity());
+            pstm.setDouble(12, s.getDrug_tax());
+            pstm.setString(13, s.getDrug_place());
+            pstm.setInt(14, s.getTotal_qty());
+            pstm.setInt(15, s.getAvailable_qty());
+            pstm.setInt(16, s.getSold_qty());
+            pstm.setDate(17, s.getSell_date());
+            pstm.setString(18, s.getSell_time());
+            pstm.setString(19, s.getDrug_name());
+            pstm.executeUpdate();
+            System.out.println("Data is updated successfully into sales table!");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SalesDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -84,7 +111,25 @@ public class SalesDaoImp implements SalesDao {
 
     @Override
     public Sales getSalesByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Sales sales = null;
+        String sql = "select * from sales where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                //id,barcode,name,type,dose ,quantity ,buy_price ,sell_price ,amount ,buy_date ,buy_time ,profit
+
+//                String sql = "create table if not exists sales(sales_id int(30) auto_increment,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_code varchar(30), buy_price double,sell_price double ,com_id int(30),pro_date date,exp_date date,exp_time varchar(30),validity varchar(30),drug_tax double,drug_place varchar(30),total_qty int(30),available_qty int(30),sold_qty int(30),sell_date date,sell_time varchar(30),foreign key(com_id) references company(company_id))";
+                //    public Sales(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+                sales = new Sales(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18), rs.getDate(19), rs.getString(20));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SalesDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sales;
     }
 
     @Override
@@ -96,11 +141,10 @@ public class SalesDaoImp implements SalesDao {
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 //id,barcode,name,type,dose ,quantity ,buy_price ,sell_price ,amount ,buy_date ,buy_time ,profit
-                   
-//                String sql = "create table if not exists sales(sales_id int(30) auto_increment,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_code varchar(30), buy_price double,sell_price double ,com_id int(30),pro_date date,exp_date date,exp_time varchar(30),validity varchar(30),drug_tax double,drug_place varchar(30),total_qty int(30),available_qty int(30),sold_qty int(30),sell_date date,sell_time varchar(30),foreign key(com_id) references company(company_id))";
-    //    public Sales(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
 
-Sales sales = new Sales(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), 0, 0, company, production_date, expire_date, sql, sql, 0, sql, 0, 0, 0, sell_date, sql);
+//                String sql = "create table if not exists sales(sales_id int(30) auto_increment,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_code varchar(30), buy_price double,sell_price double ,com_id int(30),pro_date date,exp_date date,exp_time varchar(30),validity varchar(30),drug_tax double,drug_place varchar(30),total_qty int(30),available_qty int(30),sold_qty int(30),sell_date date,sell_time varchar(30),foreign key(com_id) references company(company_id))";
+                //    public Sales(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+                Sales sales = new Sales(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18), rs.getDate(19), rs.getString(20));
                 list.add(sales);
             }
         } catch (SQLException ex) {

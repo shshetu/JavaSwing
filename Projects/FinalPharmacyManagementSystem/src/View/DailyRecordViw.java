@@ -47,7 +47,7 @@ public class DailyRecordViw extends javax.swing.JFrame {
             cols[5] = list.get(i).getDrug_code();
             cols[6] = list.get(i).getBuy_price();
             cols[7] = list.get(i).getSell_price();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[8] = com.getCompany_name();
             cols[9] = list.get(i).getProduction_date();
             cols[10] = list.get(i).getExpire_date();

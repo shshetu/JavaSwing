@@ -205,7 +205,7 @@ public class SearchDrugView extends javax.swing.JFrame {
                 cols[6] = list.get(i).getAvailable_qty();
                 cols[7] = list.get(i).getExpire_date();
                 cols[8] = list.get(i).getValidity();
-                Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
                 cols[9] = com.getCompany_name();
                 model.addRow(cols);
             }
@@ -231,7 +231,7 @@ public class SearchDrugView extends javax.swing.JFrame {
             cols[6] = list.get(i).getAvailable_qty();
             cols[7] = list.get(i).getExpire_date();
             cols[8] = list.get(i).getValidity();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[9] = com.getCompany_name();
             model.addRow(cols);
         }
@@ -263,7 +263,7 @@ public class SearchDrugView extends javax.swing.JFrame {
             cols[6] = list.get(i).getAvailable_qty();
             cols[7] = list.get(i).getExpire_date();
             cols[8] = list.get(i).getValidity();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[9] = com.getCompany_name();
             model.addRow(cols);
            

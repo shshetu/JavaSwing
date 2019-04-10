@@ -38,7 +38,7 @@ public class MoveDrugView extends javax.swing.JFrame {
             cols[1] = list.get(i).getDrug_type();
             cols[2] = list.get(i).getDrug_barcode();
             cols[3] = list.get(i).getDrug_place();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[4] = com.getCompany_name();
             model.addRow(cols);
         }
@@ -56,7 +56,7 @@ public class MoveDrugView extends javax.swing.JFrame {
             cols[1] = list.get(i).getDrug_type();
             cols[2] = list.get(i).getDrug_barcode();
             cols[3] = list.get(i).getDrug_place();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[4] = com.getCompany_name();
             model.addRow(cols);
         }

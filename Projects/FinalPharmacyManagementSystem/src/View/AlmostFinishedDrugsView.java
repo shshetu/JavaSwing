@@ -44,7 +44,7 @@ public class AlmostFinishedDrugsView extends javax.swing.JFrame {
             cols[2] = list.get(i).getDrug_type();
             cols[3] = list.get(i).getSell_price();
             cols[4] = list.get(i).getAvailable_qty();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[5] = com.getCompany_name();
             cols[6] = list.get(i).getProduction_date();
             cols[7] = list.get(i).getExpire_date();

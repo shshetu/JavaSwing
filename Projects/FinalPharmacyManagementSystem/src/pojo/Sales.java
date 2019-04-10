@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Sales {
 
-    private int drug_id;
+    private int sales_id;
     private String drug_name;
     private String drug_type;
     private String drug_barcode;
@@ -39,12 +39,12 @@ public class Sales {
     private Date sell_date;
     private String sell_time;
 
-    public int getDrug_id() {
-        return drug_id;
+    public int getSales_id() {
+        return sales_id;
     }
 
-    public void setDrug_id(int drug_id) {
-        this.drug_id = drug_id;
+    public void setSales_id(int sales_id) {
+        this.sales_id = sales_id;
     }
 
     public String getDrug_name() {
@@ -199,8 +199,8 @@ public class Sales {
         this.sell_time = sell_time;
     }
 
-    public Sales(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
-        this.drug_id = drug_id;
+    public Sales(int sales_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+        this.sales_id = sales_id;
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;

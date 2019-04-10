@@ -84,7 +84,7 @@ public class DrugListView extends javax.swing.JFrame {
             cols[4] = list.get(i).getSell_price();
             cols[5] = list.get(i).getAvailable_qty();
             cols[6] = list.get(i).getValidity();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[7] = com.getCompany_name();
             model.addRow(cols);
         }
@@ -103,7 +103,7 @@ public class DrugListView extends javax.swing.JFrame {
             cols[4] = list.get(i).getSell_price();
             cols[5] = list.get(i).getAvailable_qty();
             cols[6] = list.get(i).getValidity();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[7] = com.getCompany_name();
             model.addRow(cols);
         }

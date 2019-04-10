@@ -6,16 +6,14 @@
 package View;
 
 import daoImp.CompanyDaoImp;
+import daoImp.SalesDaoImp;
 import daoImp.SummaryDaoImp;
-import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pojo.Company;
+import pojo.Sales;
 import pojo.Summary;
 
 /**
@@ -30,6 +28,7 @@ public class SalesBillView extends javax.swing.JFrame {
     public SalesBillView() {
         initComponents();
     }
+    double total = 0.0;
 
     public void diplayDataIntoBillTable() {
         String name = jTextFieldDrugName.getText().trim();
@@ -60,6 +59,7 @@ System.out.println(date + " " + time);*/
             cols[7] = com.getCompany_name();
             cols[8] = date;
             cols[9] = time;
+            total += sum.getSell_price() * quantity;
             model.addRow(cols);
         }
 //        //list 
@@ -237,7 +237,9 @@ System.out.println(date + " " + time);*/
                 .addComponent(jButtonBill)
                 .addGap(42, 42, 42)
                 .addComponent(jButtonClear)
-                .addGap(158, 158, 158))
+                .addGap(41, 41, 41)
+                .addComponent(jButtonCancel1)
+                .addGap(40, 40, 40))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -259,11 +261,6 @@ System.out.println(date + " " + time);*/
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                         .addComponent(jButtonAddToCart)))
                 .addGap(32, 32, 32))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(674, Short.MAX_VALUE)
-                    .addComponent(jButtonCancel1)
-                    .addGap(28, 28, 28)))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -292,13 +289,9 @@ System.out.println(date + " " + time);*/
                     .addComponent(jButtonBill)
                     .addComponent(jLabel4)
                     .addComponent(jLabelTotal)
-                    .addComponent(jButtonPrint))
+                    .addComponent(jButtonPrint)
+                    .addComponent(jButtonCancel1))
                 .addGap(31, 31, 31))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(413, Short.MAX_VALUE)
-                    .addComponent(jButtonCancel1)
-                    .addGap(31, 31, 31)))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(284, Short.MAX_VALUE)
@@ -357,10 +350,13 @@ System.out.println(date + " " + time);*/
     private void jButtonAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddToCartActionPerformed
         // TODO add your handling code here:
         diplayDataIntoBillTable();
+        jLabelTotal.setText(String.valueOf(total));
     }//GEN-LAST:event_jButtonAddToCartActionPerformed
 
     private void jButtonBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBillActionPerformed
         // TODO add your handling code here:
+        total = 0.0;
+        jLabelTotal.setText(String.valueOf(total));
         DefaultTableModel model = (DefaultTableModel) jTableSalesBill.getModel();
         int rowCount = model.getRowCount();
 
@@ -378,8 +374,38 @@ System.out.println(date + " " + time);*/
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error!");
             }
+            //insert into sales table
+
+            //all the fields
+            //name 
+            //qty
+            String drug_type = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_type();
+            String drug_barcode = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_barcode();
+            String drug_dose = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_dose();
+            String drug_code = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_code();
+            Double buy_price = new SummaryDaoImp().getSummaryByDrugName(name).getBuy_price();
+            Double sell_price = new SummaryDaoImp().getSummaryByDrugName(name).getSell_price();
+            Company com = new CompanyDaoImp().getCompanyById(new Summary().getCompany().getCompany_id());
+            Date pro_date = new SummaryDaoImp().getSummaryByDrugName(name).getProduction_date();
+            Date exp_date = new SummaryDaoImp().getSummaryByDrugName(name).getExpire_date();
+            String exp_time = new SummaryDaoImp().getSummaryByDrugName(name).getExpire_time();
+            String validity = new SummaryDaoImp().getSummaryByDrugName(name).getValidity();
+            Double drug_tax = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_tax();
+            String drug_place = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_place();
+            int total_qty = new SummaryDaoImp().getSummaryByDrugName(name).getTotal_qty();
+            int available_qty2 = (new SummaryDaoImp().getSummaryByDrugName(name).getAvailable_qty()) - qty;
+            int sold_qty2 = (new SummaryDaoImp().getSummaryByDrugName(name).getSold_qty()) + qty;
+            //date and time
+            Date sell_date = new Date(System.currentTimeMillis());
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            String sell_time = formatter.format(sell_date);
+
+            Sales s = new Sales(name, drug_type, drug_barcode, drug_dose, drug_code, buy_price, sell_price, com, pro_date, exp_date, exp_time, validity, drug_tax, drug_place, total_qty, available_qty2, sold_qty2, sell_date, sell_time);
+            new SalesDaoImp().insert(s);
+            JOptionPane.showMessageDialog(null, "Data is inserted successfully into Sales Table!");
         }
         JOptionPane.showMessageDialog(null, rowCount + " products have been sold!");
+
 
     }//GEN-LAST:event_jButtonBillActionPerformed
 
@@ -403,7 +429,7 @@ System.out.println(date + " " + time);*/
             cols[5] = sum.getDrug_code();
             cols[6] = sum.getBuy_price();
             cols[7] = sum.getSell_price();
-            Company com = new CompanyDaoImp().getCompanyById(sum.getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(sum.getCompany().getCompany_id());
             cols[8] = com.getCompany_name();
             cols[9] = sum.getProduction_date();
             cols[10] = sum.getExpire_date();
@@ -444,6 +470,18 @@ System.out.println(date + " " + time);*/
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SalesBillView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

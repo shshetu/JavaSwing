@@ -259,7 +259,7 @@ public class EditPirceView extends javax.swing.JFrame {
             cols[0] = list.get(i).getDrug_name();
             cols[1] = list.get(i).getDrug_barcode();
             cols[2] = list.get(i).getSell_price();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[3] = com.getCompany_name();
             model.addRow(cols);
         }

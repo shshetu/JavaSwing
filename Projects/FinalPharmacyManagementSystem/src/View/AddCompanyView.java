@@ -24,7 +24,7 @@ public class AddCompanyView extends javax.swing.JFrame {
         initComponents();
         //drug button
         jButtonUpdateCompany.setEnabled(false);
-        jButtonDeleteCompany.setEnabled(false);
+      
         ///
         new CompanyDaoImp().createTable();
         displayDataIntoTable();
@@ -74,7 +74,6 @@ public class AddCompanyView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButtonUpdateCompany = new javax.swing.JButton();
-        jButtonDeleteCompany = new javax.swing.JButton();
         jButtonAddCompany = new javax.swing.JButton();
         jTextFieldCompanyAddress = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -142,9 +141,6 @@ public class AddCompanyView extends javax.swing.JFrame {
         jButtonUpdateCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateCompany.setText("Update Company");
 
-        jButtonDeleteCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDeleteCompany.setText("Delete Company");
-
         jButtonAddCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddCompany.setText("Add Company");
         jButtonAddCompany.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +186,7 @@ public class AddCompanyView extends javax.swing.JFrame {
                             .addComponent(jTextFieldCompanyContact)
                             .addComponent(jTextFieldCompanyEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                             .addComponent(jTextFieldCompanyAddress))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -206,9 +202,7 @@ public class AddCompanyView extends javax.swing.JFrame {
                                 .addComponent(jButtonAddCompany)
                                 .addGap(31, 31, 31)
                                 .addComponent(jButtonUpdateCompany)
-                                .addGap(44, 44, 44)
-                                .addComponent(jButtonDeleteCompany)
-                                .addGap(102, 102, 102)
+                                .addGap(291, 291, 291)
                                 .addComponent(jButtonBack)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -247,7 +241,6 @@ public class AddCompanyView extends javax.swing.JFrame {
                         .addGap(49, 49, 49)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonUpdateCompany)
-                    .addComponent(jButtonDeleteCompany)
                     .addComponent(jButtonAddCompany)
                     .addComponent(jButtonBack))
                 .addContainerGap())
@@ -353,7 +346,6 @@ public class AddCompanyView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCompany;
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonDeleteCompany;
     private javax.swing.JButton jButtonUpdateCompany;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
