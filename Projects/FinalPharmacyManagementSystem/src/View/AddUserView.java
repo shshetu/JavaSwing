@@ -43,7 +43,7 @@ public class AddUserView extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
         UserDao us = new UserDaoImp();
         List<User> list = us.getUser();
-        Object[] cols = new Object[6];
+        Object[] cols = new Object[7];
         for (int i = 0; i < list.size(); i++) {
             cols[0] = list.get(i).getUserID();
             cols[1] = list.get(i).getUserName();
@@ -51,6 +51,7 @@ public class AddUserView extends javax.swing.JFrame {
             cols[3] = list.get(i).getAddress();
             cols[4] = list.get(i).getPhone();
             cols[5] = list.get(i).getSalary();
+            cols[6] = list.get(i).getRoleName();
             model.addRow(cols);
         }
 
@@ -91,7 +92,7 @@ public class AddUserView extends javax.swing.JFrame {
         jComboBoxDay = new javax.swing.JComboBox<>();
         jComboBoxMonth = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldRole = new javax.swing.JTextField();
+        jComboBoxRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,7 +209,8 @@ public class AddUserView extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Role:");
 
-        jTextFieldRole.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxRole.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Role:", "admin", "manager", "employee" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -229,7 +231,7 @@ public class AddUserView extends javax.swing.JFrame {
                         .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(193, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -238,7 +240,7 @@ public class AddUserView extends javax.swing.JFrame {
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel8))
                                 .addGap(47, 47, 47)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextFieldPhone)
                                     .addComponent(jTextFieldSalary)
                                     .addComponent(jTextFieldPassword)
@@ -250,15 +252,14 @@ public class AddUserView extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldRole, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addGap(66, 66, 66)
-                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel9))
+                                .addGap(66, 66, 66)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))))
@@ -271,7 +272,7 @@ public class AddUserView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextFieldRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -347,7 +348,10 @@ public class AddUserView extends javax.swing.JFrame {
         //validation
         //problem in validation
         try {
-            if (jTextFieldUsername.getText().trim().length() < 3) {
+            if (jComboBoxRole.getItemAt(jComboBoxRole.getSelectedIndex()).equals("Select A ROle:")) {
+                JOptionPane.showMessageDialog(null, "Please select a role!");
+
+            } else if (jTextFieldUsername.getText().trim().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Username should be atleast 3 charcters!");
             } else if (jComboBoxDay.getItemAt(jComboBoxDay.getSelectedIndex()).equals("Day:") || jComboBoxMonth.getItemAt(jComboBoxMonth.getSelectedIndex()).equals("Month:") || jComboBoxYear.getItemAt(jComboBoxYear.getSelectedIndex()).equals("Year:")) {
                 JOptionPane.showMessageDialog(null, "Please select the date correctly!");
@@ -362,6 +366,7 @@ public class AddUserView extends javax.swing.JFrame {
             } else {
                 try {
                     //collect data
+                    String role_name = jComboBoxRole.getItemAt(jComboBoxRole.getSelectedIndex());
                     String user_name = jTextFieldUsername.getText().trim();
                     String d = jComboBoxDay.getItemAt(jComboBoxDay.getSelectedIndex());
                     String m = jComboBoxMonth.getItemAt(jComboBoxMonth.getSelectedIndex());
@@ -377,10 +382,10 @@ public class AddUserView extends javax.swing.JFrame {
                     int year = Integer.parseInt(jComboBoxYear.getItemAt(jComboBoxYear.getSelectedIndex()));
                     Date dob = Date.valueOf(year + "-" + month + "-" + day);
                     //User(String userName, Date dob, String Address, int phone, double salary, String pass)
-                    User u = new User(user_name, dob, address, phone, salary, pass);
+                    User u = new User(role_name, user_name, dob, address, phone, salary, pass);
                     us.insert(u);
-                    JOptionPane.showMessageDialog(null, "Data is inserted successfully into user table!");
                     displayDataIntoTable();
+                    JOptionPane.showMessageDialog(null, "Data is inserted successfully into user table!");
 
                 } catch (Exception e) {
 
@@ -399,6 +404,7 @@ public class AddUserView extends javax.swing.JFrame {
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         // TODO add your handling code here:
+        jComboBoxRole.setSelectedIndex(0);
         jTextFieldUsername.setText("");
         jComboBoxDay.setSelectedIndex(0);
         jComboBoxMonth.setSelectedIndex(0);
@@ -455,6 +461,7 @@ public class AddUserView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonUpdateUser;
     private javax.swing.JComboBox<String> jComboBoxDay;
     private javax.swing.JComboBox<String> jComboBoxMonth;
+    private javax.swing.JComboBox<String> jComboBoxRole;
     private javax.swing.JComboBox<String> jComboBoxYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -472,7 +479,6 @@ public class AddUserView extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaAddress;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldPhone;
-    private javax.swing.JTextField jTextFieldRole;
     private javax.swing.JTextField jTextFieldSalary;
     private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables

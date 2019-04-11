@@ -27,7 +27,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void createTable() {
-        String sql = "create table if not exists user(user_id int(20) auto_increment primary key,user_name varchar(30),dob date,address varchar(30),phone int(30),salary double,pass varchar(30))";
+        String sql = "create table if not exists user(user_id int(20) auto_increment primary key,role_name varchar(30),user_name varchar(30),dob date,address varchar(30),phone int(30),salary double,pass varchar(30))";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
@@ -39,15 +39,16 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void insert(User us) {
-        String sql = "insert into user(user_name,dob,address ,phone,salary,pass) values(?,?,?,?,?,?)";
+        String sql = "insert into user(role_name,user_name,dob,address ,phone,salary,pass) values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, us.getUserName());
-            pstm.setDate(2, us.getDob());
-            pstm.setString(3, us.getAddress());
-            pstm.setInt(4, us.getPhone());
-            pstm.setDouble(5, us.getSalary());
-            pstm.setString(6, us.getPass());
+            pstm.setString(1, us.getRoleName());
+            pstm.setString(2, us.getUserName());
+            pstm.setDate(3, us.getDob());
+            pstm.setString(4, us.getAddress());
+            pstm.setInt(5, us.getPhone());
+            pstm.setDouble(6, us.getSalary());
+            pstm.setString(7, us.getPass());
             pstm.executeUpdate();
             System.out.println("Data is inserted successfully into user table!");
         } catch (SQLException ex) {
@@ -60,7 +61,7 @@ public class UserDaoImp implements UserDao {
     public void update(User us) {
         //updated by user id
 
-        String sql = "update user set user_name =?,dob =?,address=? ,phone =?,salary =?,pass=? where user_id =?";
+        String sql = "update user set role_name = ?,user_name =?,dob =?,address=? ,phone =?,salary =?,pass=? where user_id =?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setInt(1, us.getUserID());
@@ -95,7 +96,7 @@ public class UserDaoImp implements UserDao {
             pstm.setInt(1, id);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                user = new User(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getString(6));
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8));
 
             }
         } catch (SQLException ex) {
@@ -115,7 +116,7 @@ public class UserDaoImp implements UserDao {
             pstm.setString(1, name);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                user = new User(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getString(6));
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8));
 
             }
         } catch (SQLException ex) {
@@ -135,7 +136,7 @@ public class UserDaoImp implements UserDao {
             pstm.setInt(1, phone);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                user = new User(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getString(6));
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8));
 
             }
         } catch (SQLException ex) {
@@ -153,7 +154,7 @@ public class UserDaoImp implements UserDao {
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getString(6));
+                User user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8));
                 list.add(user);
             }
         } catch (SQLException ex) {

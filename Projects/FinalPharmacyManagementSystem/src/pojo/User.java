@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class User {
     private int userID;
+    private String roleName;
     private String userName;
     private Date dob;
     private String Address;
@@ -20,31 +21,20 @@ public class User {
     private double salary;
     private String pass;
 
-    public User(int userID, String userName, Date dob, String Address, int phone, double salary, String pass) {
-        this.userID = userID;
-        this.userName = userName;
-        this.dob = dob;
-        this.Address = Address;
-        this.phone = phone;
-        this.salary = salary;
-        this.pass = pass;
-    }
-
-    public User(String userName, Date dob, String Address, int phone, double salary, String pass) {
-        this.userName = userName;
-        this.dob = dob;
-        this.Address = Address;
-        this.phone = phone;
-        this.salary = salary;
-        this.pass = pass;
-    }
-
     public int getUserID() {
         return userID;
     }
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getUserName() {
@@ -95,6 +85,28 @@ public class User {
         this.pass = pass;
     }
 
+    public User(int userID, String roleName, String userName, Date dob, String Address, int phone, double salary, String pass) {
+        this.userID = userID;
+        this.roleName = roleName;
+        this.userName = userName;
+        this.dob = dob;
+        this.Address = Address;
+        this.phone = phone;
+        this.salary = salary;
+        this.pass = pass;
+    }
+
+    public User(String roleName, String userName, Date dob, String Address, int phone, double salary, String pass) {
+        this.roleName = roleName;
+        this.userName = userName;
+        this.dob = dob;
+        this.Address = Address;
+        this.phone = phone;
+        this.salary = salary;
+        this.pass = pass;
+    }
+
+   
     
     
     

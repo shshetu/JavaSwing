@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/ClientList.java</file>
             <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/AddUserView.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/LoginView.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/daoImp/UserDaoImp.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/dao/LoginDao.java</file>
             <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/AdministrationDashBoard.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/View/UpdateUserView.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/daoImp/LoginDaoImp.java</file>
+            <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/dao/UserDao.java</file>
             <file>file:/E:/Shetu/git/shetu's%20git/JavaSwing/Projects/FinalPharmacyManagementSystem/src/pojo/User.java</file>
         </group>
     </open-files>

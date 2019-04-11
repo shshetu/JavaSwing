@@ -5,6 +5,12 @@
  */
 package View;
 
+import dao.LoginDao;
+import daoImp.LoginDaoImp;
+import daoImp.UserDaoImp;
+import javax.swing.JOptionPane;
+import pojo.User;
+
 /**
  *
  * @author shshe
@@ -70,20 +76,28 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2.setText("Username:");
 
         jTextFieldUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUsername.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
 
         jTextFieldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldPassword.setForeground(new java.awt.Color(255, 255, 255));
 
         jButtonLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLogin.setText("Login");
+        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoginActionPerformed(evt);
+            }
+        });
 
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
 
         jButtonExit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonExit.setText("Exit");
@@ -170,6 +184,58 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButtonExitActionPerformed
+    int attempt = 0;
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+        // TODO add your handling code here:
+        if (jTextFieldUsername.getText().trim().length() < 1 || jTextFieldPassword.getText().trim().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Invalid Username or Password!");
+            attempt++;
+            if (attempt == 3) {
+                System.exit(0);
+            }
+        } else {
+            LoginDao logDao = new LoginDaoImp();
+            String username = jTextFieldUsername.getText().trim();
+            String password = jTextFieldPassword.getText().trim();
+            try {
+                User user = new UserDaoImp().getUserByUserName(username);
+                if ((user.getUserName()).equals(username) && ((user.getPass()).equals(password))) {
+                    if ((user.getRoleName()).equals("admin")) {
+                        this.setVisible(false);
+                        new AdministrationDashBoard().setVisible(true);
+                    } else if ((user.getRoleName()).equals("manager")) {
+                        this.setVisible(false);
+                        new ManagerDashBoard().setVisible(true);
+                    } else if ((user.getRoleName()).equals("employee")) {
+                        this.setVisible(false);
+                        new EmployeeDashBoard().setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
+                    attempt++;
+                    if (attempt == 3) {
+                        System.exit(0);
+                    }
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid Username or Password!");
+                attempt++;
+                if (attempt == 3) {
+                    System.exit(0);
+                }
+            }
+            if (attempt == 3) {
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_jButtonLoginActionPerformed
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        // TODO add your handling code here:
+        jTextFieldUsername.setText("");
+        jTextFieldPassword.setText("");
+    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     /**
      * @param args the command line arguments
