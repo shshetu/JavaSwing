@@ -102,6 +102,11 @@ public class BuyDrugsView extends javax.swing.JFrame {
 
         jTextFieldDrugName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugName.setText("Napa");
+        jTextFieldDrugName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugNameKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -390,6 +395,11 @@ public class BuyDrugsView extends javax.swing.JFrame {
             jTextFieldAmount.setText(String.valueOf(amount));
         }
     }//GEN-LAST:event_jTextFieldAmountMouseClicked
+
+    private void jTextFieldDrugNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextFieldDrugNameKeyPressed
 
     /**
      * @param args the command line arguments

@@ -384,7 +384,7 @@ public class AddDrugView extends javax.swing.JFrame {
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-     User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
         if (user.getRoleName().equalsIgnoreCase("admin")) {
             this.setVisible(false);
             new AdministrationDashBoard().setVisible(true);
@@ -592,46 +592,49 @@ public class AddDrugView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldExpireTimeActionPerformed
 
     private void jTextFieldDrugNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyReleased
-        
+
     }//GEN-LAST:event_jTextFieldDrugNameKeyReleased
 
     private void jTextFieldDrugNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-        // TODO add your handling code here:
-        String drug_name = jTextFieldDrugName.getText().trim();
-        BuyDrug bd = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name);
-        if (bd.getDrug_name() != null) {
-            //vairables
-            String drug_barcode = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getBar_code());
-            String drug_type = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getDrug_type());
-            String drug_group = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getDrug_group());
-            Company com = new CompanyDaoImp().getCompanyById(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getCompany().getCompany_id());
-            String company_name = com.getCompany_name();
-            int qty = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getQuantity();
-            double buy_price = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getBuy_price();;
-            double amount = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getAmount();
-            //set
-            //combo box drug type
-            jComboBoxDrugType.removeAllItems();
-            jComboBoxDrugType.addItem(drug_type);
-            //barcode
-            jTextFieldDrugBarCode.setText(drug_barcode);
-            jTextFieldDrugGroup.setText(drug_group);
-            //company name
-            jComboBoxCompanyName.removeAllItems();
-            jComboBoxCompanyName.addItem(company_name);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // TODO add your handling code here:
+            String drug_name = jTextFieldDrugName.getText().trim();
+            try {
+                BuyDrug bd = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name);
+                if (bd.getDrug_name() != null) {
+                    //vairables
+                    String drug_barcode = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getBar_code());
+                    String drug_type = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getDrug_type());
+                    String drug_group = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getDrug_group());
+                    Company com = new CompanyDaoImp().getCompanyById(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getCompany().getCompany_id());
+                    String company_name = com.getCompany_name();
+                    int qty = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getQuantity();
+                    double buy_price = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getBuy_price();;
+                    double amount = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getAmount();
+                    //set
+                    //combo box drug type
+                    jComboBoxDrugType.removeAllItems();
+                    jComboBoxDrugType.addItem(drug_type);
+                    //barcode
+                    jTextFieldDrugBarCode.setText(drug_barcode);
+                    jTextFieldDrugGroup.setText(drug_group);
+                    //company name
+                    jComboBoxCompanyName.removeAllItems();
+                    jComboBoxCompanyName.addItem(company_name);
 
-            //quantity
-            jComboBoxDrugQuantity.removeAllItems();
-            jComboBoxDrugQuantity.addItem(String.valueOf(qty));
-            //buy price
-            jTextFieldDrugBuyingPrice.setText(String.valueOf(buy_price));
-            //amount
-            //there should be an amount
-        }else{
-        
-        }
+                    //quantity
+                    jComboBoxDrugQuantity.removeAllItems();
+                    jComboBoxDrugQuantity.addItem(String.valueOf(qty));
+                    //buy price
+                    jTextFieldDrugBuyingPrice.setText(String.valueOf(buy_price));
+                    //amount
+                    //there should be an amount
+                }
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "It is a new product!");
+
+            }
         }
     }//GEN-LAST:event_jTextFieldDrugNameKeyPressed
 

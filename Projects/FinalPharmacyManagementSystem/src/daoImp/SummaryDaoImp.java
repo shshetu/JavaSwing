@@ -325,7 +325,7 @@ public class SummaryDaoImp implements SummaryDao {
     public List<Summary> getSummarySearchingName(String name) {
 
         List<Summary> list = new ArrayList<>();
-        String sql = "select * from summary where drug_name = ?";
+        String sql = "select * from summary where drug_name like ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, name);
@@ -364,7 +364,7 @@ public class SummaryDaoImp implements SummaryDao {
     public List<Summary> getSummarySearchingBarcode(String name) {
 
         List<Summary> list = new ArrayList<>();
-        String sql = "select * from summary where drug_barcode = ?";
+        String sql = "select * from summary where drug_barcode like ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, name);
@@ -383,7 +383,7 @@ public class SummaryDaoImp implements SummaryDao {
     public List<Summary> getSummarySearchingDrugPlace(String drug_place) {
 
         List<Summary> list = new ArrayList<>();
-        String sql = "select * from summary where drug_place=? order by drug_place";
+        String sql = "select * from summary where drug_place like ? order by drug_place";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, drug_place);

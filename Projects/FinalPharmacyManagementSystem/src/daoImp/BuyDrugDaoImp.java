@@ -140,7 +140,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
     public BuyDrug getBuyDrugByDrugName(String drug_name) {
 
         BuyDrug buy_drug = null;
-        String sql = "select * from buydrug where drug_name= ?";
+        String sql = "select * from buydrug where drug_name like ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, drug_name);

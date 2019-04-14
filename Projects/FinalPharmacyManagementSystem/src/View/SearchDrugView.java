@@ -156,29 +156,29 @@ public class SearchDrugView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNameActionPerformed
 
     private void jTextFieldNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyPressed
-        // TODO add your handling code here:
-        String name = jTextFieldName.getText().trim();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
-            model.setRowCount(0);
-            List<Summary> list = new SummaryDaoImp().getSummarySearchingName(name);
-            Object[] cols = new Object[10];
-            for (int i = 0; i < list.size(); i++) {
-                cols[0] = list.get(i).getDrug_name();
-                cols[1] = list.get(i).getDrug_type();
-                cols[2] = list.get(i).getDrug_barcode();
-                cols[3] = list.get(i).getBuy_price();
-                cols[4] = list.get(i).getSell_price();
-                cols[5] = list.get(i).getDrug_place();
-                cols[6] = list.get(i).getAvailable_qty();
-                cols[7] = list.get(i).getExpire_date();
-                cols[8] = list.get(i).getValidity();
-                Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
-                cols[9] = com.getCompany_name();
-                model.addRow(cols);
-            }
-
-        }
+//        // TODO add your handling code here:
+//        String name = jTextFieldName.getText().trim();
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
+//            model.setRowCount(0);
+//            List<Summary> list = new SummaryDaoImp().getSummarySearchingName(name);
+//            Object[] cols = new Object[10];
+//            for (int i = 0; i < list.size(); i++) {
+//                cols[0] = list.get(i).getDrug_name();
+//                cols[1] = list.get(i).getDrug_type();
+//                cols[2] = list.get(i).getDrug_barcode();
+//                cols[3] = list.get(i).getBuy_price();
+//                cols[4] = list.get(i).getSell_price();
+//                cols[5] = list.get(i).getDrug_place();
+//                cols[6] = list.get(i).getAvailable_qty();
+//                cols[7] = list.get(i).getExpire_date();
+//                cols[8] = list.get(i).getValidity();
+//                Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
+//                cols[9] = com.getCompany_name();
+//                model.addRow(cols);
+//            }
+//
+//        }
     }//GEN-LAST:event_jTextFieldNameKeyPressed
 
     private void jTextFieldNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyReleased
