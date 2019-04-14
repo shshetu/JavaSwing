@@ -18,7 +18,7 @@ public class Summary {
     private String drug_type;
     private String drug_barcode;
     private String drug_dose;
-    private String drug_code;
+    private String drug_group;
     private double buy_price;
     private double sell_price;
 
@@ -35,19 +35,28 @@ public class Summary {
     private int available_qty;
     private int sold_qty;
 
-    public Summary(String drug_name, int sold_qty) {
-        this.drug_name = drug_name;
-        this.sold_qty = sold_qty;
-    }
-
     public Summary(String drug_name, double sell_price) {
         this.drug_name = drug_name;
         this.sell_price = sell_price;
     }
 
-    public Summary() {
-      
+    public Summary(String drug_name, String drug_place) {
+        this.drug_name = drug_name;
+        this.drug_place = drug_place;
     }
+
+    public Summary() {
+    }
+
+    
+
+   
+
+   
+
+   
+
+   
 
     public int getDrug_id() {
         return drug_id;
@@ -89,12 +98,12 @@ public class Summary {
         this.drug_dose = drug_dose;
     }
 
-    public String getDrug_code() {
-        return drug_code;
+    public String getDrug_group() {
+        return drug_group;
     }
 
-    public void setDrug_code(String drug_code) {
-        this.drug_code = drug_code;
+    public void setDrug_group(String drug_group) {
+        this.drug_group = drug_group;
     }
 
     public double getBuy_price() {
@@ -193,13 +202,13 @@ public class Summary {
         this.sold_qty = sold_qty;
     }
 
-    public Summary(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty) {
+    public Summary(int drug_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_group, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty) {
         this.drug_id = drug_id;
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;
         this.drug_dose = drug_dose;
-        this.drug_code = drug_code;
+        this.drug_group = drug_group;
         this.buy_price = buy_price;
         this.sell_price = sell_price;
         this.company = company;
@@ -214,12 +223,12 @@ public class Summary {
         this.sold_qty = sold_qty;
     }
 
-    public Summary(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty) {
+    public Summary(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_group, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty) {
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;
         this.drug_dose = drug_dose;
-        this.drug_code = drug_code;
+        this.drug_group = drug_group;
         this.buy_price = buy_price;
         this.sell_price = sell_price;
         this.company = company;
@@ -232,6 +241,12 @@ public class Summary {
         this.total_qty = total_qty;
         this.available_qty = available_qty;
         this.sold_qty = sold_qty;
+    }
+
+    public Summary(String drug_name, int total_qty, int available_qty) {
+        this.drug_name = drug_name;
+        this.total_qty = total_qty;
+        this.available_qty = available_qty;
     }
 
     public Summary(String drug_name, int total_qty, int available_qty, int sold_qty) {
@@ -241,15 +256,12 @@ public class Summary {
         this.sold_qty = sold_qty;
     }
 
-    public Summary(String drug_name, int available_qty, int sold_qty) {
+    public Summary(String drug_name, Date expire_date) {
         this.drug_name = drug_name;
-        this.available_qty = available_qty;
-        this.sold_qty = sold_qty;
+        this.expire_date = expire_date;
     }
 
-    public Summary(String drug_name, String drug_place) {
-        this.drug_name = drug_name;
-        this.drug_place = drug_place;
-    }
+   
+ 
 
 }

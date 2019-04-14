@@ -27,7 +27,7 @@ public class DrugDaoImp implements DrugDao {
 
     @Override
     public void createTable() {
-        String sql = "create table if not exists drug(drug_serial int(30) auto_increment primary key,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_code varchar(30),drug_buy_price double,drug_sell_price double,com_id int(20),production_date date,expire_date date,expire_time varchar(30),drug_tax double,drug_place varchar(30),drug_quantity int(30),foreign key(com_id) references company(company_id))";
+        String sql = "create table if not exists drug(drug_serial int(30) auto_increment primary key,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_group varchar(30),drug_buy_price double,drug_sell_price double,com_id int(20),production_date date,expire_date date,expire_time varchar(30),drug_tax double,drug_place varchar(30),drug_quantity int(30),foreign key(com_id) references company(company_id))";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
@@ -39,14 +39,14 @@ public class DrugDaoImp implements DrugDao {
 
     @Override
     public void insert(Drug drug) {
-        String sql = "insert into drug(drug_name,drug_type,drug_barcode,drug_dose,drug_code,drug_buy_price,drug_sell_price,com_id,production_date,expire_date,expire_time,drug_tax,drug_place,drug_quantity) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into drug(drug_name,drug_type,drug_barcode,drug_dose,drug_group,drug_buy_price,drug_sell_price,com_id,production_date,expire_date,expire_time,drug_tax,drug_place,drug_quantity) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, drug.getDrug_name());
             pstm.setString(2, drug.getDrug_type());
             pstm.setString(3, drug.getDrug_barcode());
             pstm.setString(4, drug.getDrug_dose());
-            pstm.setString(5, drug.getDrug_code());
+            pstm.setString(5, drug.getDrug_group());
             pstm.setDouble(6, drug.getDrug_buy_price());
             pstm.setDouble(7, drug.getDrug_sell_price());
 
@@ -68,14 +68,14 @@ public class DrugDaoImp implements DrugDao {
     //String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double drug_buy_price, double drug_sell_price, Company company, Date production_date, Date expire_date, String expire_time, double drug_tax, String drug_place, int drug_quantity)
     @Override
     public void update(Drug drug) {
-        String sql = "update drug set drug_name = ?, drug_type = ?, drug_barcode = ?, drug_dose = ?, drug_code = ?, drug_buy_price = ?, drug_sell_price = ?, com_id = ?, production_date = ?,expire_date = ?, expire_time = ?, drug_tax = ?, drug_place = ?, drug_quantity = ? where drug_serial = ?";
+        String sql = "update drug set drug_name = ?, drug_type = ?, drug_barcode = ?, drug_dose = ?, drug_group = ?, drug_buy_price = ?, drug_sell_price = ?, com_id = ?, production_date = ?,expire_date = ?, expire_time = ?, drug_tax = ?, drug_place = ?, drug_quantity = ? where drug_serial = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, drug.getDrug_name());
             pstm.setString(2, drug.getDrug_type());
             pstm.setString(3, drug.getDrug_barcode());
             pstm.setString(4, drug.getDrug_dose());
-            pstm.setString(5, drug.getDrug_code());
+            pstm.setString(5, drug.getDrug_group());
             pstm.setDouble(6, drug.getDrug_buy_price());
             pstm.setDouble(7, drug.getDrug_sell_price());
 

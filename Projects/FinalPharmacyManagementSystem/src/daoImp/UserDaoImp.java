@@ -64,7 +64,30 @@ public class UserDaoImp implements UserDao {
         String sql = "update user set role_name = ?,user_name =?,dob =?,address=? ,phone =?,salary =?,pass=? where user_id =?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, us.getUserID());
+            pstm.setString(1, us.getRoleName());
+            pstm.setString(2, us.getUserName());
+            pstm.setDate(3, us.getDob());
+            pstm.setString(4, us.getAddress());
+            pstm.setInt(5, us.getPhone());
+            pstm.setDouble(6, us.getSalary());
+            pstm.setString(7, us.getPass());
+            pstm.setInt(8, us.getUserID());
+            pstm.executeUpdate();
+            System.out.println("Data is updated successfully into user table!");
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void updatePass(User us) {
+        //updated by user id
+
+        String sql = "update user set pass=? where user_name =?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, us.getPass());
+            pstm.setString(2, us.getUserName());
             pstm.executeUpdate();
             System.out.println("Data is updated successfully into user table!");
         } catch (SQLException ex) {

@@ -28,7 +28,7 @@ public class SummaryDaoImp implements SummaryDao {
 
     @Override
     public void createTable() {
-        String sql = "create table if not exists summary(drug_id int(30) auto_increment primary key,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_code varchar(30), buy_price double,sell_price double ,com_id int(30),pro_date date,exp_date date,exp_time varchar(30),validity varchar(30),drug_tax double,drug_place varchar(30),total_qty int(30),available_qty int(30),sold_qty int(30),foreign key(com_id) references company(company_id))";
+        String sql = "create table if not exists summary(drug_id int(30) auto_increment primary key,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_dose varchar(30),drug_group varchar(30), buy_price double,sell_price double ,com_id int(30),pro_date date,exp_date date,exp_time varchar(30),validity varchar(30),drug_tax double,drug_place varchar(30),total_qty int(30),available_qty int(30),sold_qty int(30),foreign key(com_id) references company(company_id))";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
@@ -41,14 +41,14 @@ public class SummaryDaoImp implements SummaryDao {
     @Override
     public void insert(Summary sum) {
         //drug_id int(30) auto_increment,drug_name varchar(30),drug_type varchar(30),drug_barcode varchar(30),drug_code varchar(30),double buy_price,double sell_price,com_id int(30),pro_date date,exp_date date,exp_time varchar(30),validity varchar(30),drug_tax double,drug_place varchar(30),total_qty int(30),available_qty int(30),sold_qty int(30)
-        String sql = "insert into summary(drug_name,drug_type,drug_barcode,drug_dose,drug_code,buy_price,sell_price,com_id,pro_date,exp_date,exp_time,validity,drug_tax,drug_place,total_qty,available_qty,sold_qty) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into summary(drug_name,drug_type,drug_barcode,drug_dose,drug_group,buy_price,sell_price,com_id,pro_date,exp_date,exp_time,validity,drug_tax,drug_place,total_qty,available_qty,sold_qty) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, sum.getDrug_name());
             pstm.setString(2, sum.getDrug_type());
             pstm.setString(3, sum.getDrug_barcode());
             pstm.setString(4, sum.getDrug_dose());
-            pstm.setString(5, sum.getDrug_code());
+            pstm.setString(5, sum.getDrug_group());
             pstm.setDouble(6, sum.getBuy_price());
             pstm.setDouble(7, sum.getSell_price());
             pstm.setInt(8, sum.getCompany().getCompany_id());
@@ -70,14 +70,14 @@ public class SummaryDaoImp implements SummaryDao {
 
     @Override
     public void update(Summary sum) {
-        String sql = "update summary set drug_name = ?,drug_type = ?,drug_barcode = ?,drug_dose = ?,drug_code = ?,buy_price = ?,sell_price = ?,com_id = ?,pro_date = ?,exp_date = ?,exp_time = ?,validity = ?,drug_tax = ?,drug_place = ?,total_qty = ?,available_qty = ?,sold_qty = ? where drug_id = ?";
+        String sql = "update summary set drug_name = ?,drug_type = ?,drug_barcode = ?,drug_dose = ?,drug_group = ?,buy_price = ?,sell_price = ?,com_id = ?,pro_date = ?,exp_date = ?,exp_time = ?,validity = ?,drug_tax = ?,drug_place = ?,total_qty = ?,available_qty = ?,sold_qty = ? where drug_id = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, sum.getDrug_name());
             pstm.setString(2, sum.getDrug_type());
             pstm.setString(3, sum.getDrug_barcode());
             pstm.setString(4, sum.getDrug_dose());
-            pstm.setString(5, sum.getDrug_code());
+            pstm.setString(5, sum.getDrug_group());
             pstm.setDouble(6, sum.getBuy_price());
             pstm.setDouble(7, sum.getSell_price());
             pstm.setInt(8, sum.getCompany().getCompany_id());
@@ -249,17 +249,71 @@ public class SummaryDaoImp implements SummaryDao {
 
         return list;
     }
+    @Override
+    public List<Summary> getSummarySelectingDrugGroup() {
 
-    ///for summary table
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary order by drug_group";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+    //////////////////selecting drug Place
+    @Override
+    public List<Summary> getSummarySelectingDrugPlace() {
+
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary order by drug_place";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    ///for summary table from purchase table
     @Override
     public void updateSum(Summary sum) {
 
-        String sql = "update summary set available_qty = ?,sold_qty = ? where drug_name = ?";
+        String sql = "update summary set total_qty = ?,available_qty = ? where drug_name = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, sum.getAvailable_qty());
-            pstm.setInt(2, sum.getSold_qty());
+            pstm.setInt(1, sum.getTotal_qty());
+            pstm.setInt(2, sum.getAvailable_qty());
             pstm.setString(3, sum.getDrug_name());
+            pstm.executeUpdate();
+            System.out.println("Data is updated again successfully into summary table!");
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    ///for summary table from sales table
+    @Override
+    public void updateSales(Summary sum) {
+
+        String sql = "update summary set total_qty = ?,available_qty = ?,sold_qty = ? where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, sum.getTotal_qty());
+            pstm.setInt(2, sum.getAvailable_qty());
+            pstm.setInt(3, sum.getSold_qty());
+            pstm.setString(4, sum.getDrug_name());
             pstm.executeUpdate();
             System.out.println("Data is updated again successfully into summary table!");
         } catch (SQLException ex) {
@@ -272,6 +326,25 @@ public class SummaryDaoImp implements SummaryDao {
 
         List<Summary> list = new ArrayList<>();
         String sql = "select * from summary where drug_name = ?";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, name);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+
+    public List<Summary> getSummarySearchingDrugGroup(String name) {
+
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary where drug_group = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, name);
@@ -306,7 +379,27 @@ public class SummaryDaoImp implements SummaryDao {
 
         return list;
     }
+        ///search by drug place
+    public List<Summary> getSummarySearchingDrugPlace(String drug_place) {
 
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary where drug_place=? order by drug_place";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.setString(1, drug_place);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+                list.add(sum);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+    }
+    
+    //////////////////////////
     @Override
     public void updatePlace(Summary sum) {
 
@@ -337,29 +430,42 @@ public class SummaryDaoImp implements SummaryDao {
         }
     }
 
-    public static List<Summary> searchDrug(String name) {
+    //update expire date
+      @Override
+    public void updateExpireDate(Summary sum) {
 
-        List<Summary> list = new ArrayList<>();
-        //  String sql = "select * from summary where drug_name like "+"'"+name+"%"+"'";
-        String sql = "select * from summary where drug_name like " + "'n%'";
+        String sql = "update summary set exp_date =? where drug_name = ?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setString(1, name);
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
-                list.add(sum);
-            }
+            pstm.setDate(1, sum.getExpire_date());
+            pstm.setString(2, sum.getDrug_name());
+            pstm.executeUpdate();
+            System.out.println("price is updated again successfully into summary table!");
         } catch (SQLException ex) {
             Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return list;
     }
+//    public static List<Summary> searchDrug(String name) {
+//
+//        List<Summary> list = new ArrayList<>();
+//        //  String sql = "select * from summary where drug_name like "+"'"+name+"%"+"'";
+//        String sql = "select * from summary where drug_name like " + "'n%'";
+//        try {
+//            PreparedStatement pstm = conn.prepareStatement(sql);
+//            pstm.setString(1, name);
+//            ResultSet rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                Summary sum = new Summary(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), new Company(rs.getInt(9)), rs.getDate(10), rs.getDate(11), rs.getString(12), rs.getString(13), rs.getDouble(14), rs.getString(15), rs.getInt(16), rs.getInt(17), rs.getInt(18));
+//                list.add(sum);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(SummaryDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return list;
+//    }
 
-    public static void main(String[] args) {
-        System.out.println(searchDrug("n").size());
-    }
+   
 
     @Override
     public List<Summary> getSummaryExpireDate() {

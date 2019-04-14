@@ -53,29 +53,14 @@ public class EditPirceView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Edit Prices Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 11, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jTableEditPriceDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,6 +105,7 @@ public class EditPirceView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("New Price:");
 
+        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +131,7 @@ public class EditPirceView extends javax.swing.JFrame {
             }
         });
 
+        jButtonBack.setBackground(new java.awt.Color(0, 102, 102));
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -182,12 +169,12 @@ public class EditPirceView extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addComponent(jButtonBack)
-                .addGap(256, 256, 256)
+                .addGap(266, 266, 266)
                 .addComponent(jButtonUpdate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,15 +197,11 @@ public class EditPirceView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(jTextFieldOldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                        .addComponent(jButtonBack)
-                        .addGap(47, 47, 47))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButtonUpdate)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonUpdate)
+                    .addComponent(jButtonBack))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,9 +214,10 @@ public class EditPirceView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -291,12 +275,16 @@ public class EditPirceView extends javax.swing.JFrame {
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
         String name = jTextFieldDrugName.getText();
-        String new_price = jTextFieldNewPrice.getText();
+        Double new_price = Double.parseDouble(jTextFieldNewPrice.getText().trim());
         Summary sumExist = new SummaryDaoImp().getSummaryByDrugName(name);
         Summary sum = new Summary(name, new_price);
         if (sumExist.getDrug_name() != null) {
             new SummaryDaoImp().updatePrice(sum);
             JOptionPane.showMessageDialog(null, "Drug price is updated successfully!");
+            jTextFieldDrugBarcode.setText("");
+            jTextFieldDrugName.setText("");
+            jTextFieldOldPrice.setText("");
+            jTextFieldNewPrice.setText("");
 
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
@@ -306,7 +294,10 @@ public class EditPirceView extends javax.swing.JFrame {
         int i = jTableEditPriceDisplay.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTableEditPriceDisplay.getModel();
         String price = model.getValueAt(i, 2).toString();
+        String barcode = model.getValueAt(i, 1).toString();
         jTextFieldOldPrice.setText(price);
+        jTextFieldDrugBarcode.setText(barcode);
+        
     }//GEN-LAST:event_jTableEditPriceDisplayMouseClicked
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed

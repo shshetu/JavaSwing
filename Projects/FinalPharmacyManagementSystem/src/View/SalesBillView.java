@@ -8,6 +8,7 @@ package View;
 import daoImp.CompanyDaoImp;
 import daoImp.SalesDaoImp;
 import daoImp.SummaryDaoImp;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class SalesBillView extends javax.swing.JFrame {
     public SalesBillView() {
         initComponents();
     }
-    double total = 0.0;
+    static double total = 0.0;
 
     public void diplayDataIntoBillTable() {
         String name = jTextFieldDrugName.getText().trim();
@@ -106,7 +107,7 @@ System.out.println(date + " " + time);*/
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Sales Bill Form");
@@ -128,10 +129,12 @@ System.out.println(date + " " + time);*/
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Drug Name:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 30, -1, -1));
 
         jTextFieldDrugName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -145,12 +148,16 @@ System.out.println(date + " " + time);*/
                 jTextFieldDrugNameKeyTyped(evt);
             }
         });
+        jPanel2.add(jTextFieldDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 26, 151, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Barcode: ");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 30, -1, -1));
 
         jTextFieldBarcode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jTextFieldBarcode, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 27, 143, -1));
 
+        jButtonAddToCart.setBackground(new java.awt.Color(0, 102, 102));
         jButtonAddToCart.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddToCart.setText("Add To Cart");
         jButtonAddToCart.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +165,9 @@ System.out.println(date + " " + time);*/
                 jButtonAddToCartActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonAddToCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(1065, 26, -1, -1));
 
+        jButtonBill.setBackground(new java.awt.Color(0, 102, 102));
         jButtonBill.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBill.setText("Bill");
         jButtonBill.addActionListener(new java.awt.event.ActionListener() {
@@ -166,13 +175,17 @@ System.out.println(date + " " + time);*/
                 jButtonBillActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(896, 428, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Total");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 432, -1, -1));
 
         jLabelTotal.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelTotal.setText("00.0$");
+        jPanel2.add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 410, -1, -1));
 
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
         jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClear.setText("Clear");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +193,9 @@ System.out.println(date + " " + time);*/
                 jButtonClearActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(989, 428, -1, -1));
 
+        jButtonCancel1.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel1.setText("Cancel");
         jButtonCancel1.addActionListener(new java.awt.event.ActionListener() {
@@ -188,14 +203,19 @@ System.out.println(date + " " + time);*/
                 jButtonCancel1ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1097, 428, -1, -1));
 
+        jButtonPrint.setBackground(new java.awt.Color(0, 102, 102));
         jButtonPrint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonPrint.setText("Print");
+        jPanel2.add(jButtonPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 428, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Quantity:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(593, 29, -1, -1));
 
         jTextFieldQuantity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jTextFieldQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 26, 151, -1));
 
         jTableSalesBill.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,12 +227,14 @@ System.out.println(date + " " + time);*/
         ));
         jScrollPane2.setViewportView(jTableSalesBill);
 
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 284, 1160, 130));
+
         jTableFromSummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Drug Id", "Name", "Type", "Barcode", "Dose", "Code", "Buy_Price", "Sell_Price", "Com_Name", "Pro_Date", "Ex_ Date", "Ex_Time", "Validity ", "Tax", "Place", "Total_Qty", "Available_Qty", "Sold_Qty"
+                "Drug Id", "Name", "Type", "Barcode", "Dose", "Group", "Buy_Price", "Sell_Price", "Com_Name", "Pro_Date", "Ex_ Date", "Ex_Time", "Validity ", "Tax", "Place", "Total_Qty", "Available_Qty", "Sold_Qty"
             }
         ));
         jTableFromSummary.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -222,99 +244,23 @@ System.out.println(date + " " + time);*/
         });
         jScrollPane3.setViewportView(jTableFromSummary);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelTotal)
-                .addGap(49, 49, 49)
-                .addComponent(jButtonPrint)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonBill)
-                .addGap(42, 42, 42)
-                .addComponent(jButtonClear)
-                .addGap(41, 41, 41)
-                .addComponent(jButtonCancel1)
-                .addGap(40, 40, 40))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel2)
-                        .addGap(38, 38, 38)
-                        .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel5)
-                        .addGap(27, 27, 27)
-                        .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
-                        .addComponent(jButtonAddToCart)))
-                .addGap(32, 32, 32))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(30, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jButtonAddToCart)
-                        .addComponent(jTextFieldBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonClear)
-                    .addComponent(jButtonBill)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabelTotal)
-                    .addComponent(jButtonPrint)
-                    .addComponent(jButtonCancel1))
-                .addGap(31, 31, 31))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(284, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(71, 71, 71)))
-        );
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, 1160, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1214, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,8 +268,9 @@ System.out.println(date + " " + time);*/
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) jTableSalesBill.getModel();
+        model.setRowCount(0);
+
     }//GEN-LAST:event_jButtonClearActionPerformed
 
     private void jButtonCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancel1ActionPerformed
@@ -344,7 +291,41 @@ System.out.println(date + " " + time);*/
 
     private void jTextFieldDrugNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyPressed
         // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+            // TODO add your handling code here:
+            // TODO add your handling code here:
+            //        String name = jTextFieldDrugName.getText().trim();
+            String name = jTextFieldDrugName.getText().trim();
+
+            DefaultTableModel model = (DefaultTableModel) jTableFromSummary.getModel();
+            model.setRowCount(0);
+            Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
+
+            Object[] cols = new Object[18];
+            for (int i = 0; i < 1; i++) {
+                cols[0] = sum.getDrug_id();
+                cols[1] = sum.getDrug_name();
+                cols[2] = sum.getDrug_type();
+                cols[3] = sum.getDrug_barcode();
+                cols[4] = sum.getDrug_dose();
+                cols[5] = sum.getDrug_group();
+                cols[6] = sum.getBuy_price();
+                cols[7] = sum.getSell_price();
+                Company com = new CompanyDaoImp().getCompanyById(sum.getCompany().getCompany_id());
+                cols[8] = com.getCompany_name();
+                cols[9] = sum.getProduction_date();
+                cols[10] = sum.getExpire_date();
+                cols[11] = sum.getExpire_time();
+                cols[12] = sum.getValidity();
+                cols[13] = sum.getDrug_tax();
+                cols[14] = sum.getDrug_place();
+                cols[15] = sum.getTotal_qty();
+                cols[16] = sum.getAvailable_qty();
+                cols[17] = sum.getSold_qty();
+                model.addRow(cols);
+            }
+        }
     }//GEN-LAST:event_jTextFieldDrugNameKeyPressed
 
     private void jButtonAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddToCartActionPerformed
@@ -355,8 +336,7 @@ System.out.println(date + " " + time);*/
 
     private void jButtonBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBillActionPerformed
         // TODO add your handling code here:
-        total = 0.0;
-        jLabelTotal.setText(String.valueOf(total));
+
         DefaultTableModel model = (DefaultTableModel) jTableSalesBill.getModel();
         int rowCount = model.getRowCount();
 
@@ -365,27 +345,31 @@ System.out.println(date + " " + time);*/
 ///////////////////////////////////////////////////////////////////
             String name = model.getValueAt(i, 1).toString();
             int qty = Integer.parseInt(model.getValueAt(i, 4).toString());
+            double total_gain = Double.parseDouble(model.getValueAt(i, 6).toString());
+            int total_qty1 = (new SummaryDaoImp().getSummaryByDrugName(name).getTotal_qty());
             int available_qty1 = (new SummaryDaoImp().getSummaryByDrugName(name).getAvailable_qty()) - qty;
             int sold_qty1 = (new SummaryDaoImp().getSummaryByDrugName(name).getSold_qty()) + qty;
-            Summary sum1 = new Summary(name, available_qty1, sold_qty1);
+            Summary sum1 = new Summary(name, total_qty1, available_qty1, sold_qty1);
             try {
-                new SummaryDaoImp().updateSum(sum1);
-
-            } catch (Exception e) {
+                new SummaryDaoImp().updateSales(sum1);
+                JOptionPane.showMessageDialog(null, "Data is updated successfully into summary table!");
+            } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Error!");
             }
             //insert into sales table
 
-            //all the fields
-            //name 
-            //qty
+//            //all the fields
+//            //qty
+//            //name 
             String drug_type = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_type();
             String drug_barcode = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_barcode();
             String drug_dose = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_dose();
-            String drug_code = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_code();
+            String drug_group = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_group();
             Double buy_price = new SummaryDaoImp().getSummaryByDrugName(name).getBuy_price();
             Double sell_price = new SummaryDaoImp().getSummaryByDrugName(name).getSell_price();
-            Company com = new CompanyDaoImp().getCompanyById(new Summary().getCompany().getCompany_id());
+
+            String com_name = model.getValueAt(i, 7).toString();
+
             Date pro_date = new SummaryDaoImp().getSummaryByDrugName(name).getProduction_date();
             Date exp_date = new SummaryDaoImp().getSummaryByDrugName(name).getExpire_date();
             String exp_time = new SummaryDaoImp().getSummaryByDrugName(name).getExpire_time();
@@ -393,16 +377,20 @@ System.out.println(date + " " + time);*/
             Double drug_tax = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_tax();
             String drug_place = new SummaryDaoImp().getSummaryByDrugName(name).getDrug_place();
             int total_qty = new SummaryDaoImp().getSummaryByDrugName(name).getTotal_qty();
-            int available_qty2 = (new SummaryDaoImp().getSummaryByDrugName(name).getAvailable_qty()) - qty;
-            int sold_qty2 = (new SummaryDaoImp().getSummaryByDrugName(name).getSold_qty()) + qty;
-            //date and time
+            int available_qty2 = (new SummaryDaoImp().getSummaryByDrugName(name).getAvailable_qty());
+            int sold_qty2 = (new SummaryDaoImp().getSummaryByDrugName(name).getSold_qty());
+//            //date and time
             Date sell_date = new Date(System.currentTimeMillis());
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
             String sell_time = formatter.format(sell_date);
+            String username = LoginView.user_name;
 
-            Sales s = new Sales(name, drug_type, drug_barcode, drug_dose, drug_code, buy_price, sell_price, com, pro_date, exp_date, exp_time, validity, drug_tax, drug_place, total_qty, available_qty2, sold_qty2, sell_date, sell_time);
+//  
+            Sales s = new Sales(name, drug_type, drug_barcode, drug_dose, drug_group, buy_price, sell_price, com_name, pro_date, exp_date, exp_time, validity, drug_tax, drug_place, total_qty, available_qty2, sold_qty2, sell_date, sell_time, username, total_gain);
             new SalesDaoImp().insert(s);
             JOptionPane.showMessageDialog(null, "Data is inserted successfully into Sales Table!");
+            total = 0.0;
+            jLabelTotal.setText(String.valueOf(total));
         }
         JOptionPane.showMessageDialog(null, rowCount + " products have been sold!");
 
@@ -410,38 +398,38 @@ System.out.println(date + " " + time);*/
     }//GEN-LAST:event_jButtonBillActionPerformed
 
     private void jTextFieldDrugNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyReleased
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        //        String name = jTextFieldDrugName.getText().trim();
-        String name = jTextFieldDrugName.getText().trim();
-
-        DefaultTableModel model = (DefaultTableModel) jTableFromSummary.getModel();
-        model.setRowCount(0);
-        Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
-
-        Object[] cols = new Object[18];
-        for (int i = 0; i < 1; i++) {
-            cols[0] = sum.getDrug_id();
-            cols[1] = sum.getDrug_name();
-            cols[2] = sum.getDrug_type();
-            cols[3] = sum.getDrug_barcode();
-            cols[4] = sum.getDrug_dose();
-            cols[5] = sum.getDrug_code();
-            cols[6] = sum.getBuy_price();
-            cols[7] = sum.getSell_price();
-            Company com = new CompanyDaoImp().getCompanyById(sum.getCompany().getCompany_id());
-            cols[8] = com.getCompany_name();
-            cols[9] = sum.getProduction_date();
-            cols[10] = sum.getExpire_date();
-            cols[11] = sum.getExpire_time();
-            cols[12] = sum.getValidity();
-            cols[13] = sum.getDrug_tax();
-            cols[14] = sum.getDrug_place();
-            cols[15] = sum.getTotal_qty();
-            cols[16] = sum.getAvailable_qty();
-            cols[17] = sum.getSold_qty();
-            model.addRow(cols);
-        }
+//        // TODO add your handling code here:
+//        // TODO add your handling code here:
+//        //        String name = jTextFieldDrugName.getText().trim();
+//        String name = jTextFieldDrugName.getText().trim();
+//
+//        DefaultTableModel model = (DefaultTableModel) jTableFromSummary.getModel();
+//        model.setRowCount(0);
+//        Summary sum = new SummaryDaoImp().getSummaryByDrugName(name);
+//
+//        Object[] cols = new Object[18];
+//        for (int i = 0; i < 1; i++) {
+//            cols[0] = sum.getDrug_id();
+//            cols[1] = sum.getDrug_name();
+//            cols[2] = sum.getDrug_type();
+//            cols[3] = sum.getDrug_barcode();
+//            cols[4] = sum.getDrug_dose();
+//            cols[5] = sum.getDrug_group();
+//            cols[6] = sum.getBuy_price();
+//            cols[7] = sum.getSell_price();
+//            Company com = new CompanyDaoImp().getCompanyById(sum.getCompany().getCompany_id());
+//            cols[8] = com.getCompany_name();
+//            cols[9] = sum.getProduction_date();
+//            cols[10] = sum.getExpire_date();
+//            cols[11] = sum.getExpire_time();
+//            cols[12] = sum.getValidity();
+//            cols[13] = sum.getDrug_tax();
+//            cols[14] = sum.getDrug_place();
+//            cols[15] = sum.getTotal_qty();
+//            cols[16] = sum.getAvailable_qty();
+//            cols[17] = sum.getSold_qty();
+//            model.addRow(cols);
+//        }
 
     }//GEN-LAST:event_jTextFieldDrugNameKeyReleased
 

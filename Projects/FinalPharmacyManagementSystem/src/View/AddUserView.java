@@ -95,8 +95,9 @@ public class AddUserView extends javax.swing.JFrame {
         jComboBoxRole = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("User Form");
@@ -113,12 +114,14 @@ public class AddUserView extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 984, 60));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jTableUserDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,6 +165,7 @@ public class AddUserView extends javax.swing.JFrame {
 
         jTextFieldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jButtonAddUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonAddUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddUser.setText("Add User");
         jButtonAddUser.addActionListener(new java.awt.event.ActionListener() {
@@ -170,12 +174,15 @@ public class AddUserView extends javax.swing.JFrame {
             }
         });
 
+        jButtonDeleteUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDeleteUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteUser.setText("Delete User");
 
+        jButtonUpdateUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateUser.setText("Update User");
 
+        jButtonCancel.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +191,7 @@ public class AddUserView extends javax.swing.JFrame {
             }
         });
 
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
         jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClear.setText("Clear");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -193,15 +201,19 @@ public class AddUserView extends javax.swing.JFrame {
         });
 
         jTextAreaAddress.setColumns(20);
+        jTextAreaAddress.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jTextAreaAddress.setRows(5);
         jScrollPane2.setViewportView(jTextAreaAddress);
 
+        jComboBoxYear.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "20192", "2020" }));
+        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021" }));
 
+        jComboBoxDay.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
+        jComboBoxMonth.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
@@ -209,6 +221,7 @@ public class AddUserView extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Role:");
 
+        jComboBoxRole.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxRole.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Role:", "admin", "manager", "employee" }));
 
@@ -229,7 +242,7 @@ public class AddUserView extends javax.swing.JFrame {
                         .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
                         .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(193, Short.MAX_VALUE))
+                        .addContainerGap(209, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -261,7 +274,7 @@ public class AddUserView extends javax.swing.JFrame {
                                     .addComponent(jTextFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                                     .addComponent(jComboBoxRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -310,27 +323,10 @@ public class AddUserView extends javax.swing.JFrame {
                     .addComponent(jButtonDeleteUser)
                     .addComponent(jButtonCancel)
                     .addComponent(jButtonClear))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 64, 980, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

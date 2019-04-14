@@ -41,16 +41,19 @@ public class DealListView extends javax.swing.JFrame {
 
         List<BuyDrug> list = new BuyDrugDaoImp().getBuyDrug();
         DefaultTableModel model = (DefaultTableModel) jTableDealList.getModel();
-        Object[] cols = new Object[6];
+        Object[] cols = new Object[9];
 //        if(){}
         for (int i = 0; i < list.size(); i++) {
             cols[0] = list.get(i).getBar_code();
             cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_group();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
-            cols[2] = com.getCompany_name();
-            cols[3] = list.get(i).getQuantity();
-            cols[4] = list.get(i).getBuy_price();
-            cols[5] = list.get(i).getAmount();
+            cols[3] = com.getCompany_name();
+            cols[4] = list.get(i).getQuantity();
+            cols[5] = list.get(i).getBuy_price();
+            cols[6] = list.get(i).getAmount();
+            cols[7] = list.get(i).getBuy_date();
+            cols[8] = list.get(i).getBuy_time();
             model.addRow(cols);
         }
 
@@ -71,43 +74,29 @@ public class DealListView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDealList = new javax.swing.JTable();
         jButtonBack1 = new javax.swing.JButton();
+        jComboBoxSortBy = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Deal List Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 11, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jTableDealList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Barcode", "Name", "Company Name", "Quantity", "Buying  Price", "Amount"
+                "Barcode", "Name", "Drug Group", "Company Name", "Quantity", "Buying  Price", "Amount", "Deal Date", "Deal Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, false, true
+                true, true, true, false, true, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,6 +105,7 @@ public class DealListView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableDealList);
 
+        jButtonBack1.setBackground(new java.awt.Color(0, 102, 102));
         jButtonBack1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack1.setText("Back");
         jButtonBack1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,25 +114,38 @@ public class DealListView extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxSortBy.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBoxSortBy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort By:", "Date", "Drug Group" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(353, 353, 353)
+                                .addComponent(jButtonBack1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(353, 353, 353)
-                .addComponent(jButtonBack1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jButtonBack1)
                 .addContainerGap())
         );
@@ -151,15 +154,13 @@ public class DealListView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -241,6 +242,7 @@ public class DealListView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack1;
+    private javax.swing.JComboBox<String> jComboBoxSortBy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

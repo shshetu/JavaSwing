@@ -5,6 +5,13 @@
  */
 package View;
 
+import daoImp.LoginDaoImp;
+import daoImp.UserDaoImp;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pojo.Login;
+import pojo.User;
+
 /**
  *
  * @author shshe
@@ -16,6 +23,37 @@ public class LoginDetailsView extends javax.swing.JFrame {
      */
     public LoginDetailsView() {
         initComponents();
+        displayUsernameIntoComboBox();
+        displayDataIntoTable();
+    }
+
+    public void displayUsernameIntoComboBox() {
+        jComboBoxUserName.addItem("Select A Username:");
+        List<User> list = new UserDaoImp().getUser();
+        for (User usr : list) {
+            jComboBoxUserName.addItem(usr.getUserName());
+        }
+    }
+
+    //display data from login table
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableLoginDetails.getModel();
+        model.setRowCount(0);
+    }
+
+    public void displayDataIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableLoginDetails.getModel();
+        List<Login> list = new LoginDaoImp().getLogin();
+        Object[] cols = new Object[5];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getUsername();
+            cols[1] = list.get(i).getRole_name();
+            cols[2] = list.get(i).getLogin_date();
+            cols[3] = list.get(i).getLogin_time();
+            cols[4] = list.get(i).getLogout_time();
+            model.addRow(cols);
+        }
+
     }
 
     /**
@@ -31,7 +69,7 @@ public class LoginDetailsView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableShiftSales = new javax.swing.JTable();
+        jTableLoginDetails = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -39,44 +77,29 @@ public class LoginDetailsView extends javax.swing.JFrame {
         jComboBoxUserName = new javax.swing.JComboBox<>();
         jComboBoxDate = new javax.swing.JComboBox<>();
         jComboBoxMonth = new javax.swing.JComboBox<>();
-        jComboBoxDate2 = new javax.swing.JComboBox<>();
+        jComboBoxYear = new javax.swing.JComboBox<>();
         jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Login Details Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 11, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+        jPanel2.setBackground(new java.awt.Color(51, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-
-        jTableShiftSales.setModel(new javax.swing.table.DefaultTableModel(
+        jTableLoginDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Type", "Date", "Time"
+                "Name", "Role", "Date", "Login Time", "Logout Time"
             }
         ));
-        jScrollPane1.setViewportView(jTableShiftSales);
+        jScrollPane1.setViewportView(jTableLoginDetails);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Date:");
@@ -90,18 +113,22 @@ public class LoginDetailsView extends javax.swing.JFrame {
         jLabelDailyGain.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelDailyGain.setText("00.0$");
 
+        jComboBoxUserName.setBackground(new java.awt.Color(0, 153, 153));
         jComboBoxUserName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxUserName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Username:" }));
 
+        jComboBoxDate.setBackground(new java.awt.Color(0, 153, 153));
         jComboBoxDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxDate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Date:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
+        jComboBoxMonth.setBackground(new java.awt.Color(0, 153, 153));
         jComboBoxMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
-        jComboBoxDate2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxDate2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
+        jComboBoxYear.setBackground(new java.awt.Color(0, 153, 153));
+        jComboBoxYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
 
+        jButtonBack.setBackground(new java.awt.Color(0, 153, 153));
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +144,7 @@ public class LoginDetailsView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jButtonBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDailyGain)
@@ -128,17 +155,17 @@ public class LoginDetailsView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(44, 44, 44)
-                        .addComponent(jComboBoxUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(169, 169, 169)
+                        .addComponent(jComboBoxUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138)
                         .addComponent(jLabel2)
                         .addGap(26, 26, 26)
                         .addComponent(jComboBoxDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBoxDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -153,7 +180,7 @@ public class LoginDetailsView extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jComboBoxDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -173,18 +200,15 @@ public class LoginDetailsView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -249,9 +273,9 @@ public class LoginDetailsView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
     private javax.swing.JComboBox<String> jComboBoxDate;
-    private javax.swing.JComboBox<String> jComboBoxDate2;
     private javax.swing.JComboBox<String> jComboBoxMonth;
     private javax.swing.JComboBox<String> jComboBoxUserName;
+    private javax.swing.JComboBox<String> jComboBoxYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -260,6 +284,6 @@ public class LoginDetailsView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableShiftSales;
+    private javax.swing.JTable jTableLoginDetails;
     // End of variables declaration//GEN-END:variables
 }

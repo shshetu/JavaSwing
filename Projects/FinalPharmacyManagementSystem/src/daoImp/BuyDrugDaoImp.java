@@ -28,7 +28,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
 
     @Override
     public void createTable() {
-        String sql = "create table if not exists buydrug(serial int(30) auto_increment primary key, drug_barcode varchar(30),drug_name varchar(30),drug_type varchar(30),com_id int(20),quantity int(20),buy_price double,amount double,foreign key(com_id) references company(company_id))";
+        String sql = "create table if not exists buydrug(serial int(30) auto_increment primary key, drug_barcode varchar(30),drug_name varchar(30),drug_type varchar(30),drug_group varchar(30),com_id int(20),quantity int(20),buy_price double,amount double,buy_date date,buy_time varchar(30),foreign key(com_id) references company(company_id))";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
@@ -41,16 +41,19 @@ public class BuyDrugDaoImp implements BuyDrugDao {
     @Override
     public void insert(BuyDrug buy_drug) {
 
-        String sql = "insert into buydrug(drug_barcode,drug_name,drug_type,com_id,quantity,buy_price,amount) values(?,?,?,?,?,?,?)";
+        String sql = "insert into buydrug(drug_barcode,drug_name,drug_type,drug_group,com_id,quantity,buy_price,amount,buy_date,buy_time) values(?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, buy_drug.getBar_code());
             pstm.setString(2, buy_drug.getDrug_name());
             pstm.setString(3, buy_drug.getDrug_type());
-            pstm.setInt(4, buy_drug.getCompany().getCompany_id());
-            pstm.setInt(5, buy_drug.getQuantity());
-            pstm.setDouble(6, buy_drug.getBuy_price());
-            pstm.setDouble(7, buy_drug.getAmount());
+            pstm.setString(4, buy_drug.getDrug_group());
+            pstm.setInt(5, buy_drug.getCompany().getCompany_id());
+            pstm.setInt(6, buy_drug.getQuantity());
+            pstm.setDouble(7, buy_drug.getBuy_price());
+            pstm.setDouble(8, buy_drug.getAmount());
+            pstm.setDate(9, buy_drug.getBuy_date());
+            pstm.setString(10, buy_drug.getBuy_time());
             pstm.execute();
             System.out.println("Data is inserted into buydrug table successfully!");
         } catch (SQLException ex) {
@@ -60,17 +63,20 @@ public class BuyDrugDaoImp implements BuyDrugDao {
 
     @Override
     public void update(BuyDrug buy_drug) {
-        String sql = "update buydrug set drug_barcode=?,drug_name=?,drug_type=?,com_id=?,quantity=?,buy_price=?,amount=? where serial =?";
+        String sql = "update buydrug set drug_barcode=?,drug_name=?,drug_type=?,drug_group=?,com_id=?,quantity=?,buy_price=?,amount=?,buy_date =?,buy_time=? where serial =?";
         try {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setString(1, buy_drug.getBar_code());
             pstm.setString(2, buy_drug.getDrug_name());
             pstm.setString(3, buy_drug.getDrug_type());
-            pstm.setInt(4, buy_drug.getCompany().getCompany_id());
-            pstm.setInt(5, buy_drug.getQuantity());
-            pstm.setDouble(6, buy_drug.getBuy_price());
-            pstm.setDouble(7, buy_drug.getAmount());
-            pstm.setInt(8, buy_drug.getSerial());
+            pstm.setString(4, buy_drug.getDrug_group());
+            pstm.setInt(5, buy_drug.getCompany().getCompany_id());
+            pstm.setInt(6, buy_drug.getQuantity());
+            pstm.setDouble(7, buy_drug.getBuy_price());
+            pstm.setDouble(8, buy_drug.getAmount());
+            pstm.setDate(9, buy_drug.getBuy_date());
+            pstm.setString(10, buy_drug.getBuy_time());
+            pstm.setInt(11, buy_drug.getSerial());
             pstm.execute();
             System.out.println("Data is updated into buydrug table successfully!");
         } catch (SQLException ex) {
@@ -102,7 +108,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
             pstm.setInt(1, serial);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new Company(rs.getInt(5)), rs.getInt(6), rs.getDouble(7), rs.getDouble(8));
+                buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), new Company(rs.getInt(6)), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDate(10), rs.getString(11));
 
             }
         } catch (SQLException ex) {
@@ -121,7 +127,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
             pstm.setString(1, barcode);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new Company(rs.getInt(5)), rs.getInt(6), rs.getDouble(7), rs.getDouble(8));
+                buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), new Company(rs.getInt(6)), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDate(10), rs.getString(11));
 
             }
         } catch (SQLException ex) {
@@ -140,7 +146,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
             pstm.setString(1, drug_name);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new Company(rs.getInt(5)), rs.getInt(6), rs.getDouble(7), rs.getDouble(8));
+                buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), new Company(rs.getInt(6)), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDate(10), rs.getString(11));
 
             }
         } catch (SQLException ex) {
@@ -157,7 +163,7 @@ public class BuyDrugDaoImp implements BuyDrugDao {
             PreparedStatement pstm = conn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                BuyDrug buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new Company(rs.getInt(5)), rs.getInt(6), rs.getDouble(7), rs.getDouble(8));
+                BuyDrug buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), new Company(rs.getInt(6)), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDate(10), rs.getString(11));
                 list.add(buy_drug);
             }
         } catch (SQLException ex) {

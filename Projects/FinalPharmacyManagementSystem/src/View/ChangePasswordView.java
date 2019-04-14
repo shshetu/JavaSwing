@@ -9,12 +9,14 @@ import daoImp.BuyDrugDaoImp;
 import daoImp.CompanyDaoImp;
 import daoImp.DrugDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.util.List;
 import javax.swing.JOptionPane;
 import pojo.BuyDrug;
 import pojo.Company;
 import pojo.Drug;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -27,11 +29,10 @@ public class ChangePasswordView extends javax.swing.JFrame {
      */
     public ChangePasswordView() {
         initComponents();
-        jButtonUpdatePassword.setEnabled(false);
-       
-    }
+        jLabelStatus.setVisible(false);
+        jLabelConfirm.setVisible(false);
 
- 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,21 +47,22 @@ public class ChangePasswordView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldUserId = new javax.swing.JTextField();
+        jTextFieldUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldOldPassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButtonUpdatePassword = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
-        jTextFieldNewPassword = new javax.swing.JTextField();
+        jButtonClear = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldConfirmNewPassword = new javax.swing.JTextField();
-        jLabelNewPassword = new javax.swing.JLabel();
-        jLabelConfirmNewPassword = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
+        jLabelConfirm = new javax.swing.JLabel();
+        jButtonCancel = new javax.swing.JButton();
+        jPasswordFieldOldPassword = new javax.swing.JPasswordField();
+        jPasswordFieldNewPassword = new javax.swing.JPasswordField();
+        jPasswordFieldConfirmNewPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Change Password Form");
@@ -72,34 +74,38 @@ public class ChangePasswordView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(184, 184, 184)
                 .addComponent(jLabel1)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("User Id:");
+        jLabel2.setText("Username:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
 
-        jTextFieldUserId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jTextFieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 11, 233, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Old Password:");
-
-        jTextFieldOldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 72, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("New Password:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
+        jButtonUpdatePassword.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdatePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdatePassword.setText("Update Password");
         jButtonUpdatePassword.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +113,34 @@ public class ChangePasswordView extends javax.swing.JFrame {
                 jButtonUpdatePasswordActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonUpdatePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 293, -1, -1));
 
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 293, 120, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Confirm New Password:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 188, -1, -1));
+
+        jLabelStatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelStatus.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelStatus.setText("Very good!");
+        jPanel2.add(jLabelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 130, -1, -1));
+
+        jLabelConfirm.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelConfirm.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelConfirm.setText("Confirmed!");
+        jPanel2.add(jLabelConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 188, -1, -1));
+
+        jButtonCancel.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -115,80 +148,29 @@ public class ChangePasswordView extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 120, -1));
 
-        jTextFieldNewPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPasswordFieldOldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jPasswordFieldOldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 69, 233, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Confirm New Password:");
+        jPasswordFieldNewPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPasswordFieldNewPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordFieldNewPasswordKeyReleased(evt);
+            }
+        });
+        jPanel2.add(jPasswordFieldNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 127, 233, -1));
 
-        jTextFieldConfirmNewPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        jLabelNewPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelNewPassword.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNewPassword.setText("Very good!");
-
-        jLabelConfirmNewPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabelConfirmNewPassword.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelConfirmNewPassword.setText("Confirmed!");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldOldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                            .addComponent(jTextFieldUserId)
-                            .addComponent(jTextFieldNewPassword)
-                            .addComponent(jTextFieldConfirmNewPassword))
-                        .addGap(67, 67, 67)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelConfirmNewPassword)
-                            .addComponent(jLabelNewPassword)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonUpdatePassword)
-                        .addGap(55, 55, 55)
-                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextFieldOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNewPassword))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextFieldConfirmNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelConfirmNewPassword))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonUpdatePassword)
-                    .addComponent(jButtonCancel))
-                .addGap(36, 36, 36))
-        );
+        jPasswordFieldConfirmNewPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPasswordFieldConfirmNewPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordFieldConfirmNewPasswordKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordFieldConfirmNewPasswordKeyTyped(evt);
+            }
+        });
+        jPanel2.add(jPasswordFieldConfirmNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 185, 232, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,8 +185,8 @@ public class ChangePasswordView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,15 +194,89 @@ public class ChangePasswordView extends javax.swing.JFrame {
     int total_qty = 0;
     int available_qty = 0;
     int sold_qty = 0;
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
-    }//GEN-LAST:event_jButtonCancelActionPerformed
+       jTextFieldUsername.setText("");
+       jPasswordFieldOldPassword.setText("");
+       jPasswordFieldNewPassword.setText("");
+       jPasswordFieldConfirmNewPassword.setText("");
+    }//GEN-LAST:event_jButtonClearActionPerformed
 
     private void jButtonUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePasswordActionPerformed
         // TODO add your handling code here:
+        if (jTextFieldUsername.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter your user name!");
+        } else if (jPasswordFieldOldPassword.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter your old password!");
+        } else if (jPasswordFieldNewPassword.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter your new password!");
+        } else if (jPasswordFieldConfirmNewPassword.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Confirm your new password!");
+        } else {
+            String username = jTextFieldUsername.getText().trim();
+            String old_pass = jPasswordFieldOldPassword.getText().trim();
+            String new_pass = jPasswordFieldNewPassword.getText().trim();
+            String confirm_new_pass = jPasswordFieldConfirmNewPassword.getText().trim();
+
+            try {
+                User usr = new UserDaoImp().getUserByUserName(username);
+                if (usr.getUserName() != null) {
+                    if (usr.getPass().equals(old_pass)) {
+                        User usr1 = new User(username, confirm_new_pass);
+                        new UserDaoImp().updatePass(usr1);
+                        JOptionPane.showMessageDialog(null, "Password is updated successfully!");
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Incorrect password!");
+
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Incorrect username or password!");
+            }
+        }
     }//GEN-LAST:event_jButtonUpdatePasswordActionPerformed
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        // TODO add your handling code here:
+         this.setVisible(false);
+        new AdministrationDashBoard().setVisible(true);
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jPasswordFieldNewPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldNewPasswordKeyReleased
+        // TODO add your handling code here:
+        String new_pass = jPasswordFieldNewPassword.getText().trim();
+        if (new_pass.length() < 1) {
+            jLabelStatus.setVisible(true);
+            jLabelStatus.setText("Password length should be atleast three characters!");
+        } else if (new_pass.length() < 4) {
+            jLabelStatus.setVisible(true);
+            jLabelStatus.setText("Weak!");
+        } else if (new_pass.length() < 7) {
+            jLabelStatus.setVisible(true);
+            jLabelStatus.setText("Very good!");
+        } else if (new_pass.length() >= 7) {
+            jLabelStatus.setVisible(true);
+            jLabelStatus.setText("Strong!");
+        }
+    }//GEN-LAST:event_jPasswordFieldNewPasswordKeyReleased
+
+    private void jPasswordFieldConfirmNewPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldConfirmNewPasswordKeyReleased
+        // TODO add your handling code here:
+        String new_pass = jPasswordFieldNewPassword.getText().trim();
+        String con_new_pass = jPasswordFieldConfirmNewPassword.getText().trim();
+        if (new_pass.equals(con_new_pass)) {
+            jLabelConfirm.setVisible(true);
+            jLabelConfirm.setText("Confirmed!");
+        } else {
+            jLabelConfirm.setVisible(true);
+            jLabelConfirm.setText("Password does not match!");
+        }
+    }//GEN-LAST:event_jPasswordFieldConfirmNewPasswordKeyReleased
+
+    private void jPasswordFieldConfirmNewPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldConfirmNewPasswordKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldConfirmNewPasswordKeyTyped
 
     /**
      * @param args the command line arguments
@@ -266,19 +322,20 @@ public class ChangePasswordView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonUpdatePassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelConfirmNewPassword;
-    private javax.swing.JLabel jLabelNewPassword;
+    private javax.swing.JLabel jLabelConfirm;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldConfirmNewPassword;
-    private javax.swing.JTextField jTextFieldNewPassword;
-    private javax.swing.JTextField jTextFieldOldPassword;
-    private javax.swing.JTextField jTextFieldUserId;
+    private javax.swing.JPasswordField jPasswordFieldConfirmNewPassword;
+    private javax.swing.JPasswordField jPasswordFieldNewPassword;
+    private javax.swing.JPasswordField jPasswordFieldOldPassword;
+    private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

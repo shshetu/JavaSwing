@@ -26,4 +26,7 @@ public interface SalesDao {
     
     //get data from the database
     List<Sales> getSales();
+    
+    //get sales by username
+    List<Sales> getSalesByUserName(String user_name);
 }

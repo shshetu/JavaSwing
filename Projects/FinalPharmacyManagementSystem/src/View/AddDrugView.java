@@ -5,9 +5,11 @@
  */
 package View;
 
+import daoImp.BuyDrugDaoImp;
 import daoImp.CompanyDaoImp;
 import daoImp.DrugDaoImp;
 import daoImp.SummaryDaoImp;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import pojo.BuyDrug;
 import pojo.Company;
 import pojo.Drug;
 import pojo.Summary;
@@ -37,14 +40,24 @@ public class AddDrugView extends javax.swing.JFrame {
         jTextFieldExpireTime.setEditable(true);
         //////
         new DrugDaoImp().createTable();
-        displayDataIntoComboBox();
+        displayDataIntoDrugTypeComboBox();
+        displayDataIntoCompanyNameComboBox();
     }
 
-    public void displayDataIntoComboBox() {
+    public void displayDataIntoCompanyNameComboBox() {
         List<Company> list = new CompanyDaoImp().getCompany();
         jComboBoxCompanyName.addItem("Select A Company");
         for (Company c : list) {
             jComboBoxCompanyName.addItem(c.getCompany_name());
+        }
+    }
+
+    //display data into drug type combo
+    public void displayDataIntoDrugTypeComboBox() {
+        List<BuyDrug> list = new BuyDrugDaoImp().getBuyDrug();
+        jComboBoxDrugType.addItem("Select A Drug Type");
+        for (BuyDrug c : list) {
+            jComboBoxDrugType.addItem(c.getDrug_type());
         }
     }
 
@@ -63,12 +76,11 @@ public class AddDrugView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldDrugName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldDrugType = new javax.swing.JTextField();
         jTextFieldDrugBarCode = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldDrugDose = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldDrugCode = new javax.swing.JTextField();
+        jTextFieldDrugGroup = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextFieldDrugBuyingPrice = new javax.swing.JTextField();
@@ -99,10 +111,11 @@ public class AddDrugView extends javax.swing.JFrame {
         jComboBoxEYear = new javax.swing.JComboBox<>();
         jComboBoxEMonth = new javax.swing.JComboBox<>();
         jComboBoxEDay = new javax.swing.JComboBox<>();
+        jComboBoxDrugType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Drug Form");
@@ -114,7 +127,7 @@ public class AddDrugView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(317, 317, 317)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,72 +137,93 @@ public class AddDrugView extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Drug Name:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
 
         jTextFieldDrugName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugName.setText("napa");
+        jTextFieldDrugName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDrugNameKeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTextFieldDrugName, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 11, 196, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Drug Type:");
-
-        jTextFieldDrugType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugType.setText("kapa");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, -1, -1));
 
         jTextFieldDrugBarCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugBarCode.setText("lapa");
+        jPanel2.add(jTextFieldDrugBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 156, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Drug Barcode:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 159, -1, -1));
 
         jTextFieldDrugDose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugDose.setText("japa");
+        jPanel2.add(jTextFieldDrugDose, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 211, 200, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Drug Dose:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
 
-        jTextFieldDrugCode.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDrugCode.setText("japa");
+        jTextFieldDrugGroup.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jTextFieldDrugGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 261, 190, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Drug Code:");
+        jLabel6.setText("Drug Group:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 264, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Drug Buying Price:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 305, -1, -1));
 
         jTextFieldDrugBuyingPrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugBuyingPrice.setText("10");
+        jPanel2.add(jTextFieldDrugBuyingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 302, 192, -1));
 
         jTextFieldDrugSellingPrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugSellingPrice.setText("20");
+        jPanel2.add(jTextFieldDrugSellingPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 343, 192, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Drug Selling Price:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 346, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Company Name:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 22, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Production Date:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 70, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Expire Date:");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 122, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Drug Tax:");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 237, -1, -1));
 
         jTextFieldDrugTax.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldDrugTax.setText("3%");
@@ -198,27 +232,39 @@ public class AddDrugView extends javax.swing.JFrame {
                 jTextFieldDrugTaxKeyPressed(evt);
             }
         });
+        jPanel2.add(jTextFieldDrugTax, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 234, 196, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Drug Place:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 305, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Drug Quantity:");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 346, -1, -1));
 
+        jButtonUpdateDrug.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdateDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateDrug.setText("Update Drug");
+        jPanel2.add(jButtonUpdateDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 388, -1, -1));
 
+        jButtonDeleteDrug.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDeleteDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteDrug.setText("Delete Drug");
+        jPanel2.add(jButtonDeleteDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 388, -1, -1));
 
+        jButtonDrugsList.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDrugsList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDrugsList.setText("Drugs List");
+        jPanel2.add(jButtonDrugsList, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 388, -1, -1));
 
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
         jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClear.setText("Clear");
+        jPanel2.add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 388, -1, -1));
 
+        jButtonCancel.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +272,9 @@ public class AddDrugView extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, -1, -1));
 
+        jButtonAddDrug.setBackground(new java.awt.Color(0, 102, 102));
         jButtonAddDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddDrug.setText("Add Drug");
         jButtonAddDrug.addActionListener(new java.awt.event.ActionListener() {
@@ -234,12 +282,16 @@ public class AddDrugView extends javax.swing.JFrame {
                 jButtonAddDrugActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonAddDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 388, -1, -1));
 
+        jComboBoxCompanyName.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxCompanyName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jComboBoxCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 11, 199, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Expire Time:");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 173, -1, -1));
 
         jTextFieldExpireTime.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextFieldExpireTime.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,217 +309,58 @@ public class AddDrugView extends javax.swing.JFrame {
                 jTextFieldExpireTimeKeyPressed(evt);
             }
         });
+        jPanel2.add(jTextFieldExpireTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 170, 196, -1));
 
         jComboBoxDrugQuantity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxDrugQuantity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pieces or Box", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "45", "46", "47", "48", "49", "50" }));
+        jPanel2.add(jComboBoxDrugQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 343, 168, -1));
 
         jComboBoxSection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxSection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Section:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" }));
+        jPanel2.add(jComboBoxSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 296, -1, -1));
 
         jComboBoxPlace.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxPlace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Place:", "Left", "Right", "Up", "Down" }));
+        jPanel2.add(jComboBoxPlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 296, -1, -1));
 
+        jComboBoxPDay.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxPDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxPDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboBoxPDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPDayActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBoxPDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 67, -1, -1));
 
+        jComboBoxPMonth.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxPMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxPMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jPanel2.add(jComboBoxPMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 67, 70, -1));
 
+        jComboBoxPYear.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxPYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxPYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "20192", "2020" }));
+        jComboBoxPYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        jPanel2.add(jComboBoxPYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 67, 72, -1));
 
+        jComboBoxEYear.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxEYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxEYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "20192", "2020" }));
+        jComboBoxEYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        jPanel2.add(jComboBoxEYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 122, 72, -1));
 
+        jComboBoxEMonth.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxEMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxEMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jPanel2.add(jComboBoxEMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 122, -1, -1));
 
+        jComboBoxEDay.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxEDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxEDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel2.add(jComboBoxEDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 122, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonAddDrug)
-                        .addGap(57, 57, 57)
-                        .addComponent(jButtonUpdateDrug))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(62, 62, 62)
-                        .addComponent(jTextFieldDrugCode))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldDrugType)
-                            .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDrugDose)
-                            .addComponent(jTextFieldDrugBarCode, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDrugSellingPrice)
-                            .addComponent(jTextFieldDrugBuyingPrice))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(26, 26, 26)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel21)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel11)
-                                        .addComponent(jLabel17))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jComboBoxEDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jComboBoxEMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jComboBoxEYear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(12, 12, 12)
-                                            .addComponent(jComboBoxPDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jComboBoxPMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jComboBoxPYear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel18)
-                                .addComponent(jLabel19)
-                                .addComponent(jLabel20))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButtonDeleteDrug)
-                                .addGap(44, 44, 44)
-                                .addComponent(jButtonDrugsList)
-                                .addGap(37, 37, 37)
-                                .addComponent(jButtonClear)
-                                .addGap(0, 42, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBoxDrugQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jComboBoxSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jComboBoxPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jComboBoxCompanyName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldDrugTax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldExpireTime, javax.swing.GroupLayout.Alignment.TRAILING)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCancel)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldDrugType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel10)
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jComboBoxPDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxPMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxPYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxEDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxEMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxEYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(jTextFieldExpireTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTextFieldDrugDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldDrugTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel18)))
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldDrugCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jTextFieldDrugBuyingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBoxSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(jTextFieldDrugSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel20))
-                            .addComponent(jComboBoxDrugQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonUpdateDrug)
-                            .addComponent(jButtonDeleteDrug)
-                            .addComponent(jButtonDrugsList)
-                            .addComponent(jButtonClear)
-                            .addComponent(jButtonCancel)
-                            .addComponent(jButtonAddDrug))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldDrugBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        jComboBoxDrugType.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBoxDrugType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jComboBoxDrugType, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 81, 199, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -481,7 +374,7 @@ public class AddDrugView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -502,11 +395,11 @@ public class AddDrugView extends javax.swing.JFrame {
         try {
             if (jTextFieldDrugName.getText().trim().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Drug Name should be atleast 3 characters!");
-            } else if (jTextFieldDrugType.getText().trim().length() < 3) {
-                JOptionPane.showMessageDialog(null, "Drug Type should be atleast 3 characters!");
+            } else if (jComboBoxDrugType.getItemAt(jComboBoxDrugType.getSelectedIndex()).equals("Select A Drug Type")) {
+                JOptionPane.showMessageDialog(null, "Please select the drug type!");
             } else if (jTextFieldDrugBarCode.getText().trim().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Drug BarCode should be atleast 3 characters!");
-            } else if (jTextFieldDrugCode.getText().trim().length() < 3) {
+            } else if (jTextFieldDrugGroup.getText().trim().length() < 3) {
                 JOptionPane.showMessageDialog(null, "Drug Code should be atleast 3 characters!");
             } else if (jTextFieldDrugBuyingPrice.getText().trim().length() < 1) {
                 JOptionPane.showMessageDialog(null, "Enter the buying price!");
@@ -529,10 +422,10 @@ public class AddDrugView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please select the quantity!");
             } else {
                 String drug_name = jTextFieldDrugName.getText().trim();
-                String drug_type = jTextFieldDrugType.getText().trim();
+                String drug_type = jComboBoxDrugType.getItemAt(jComboBoxDrugType.getSelectedIndex());
                 String drug_barcode = jTextFieldDrugBarCode.getText().trim();
                 String drug_dose = jTextFieldDrugDose.getText().trim();
-                String drug_code = jTextFieldDrugCode.getText().trim();
+                String drug_code = jTextFieldDrugGroup.getText().trim();
                 double drug_buy_price = Double.parseDouble(jTextFieldDrugBuyingPrice.getText().trim());
                 double drug_sell_price = Double.parseDouble(jTextFieldDrugSellingPrice.getText().trim());
                 //company
@@ -690,6 +583,54 @@ public class AddDrugView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldExpireTimeActionPerformed
 
+    private void jTextFieldDrugNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyReleased
+        
+    }//GEN-LAST:event_jTextFieldDrugNameKeyReleased
+
+    private void jTextFieldDrugNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        // TODO add your handling code here:
+        String drug_name = jTextFieldDrugName.getText().trim();
+        BuyDrug bd = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name);
+        if (bd.getDrug_name() != null) {
+            //vairables
+            String drug_barcode = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getBar_code());
+            String drug_type = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getDrug_type());
+            String drug_group = String.valueOf(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getDrug_group());
+            Company com = new CompanyDaoImp().getCompanyById(new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getCompany().getCompany_id());
+            String company_name = com.getCompany_name();
+            int qty = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getQuantity();
+            double buy_price = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getBuy_price();;
+            double amount = new BuyDrugDaoImp().getBuyDrugByDrugName(drug_name).getAmount();
+            //set
+            //combo box drug type
+            jComboBoxDrugType.removeAllItems();
+            jComboBoxDrugType.addItem(drug_type);
+            //barcode
+            jTextFieldDrugBarCode.setText(drug_barcode);
+            jTextFieldDrugGroup.setText(drug_group);
+            //company name
+            jComboBoxCompanyName.removeAllItems();
+            jComboBoxCompanyName.addItem(company_name);
+
+            //quantity
+            jComboBoxDrugQuantity.removeAllItems();
+            jComboBoxDrugQuantity.addItem(String.valueOf(qty));
+            //buy price
+            jTextFieldDrugBuyingPrice.setText(String.valueOf(buy_price));
+            //amount
+            //there should be an amount
+        }else{
+        
+        }
+        }
+    }//GEN-LAST:event_jTextFieldDrugNameKeyPressed
+
+    private void jComboBoxPDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPDayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPDayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -734,6 +675,7 @@ public class AddDrugView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonUpdateDrug;
     private javax.swing.JComboBox<String> jComboBoxCompanyName;
     private javax.swing.JComboBox<String> jComboBoxDrugQuantity;
+    private javax.swing.JComboBox<String> jComboBoxDrugType;
     private javax.swing.JComboBox<String> jComboBoxEDay;
     private javax.swing.JComboBox<String> jComboBoxEMonth;
     private javax.swing.JComboBox<String> jComboBoxEYear;
@@ -761,12 +703,11 @@ public class AddDrugView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldDrugBarCode;
     private javax.swing.JTextField jTextFieldDrugBuyingPrice;
-    private javax.swing.JTextField jTextFieldDrugCode;
     private javax.swing.JTextField jTextFieldDrugDose;
+    private javax.swing.JTextField jTextFieldDrugGroup;
     private javax.swing.JTextField jTextFieldDrugName;
     private javax.swing.JTextField jTextFieldDrugSellingPrice;
     private javax.swing.JTextField jTextFieldDrugTax;
-    private javax.swing.JTextField jTextFieldDrugType;
     private javax.swing.JTextField jTextFieldExpireTime;
     // End of variables declaration//GEN-END:variables
 }

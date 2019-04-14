@@ -8,7 +8,10 @@ package View;
 import dao.LoginDao;
 import daoImp.LoginDaoImp;
 import daoImp.UserDaoImp;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import pojo.Login;
 import pojo.User;
 
 /**
@@ -22,6 +25,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        new LoginDaoImp().createTable();
     }
 
     /**
@@ -47,9 +51,10 @@ public class LoginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Login Form");
@@ -71,17 +76,23 @@ public class LoginView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 1, 770, 60));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 138, -1, -1));
 
         jTextFieldUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jTextFieldUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 135, 199, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 186, -1, -1));
 
         jTextFieldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jTextFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 183, 199, -1));
 
         jButtonLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLogin.setText("Login");
@@ -90,6 +101,7 @@ public class LoginView extends javax.swing.JFrame {
                 jButtonLoginActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 267, -1, -1));
 
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
@@ -98,6 +110,7 @@ public class LoginView extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 267, -1, -1));
 
         jButtonExit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonExit.setText("Exit");
@@ -106,65 +119,10 @@ public class LoginView extends javax.swing.JFrame {
                 jButtonExitActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 267, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/lock.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4)
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jButtonLogin))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jButtonCancel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                                .addComponent(jButtonExit))
-                            .addComponent(jTextFieldUsername)
-                            .addComponent(jTextFieldPassword))
-                        .addGap(0, 120, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(jLabel2)
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButtonLogin)
-                                .addComponent(jButtonCancel))
-                            .addComponent(jButtonExit))))
-                .addContainerGap())
-        );
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 67, -1, 302));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,6 +143,8 @@ public class LoginView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonExitActionPerformed
     int attempt = 0;
+    static String login_time;
+    static String user_name;
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
         if (jTextFieldUsername.getText().trim().length() < 1 || jTextFieldPassword.getText().trim().length() < 1) {
@@ -200,6 +160,22 @@ public class LoginView extends javax.swing.JFrame {
             try {
                 User user = new UserDaoImp().getUserByUserName(username);
                 if ((user.getUserName()).equals(username) && ((user.getPass()).equals(password))) {
+                    //send data to the login table
+                    user_name = user.getUserName();
+                    String role_name = user.getRoleName();
+                    Date login_date = new Date(System.currentTimeMillis());
+                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                    login_time = formatter.format(login_date);
+                    String logout_time = "not yet log out!";
+                    String duration = "not yet!";
+                    try {
+                        Login login = new Login(username, role_name, login_date, login_time, logout_time, duration);
+                        new LoginDaoImp().insert(login);
+
+                        //the below line will be kept hidden
+                        JOptionPane.showMessageDialog(null, "Data is inserted successfully into login table!");
+                    } catch (Exception e) {
+                    }
                     if ((user.getRoleName()).equals("admin")) {
                         this.setVisible(false);
                         new AdministrationDashBoard().setVisible(true);

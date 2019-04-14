@@ -44,7 +44,7 @@ public class SummaryView extends javax.swing.JFrame {
             cols[2] = list.get(i).getDrug_type();
             cols[3] = list.get(i).getDrug_barcode();
             cols[4] = list.get(i).getDrug_dose();
-            cols[5] = list.get(i).getDrug_code();
+            cols[5] = list.get(i).getDrug_group();
             cols[6] = list.get(i).getBuy_price();
             cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
@@ -74,7 +74,7 @@ public class SummaryView extends javax.swing.JFrame {
             cols[2] = list.get(i).getDrug_type();
             cols[3] = list.get(i).getDrug_barcode();
             cols[4] = list.get(i).getDrug_dose();
-            cols[5] = list.get(i).getDrug_code();
+            cols[5] = list.get(i).getDrug_group();
             cols[6] = list.get(i).getBuy_price();
             cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
@@ -104,7 +104,7 @@ public class SummaryView extends javax.swing.JFrame {
             cols[2] = list.get(i).getDrug_type();
             cols[3] = list.get(i).getDrug_barcode();
             cols[4] = list.get(i).getDrug_dose();
-            cols[5] = list.get(i).getDrug_code();
+            cols[5] = list.get(i).getDrug_group();
             cols[6] = list.get(i).getBuy_price();
             cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
@@ -134,7 +134,36 @@ public class SummaryView extends javax.swing.JFrame {
             cols[2] = list.get(i).getDrug_type();
             cols[3] = list.get(i).getDrug_barcode();
             cols[4] = list.get(i).getDrug_dose();
-            cols[5] = list.get(i).getDrug_code();
+            cols[5] = list.get(i).getDrug_group();
+            cols[6] = list.get(i).getBuy_price();
+            cols[7] = list.get(i).getSell_price();
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
+            cols[8] = com.getCompany_name();
+            cols[9] = list.get(i).getProduction_date();
+            cols[10] = list.get(i).getExpire_date();
+            cols[11] = list.get(i).getExpire_time();
+            cols[12] = list.get(i).getValidity();
+            cols[13] = list.get(i).getDrug_tax();
+            cols[14] = list.get(i).getDrug_place();
+            cols[15] = list.get(i).getTotal_qty();
+            cols[16] = list.get(i).getAvailable_qty();
+            cols[17] = list.get(i).getSold_qty();
+            model.addRow(cols);
+        }
+    }
+    //drug group
+    public void displayDataIntoTableSelectingDrugGroup() {
+        clearTable();
+        List<Summary> list = new SummaryDaoImp().getSummarySelectingDrugGroup();
+        DefaultTableModel model = (DefaultTableModel) jTableSummaryDisplay.getModel();
+        Object[] cols = new Object[18];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getDrug_id();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_type();
+            cols[3] = list.get(i).getDrug_barcode();
+            cols[4] = list.get(i).getDrug_dose();
+            cols[5] = list.get(i).getDrug_group();
             cols[6] = list.get(i).getBuy_price();
             cols[7] = list.get(i).getSell_price();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
@@ -174,7 +203,7 @@ public class SummaryView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Summary View");
@@ -184,7 +213,7 @@ public class SummaryView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(462, 462, 462)
+                .addGap(515, 515, 515)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,14 +225,15 @@ public class SummaryView extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTableSummaryDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Drug Id", "Name", "Type", "Barcode", "Drug Dose", "Drug_Code", "Buy_Price", "Sell_Price", "Com_Name", "Pro_Date", "Ex_ Date", "Ex_Time", "Validity ", "Tax", "Place", "Total_Qty", "Available_Qty", "Sold_Qty"
+                "Drug Id", "Name", "Type", "Barcode", "Drug Dose", "Drug_Group", "Buy_Price", "Sell_Price", "Com_Name", "Pro_Date", "Ex_ Date", "Ex_Time", "Validity ", "Tax", "Place", "Total_Qty", "Available_Qty", "Sold_Qty"
             }
         ));
         jScrollPane1.setViewportView(jTableSummaryDisplay);
@@ -212,23 +242,31 @@ public class SummaryView extends javax.swing.JFrame {
             jTableSummaryDisplay.getColumnModel().getColumn(15).setResizable(false);
         }
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 77, 1220, 286));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Sort By:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 27, -1, -1));
 
+        jComboBoxSortBy.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxSortBy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort By:", "Name", "Type", "Expiration" }));
+        jComboBoxSortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sort By:", "Name", "Type", "Drug Group", "Expiration" }));
         jComboBoxSortBy.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxSortByItemStateChanged(evt);
             }
         });
+        jPanel2.add(jComboBoxSortBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 24, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Search By Name:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 27, -1, -1));
 
         jLabelSearchByName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelSearchByName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jPanel2.add(jLabelSearchByName, new org.netbeans.lib.awtextra.AbsoluteConstraints(1004, 24, 206, 23));
 
+        jButtonBack.setBackground(new java.awt.Color(0, 102, 102));
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -236,64 +274,21 @@ public class SummaryView extends javax.swing.JFrame {
                 jButtonBackActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1263, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(33, 33, 33)
-                        .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabelSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(502, 502, 502)
-                .addComponent(jButtonBack)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jComboBoxSortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButtonBack)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
+        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 389, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
 
         pack();
@@ -311,6 +306,10 @@ public class SummaryView extends javax.swing.JFrame {
         } else if ((jComboBoxSortBy.getItemAt(jComboBoxSortBy.getSelectedIndex())).equals("Expiration")) {
             displayDataIntoTableSelectingExpiration();
             JOptionPane.showMessageDialog(null, "data is ordered by exp_data!");
+
+        }else if ((jComboBoxSortBy.getItemAt(jComboBoxSortBy.getSelectedIndex())).equals("Drug Group")) {
+            displayDataIntoTableSelectingExpiration();
+            JOptionPane.showMessageDialog(null, "data is ordered by drug_group!");
 
         }
     }//GEN-LAST:event_jComboBoxSortByItemStateChanged

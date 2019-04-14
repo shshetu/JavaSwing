@@ -18,12 +18,12 @@ public class Sales {
     private String drug_type;
     private String drug_barcode;
     private String drug_dose;
-    private String drug_code;
+    private String drug_group;
     private double buy_price;
     private double sell_price;
 
-    //company foreign key
-    Company company;
+    //company 
+    private String company_name;
 
     private Date production_date;
     private Date expire_date;
@@ -38,6 +38,8 @@ public class Sales {
     //selling date and time
     private Date sell_date;
     private String sell_time;
+    private String user_name;
+    private double total_gain;
 
     public int getSales_id() {
         return sales_id;
@@ -79,12 +81,12 @@ public class Sales {
         this.drug_dose = drug_dose;
     }
 
-    public String getDrug_code() {
-        return drug_code;
+    public String getDrug_group() {
+        return drug_group;
     }
 
-    public void setDrug_code(String drug_code) {
-        this.drug_code = drug_code;
+    public void setDrug_group(String drug_group) {
+        this.drug_group = drug_group;
     }
 
     public double getBuy_price() {
@@ -103,12 +105,12 @@ public class Sales {
         this.sell_price = sell_price;
     }
 
-    public Company getCompany() {
-        return company;
+    public String getCompany_name() {
+        return company_name;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public Date getProduction_date() {
@@ -199,16 +201,32 @@ public class Sales {
         this.sell_time = sell_time;
     }
 
-    public Sales(int sales_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public double getTotal_gain() {
+        return total_gain;
+    }
+
+    public void setTotal_gain(double total_gain) {
+        this.total_gain = total_gain;
+    }
+
+    public Sales(int sales_id, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_group, double buy_price, double sell_price, String company_name, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time, String user_name, double total_gain) {
         this.sales_id = sales_id;
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;
         this.drug_dose = drug_dose;
-        this.drug_code = drug_code;
+        this.drug_group = drug_group;
         this.buy_price = buy_price;
         this.sell_price = sell_price;
-        this.company = company;
+        this.company_name = company_name;
         this.production_date = production_date;
         this.expire_date = expire_date;
         this.expire_time = expire_time;
@@ -220,17 +238,19 @@ public class Sales {
         this.sold_qty = sold_qty;
         this.sell_date = sell_date;
         this.sell_time = sell_time;
+        this.user_name = user_name;
+        this.total_gain = total_gain;
     }
 
-    public Sales(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double buy_price, double sell_price, Company company, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time) {
+    public Sales(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_group, double buy_price, double sell_price, String company_name, Date production_date, Date expire_date, String expire_time, String validity, double drug_tax, String drug_place, int total_qty, int available_qty, int sold_qty, Date sell_date, String sell_time, String user_name, double total_gain) {
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;
         this.drug_dose = drug_dose;
-        this.drug_code = drug_code;
+        this.drug_group = drug_group;
         this.buy_price = buy_price;
         this.sell_price = sell_price;
-        this.company = company;
+        this.company_name = company_name;
         this.production_date = production_date;
         this.expire_date = expire_date;
         this.expire_time = expire_time;
@@ -242,6 +262,9 @@ public class Sales {
         this.sold_qty = sold_qty;
         this.sell_date = sell_date;
         this.sell_time = sell_time;
+        this.user_name = user_name;
+        this.total_gain = total_gain;
     }
+   
 
 }

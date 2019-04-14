@@ -5,6 +5,18 @@
  */
 package View;
 
+import daoImp.BuyDrugDaoImp;
+import daoImp.CompanyDaoImp;
+import daoImp.DrugDaoImp;
+import daoImp.LoginDaoImp;
+import daoImp.SalesDaoImp;
+import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import pojo.Login;
+
 /**
  *
  * @author shshe
@@ -15,45 +27,65 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
      * Creates new form AdministrationDashBoard
      */
     public EmployeeDashBoard() {
+
         initComponents();
+        jLabelUser.setText("Logged in: " + LoginView.user_name);
         //user buttons
-        jButtonAddUser.setVisible(false);
-        jButtonUpdateUser.setVisible(false);
-        jButtonDeleteUser.setVisible(false);
+
         //drug buttons
         jButtonAddDrug.setVisible(false);
-        jButtonDeleteDrug.setVisible(false);
-        jButtonUpdateDrug.setVisible(false);
+
         jButtonSearchDrug.setVisible(false);
         jButtonMoveDrug.setVisible(false);
         jButtonDrugsList.setVisible(false);
 
         //Drug details
         jButtonCheckPlaces.setVisible(false);
-        jButtonEditPrices.setVisible(false);
+
         jButtonExpireDrugs.setVisible(false);
         jButtonRenewValidity.setVisible(false);
         jButtonAlmostFinished.setVisible(false);
 
         //purchases
         jButtonBuyDrugs.setVisible(false);
-        jButtonUpdateDeals.setVisible(false);
-        jButtonDealList.setVisible(false);
 
         //Sales
         jButtonSalesBill.setVisible(false);
-        jButtonShiftSales.setVisible(false);
 
         //Company
-        jButtonNewCompany.setVisible(false);
-        jButtonEndWith.setVisible(false);
-        jButtonUpdates.setVisible(false);
-       
+        jButtonAddCompany.setVisible(false);
+        jButtonUpdateCompany.setVisible(false);
 
         //Settings
-        jButtonLoginDetails.setVisible(false);
         jButtonChangePassword.setVisible(false);
         jButtonLogout.setVisible(false);
+
+        //Record
+        jButtonSummary.setVisible(false);
+        jButtonClientList.setVisible(false);
+
+        //inbox
+        jButtonInbox.setVisible(false);
+        //labels
+        jLabelTime.setVisible(false);
+        jLabelDay.setVisible(false);
+        //automatically create tables
+        //company
+        new CompanyDaoImp().createTable();
+        //buydrug table (purchase table)
+        new BuyDrugDaoImp().createTable();
+
+        //drug table
+        new DrugDaoImp().createTable();
+
+        //sales table
+        new SalesDaoImp().createTable();
+        //summary table
+        new SummaryDaoImp().createTable();
+
+        //user table
+        new UserDaoImp().createTable();
+
     }
 
     /**
@@ -68,49 +100,41 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabelTime = new javax.swing.JLabel();
         jLabelDay = new javax.swing.JLabel();
         jButtonExit = new javax.swing.JButton();
+        jLabelUser = new javax.swing.JLabel();
+        jButtonInbox = new javax.swing.JButton();
         jButtonSettings = new javax.swing.JButton();
-        jButtonSettingCompany = new javax.swing.JButton();
+        jButtonCompany = new javax.swing.JButton();
         jButtonSales = new javax.swing.JButton();
         jButtonPurchases = new javax.swing.JButton();
         jButtonDrugDetails = new javax.swing.JButton();
         jButtonDrugs = new javax.swing.JButton();
-        jButtonUser = new javax.swing.JButton();
-        jButtonAddUser = new javax.swing.JButton();
-        jButtonDeleteUser = new javax.swing.JButton();
-        jButtonUpdateUser = new javax.swing.JButton();
         jButtonAddDrug = new javax.swing.JButton();
-        jButtonDeleteDrug = new javax.swing.JButton();
-        jButtonUpdateDrug = new javax.swing.JButton();
         jButtonSearchDrug = new javax.swing.JButton();
         jButtonDrugsList = new javax.swing.JButton();
         jButtonMoveDrug = new javax.swing.JButton();
         jButtonCheckPlaces = new javax.swing.JButton();
-        jButtonEditPrices = new javax.swing.JButton();
         jButtonExpireDrugs = new javax.swing.JButton();
         jButtonRenewValidity = new javax.swing.JButton();
         jButtonAlmostFinished = new javax.swing.JButton();
         jButtonBuyDrugs = new javax.swing.JButton();
-        jButtonUpdateDeals = new javax.swing.JButton();
-        jButtonDealList = new javax.swing.JButton();
         jButtonSalesBill = new javax.swing.JButton();
-        jButtonShiftSales = new javax.swing.JButton();
-        jButtonLoginDetails = new javax.swing.JButton();
         jButtonChangePassword = new javax.swing.JButton();
         jButtonLogout = new javax.swing.JButton();
-        jButtonNewCompany = new javax.swing.JButton();
-        jButtonEndWith = new javax.swing.JButton();
-        jButtonUpdates = new javax.swing.JButton();
+        jButtonAddCompany = new javax.swing.JButton();
+        jButtonUpdateCompany = new javax.swing.JButton();
         jButtonRecord = new javax.swing.JButton();
         jButtonSummary = new javax.swing.JButton();
+        jButtonClientList = new javax.swing.JButton();
+        jButtonRefresh = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Pharmacy Management");
@@ -118,18 +142,13 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("(Employee)");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Time");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("Monday");
-
         jLabelTime.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelTime.setText("10:58:44");
+        jLabelTime.setText("03:00:00");
 
         jLabelDay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelDay.setText("10-02-2019");
+        jLabelDay.setText("13-04-2019");
 
+        jButtonExit.setBackground(new java.awt.Color(255, 0, 0));
         jButtonExit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonExit.setText("Exit");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -138,34 +157,44 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
             }
         });
 
+        jLabelUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelUser.setText("Logged in: Shetu");
+
+        jButtonInbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonInbox.setText("Inbox");
+        jButtonInbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonExit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jButtonExit)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonInbox))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabelUser)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(75, 75, 75)))
-                .addGap(178, 178, 178)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
                         .addComponent(jLabelTime)
-                        .addGap(116, 116, 116)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
                         .addComponent(jLabelDay)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(199, 199, 199))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,25 +202,29 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonExit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelDay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(30, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelTime, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelUser)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonExit)
+                                    .addComponent(jButtonInbox))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelTime, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelDay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 21, Short.MAX_VALUE))))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 110));
+
+        jButtonSettings.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSettings.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSettings.setText("Settings");
         jButtonSettings.addActionListener(new java.awt.event.ActionListener() {
@@ -199,15 +232,19 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonSettingsActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 117, -1, -1));
 
-        jButtonSettingCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonSettingCompany.setText("Company");
-        jButtonSettingCompany.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCompany.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonCompany.setText("Company");
+        jButtonCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSettingCompanyActionPerformed(evt);
+                jButtonCompanyActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 117, -1, -1));
 
+        jButtonSales.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSales.setText("Sales");
         jButtonSales.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +252,9 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonSalesActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 117, -1, -1));
 
+        jButtonPurchases.setBackground(new java.awt.Color(0, 102, 204));
         jButtonPurchases.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonPurchases.setText("Purchases");
         jButtonPurchases.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +262,9 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonPurchasesActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonPurchases, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 117, 123, -1));
 
+        jButtonDrugDetails.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugDetails.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDrugDetails.setText("Drug Details");
         jButtonDrugDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +272,9 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonDrugDetailsActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonDrugDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 117, 131, -1));
 
+        jButtonDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDrugs.setText("Drugs");
         jButtonDrugs.addActionListener(new java.awt.event.ActionListener() {
@@ -239,57 +282,89 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonDrugsActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(799, 120, 120, -1));
 
-        jButtonUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUser.setText("User");
-        jButtonUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUserActionPerformed(evt);
-            }
-        });
-
-        jButtonAddUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonAddUser.setText("Add User");
-
-        jButtonDeleteUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDeleteUser.setText("Delete User");
-
-        jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUpdateUser.setText("Update User");
-
+        jButtonAddDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAddDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddDrug.setText("Add Drug");
+        jButtonAddDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddDrugActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAddDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 121, -1));
 
-        jButtonDeleteDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDeleteDrug.setText("Delete Drug");
-
-        jButtonUpdateDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUpdateDrug.setText("Update Drug");
-
+        jButtonSearchDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSearchDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSearchDrug.setText("Search Drug");
+        jButtonSearchDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchDrugActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonSearchDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, 121, -1));
 
+        jButtonDrugsList.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugsList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDrugsList.setText("Drugs List");
+        jButtonDrugsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDrugsListActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonDrugsList, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, 121, -1));
 
+        jButtonMoveDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonMoveDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonMoveDrug.setText("Move Drug");
+        jButtonMoveDrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMoveDrugActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonMoveDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 121, -1));
 
+        jButtonCheckPlaces.setBackground(new java.awt.Color(0, 102, 204));
         jButtonCheckPlaces.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCheckPlaces.setText("Check Places");
+        jButtonCheckPlaces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCheckPlacesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCheckPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 173, 141, -1));
 
-        jButtonEditPrices.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonEditPrices.setText("Edit Prices");
-
+        jButtonExpireDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonExpireDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonExpireDrugs.setText("Expired Drugs");
+        jButtonExpireDrugs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExpireDrugsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonExpireDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 140, -1));
 
+        jButtonRenewValidity.setBackground(new java.awt.Color(0, 102, 204));
         jButtonRenewValidity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonRenewValidity.setText("Renew Validity");
+        jButtonRenewValidity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRenewValidityActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonRenewValidity, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 141, -1));
 
+        jButtonAlmostFinished.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAlmostFinished.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAlmostFinished.setText("Almost Finished");
+        jButtonAlmostFinished.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlmostFinishedActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAlmostFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
 
+        jButtonBuyDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonBuyDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBuyDrugs.setText("Buy Drugs");
         jButtonBuyDrugs.addActionListener(new java.awt.event.ActionListener() {
@@ -297,47 +372,59 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonBuyDrugsActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonBuyDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 173, 123, -1));
 
-        jButtonUpdateDeals.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUpdateDeals.setText("Update Deals");
-        jButtonUpdateDeals.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateDealsActionPerformed(evt);
-            }
-        });
-
-        jButtonDealList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDealList.setText("Deal List");
-        jButtonDealList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDealListActionPerformed(evt);
-            }
-        });
-
+        jButtonSalesBill.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSalesBill.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSalesBill.setText("Sales Bill");
+        jButtonSalesBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalesBillActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonSalesBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 173, 103, -1));
 
-        jButtonShiftSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonShiftSales.setText("Shift Sales");
-
-        jButtonLoginDetails.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonLoginDetails.setText("Login Details");
-
+        jButtonChangePassword.setBackground(new java.awt.Color(0, 102, 204));
         jButtonChangePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonChangePassword.setText("Change Password");
+        jButtonChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangePasswordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, -1, -1));
 
+        jButtonLogout.setBackground(new java.awt.Color(0, 102, 204));
         jButtonLogout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonLogout.setText("Logout");
+        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 157, -1));
 
-        jButtonNewCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonNewCompany.setText("New Company");
+        jButtonAddCompany.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonAddCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonAddCompany.setText("Add Company");
+        jButtonAddCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddCompanyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAddCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 153, -1, -1));
 
-        jButtonEndWith.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonEndWith.setText("End With");
+        jButtonUpdateCompany.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonUpdateCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonUpdateCompany.setText("Update Company");
+        jButtonUpdateCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateCompanyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonUpdateCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 189, 147, -1));
 
-        jButtonUpdates.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUpdates.setText("Updates");
-
+        jButtonRecord.setBackground(new java.awt.Color(0, 102, 204));
         jButtonRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonRecord.setText("Record");
         jButtonRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -345,157 +432,41 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonRecordActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 120, -1, -1));
 
+        jButtonSummary.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSummary.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonSummary.setText("Summary");
+        jButtonSummary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSummaryActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonSummary, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 170, 157, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonSettings)
-                        .addGap(67, 67, 67)
-                        .addComponent(jButtonSettingCompany)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButtonSales)
-                        .addGap(67, 67, 67))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonLoginDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonNewCompany, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEndWith, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonUpdates, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonSalesBill, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonShiftSales, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(37, 37, 37)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonBuyDrugs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpdateDeals, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDealList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonPurchases, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonCheckPlaces, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEditPrices, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonRenewValidity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAlmostFinished, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonExpireDrugs, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonDrugDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonAddDrug, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDeleteDrug, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSearchDrug, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDrugsList, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButtonMoveDrug, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpdateDrug, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonDrugs, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAddUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSummary, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonRecord)
-                        .addGap(43, 43, 43)))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSettings)
-                            .addComponent(jButtonSettingCompany)
-                            .addComponent(jButtonSales)
-                            .addComponent(jButtonPurchases)
-                            .addComponent(jButtonDrugDetails)
-                            .addComponent(jButtonDrugs)
-                            .addComponent(jButtonUser))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonAddUser)
-                                .addGap(10, 10, 10)
-                                .addComponent(jButtonDeleteUser)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonUpdateUser)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButtonCheckPlaces)
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jButtonEditPrices)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButtonExpireDrugs))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jButtonBuyDrugs)
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(jButtonUpdateDeals))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jButtonSalesBill)
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(jButtonShiftSales)))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButtonDealList))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButtonLoginDetails)
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jButtonChangePassword)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButtonLogout))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButtonNewCompany)
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jButtonEndWith)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButtonUpdates)))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButtonRenewValidity)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButtonAlmostFinished))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonAddDrug)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButtonDeleteDrug)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButtonUpdateDrug)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButtonSearchDrug)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButtonMoveDrug)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonDrugsList)))
-                                .addContainerGap(125, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonRecord)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSummary)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
+        jButtonClientList.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonClientList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonClientList.setText("Client List");
+        jButtonClientList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClientListActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonClientList, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 210, 157, -1));
+
+        jButtonRefresh.setBackground(new java.awt.Color(0, 153, 102));
+        jButtonRefresh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonRefresh.setText("Refresh");
+        jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 157, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/88775440-medical-background-medical-care-health-care-vector-medicine-illustration.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1250, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -505,64 +476,62 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonExitActionPerformed
 
-    private void jButtonUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserActionPerformed
-        // TODO add your handling code here:
-
-        jButtonAddUser.setVisible(true);
-        jButtonUpdateUser.setVisible(true);
-        jButtonDeleteUser.setVisible(true);
-
-
-    }//GEN-LAST:event_jButtonUserActionPerformed
-
     private void jButtonDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDrugsActionPerformed
         // TODO add your handling code here:
         jButtonAddDrug.setVisible(true);
-        jButtonDeleteDrug.setVisible(true);
-        jButtonUpdateDrug.setVisible(true);
         jButtonSearchDrug.setVisible(true);
-        jButtonMoveDrug.setVisible(true);
+        jButtonMoveDrug.setVisible(false);
         jButtonDrugsList.setVisible(true);
+        jButtonDrugs.setEnabled(false);
     }//GEN-LAST:event_jButtonDrugsActionPerformed
 
     private void jButtonDrugDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDrugDetailsActionPerformed
         // TODO add your handling code here:
         jButtonCheckPlaces.setVisible(true);
-        jButtonEditPrices.setVisible(true);
+
         jButtonExpireDrugs.setVisible(true);
         jButtonRenewValidity.setVisible(true);
         jButtonAlmostFinished.setVisible(true);
+        jButtonDrugDetails.setEnabled(false);
     }//GEN-LAST:event_jButtonDrugDetailsActionPerformed
 
     private void jButtonPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPurchasesActionPerformed
         // TODO add your handling code here:
         jButtonBuyDrugs.setVisible(true);
-        jButtonUpdateDeals.setVisible(true);
-        jButtonDealList.setVisible(true);
+
+        jButtonPurchases.setEnabled(false);
     }//GEN-LAST:event_jButtonPurchasesActionPerformed
 
     private void jButtonSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalesActionPerformed
         // TODO add your handling code here:
         jButtonSalesBill.setVisible(true);
-        jButtonShiftSales.setVisible(true);
+
+        jButtonSales.setEnabled(false);
     }//GEN-LAST:event_jButtonSalesActionPerformed
 
-    private void jButtonSettingCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingCompanyActionPerformed
+    private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         // TODO add your handling code here:
-        jButtonNewCompany.setVisible(true);
-        jButtonEndWith.setVisible(true);
-        jButtonUpdates.setVisible(true);
-    }//GEN-LAST:event_jButtonSettingCompanyActionPerformed
+        jButtonAddCompany.setVisible(true);
+        jButtonUpdateCompany.setVisible(true);
+
+        jButtonCompany.setEnabled(false);
+
+    }//GEN-LAST:event_jButtonCompanyActionPerformed
 
     private void jButtonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSettingsActionPerformed
         // TODO add your handling code here:
-        jButtonLoginDetails.setVisible(true);
+
         jButtonChangePassword.setVisible(true);
         jButtonLogout.setVisible(true);
+        jButtonSettings.setEnabled(false);
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
     private void jButtonRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecordActionPerformed
         // TODO add your handling code here:
+        jButtonSummary.setVisible(true);
+
+        jButtonClientList.setVisible(true);
+        jButtonRecord.setEnabled(false);
     }//GEN-LAST:event_jButtonRecordActionPerformed
 
     private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
@@ -571,16 +540,160 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         new BuyDrugsView().setVisible(true);
     }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
 
-    private void jButtonUpdateDealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateDealsActionPerformed
+    private void jButtonUpdateCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCompanyActionPerformed
         // TODO add your handling code here:
-    
-      
-    }//GEN-LAST:event_jButtonUpdateDealsActionPerformed
+        this.setVisible(false);
+        new UpdateCompanyView().setVisible(true);
 
-    private void jButtonDealListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDealListActionPerformed
+    }//GEN-LAST:event_jButtonUpdateCompanyActionPerformed
+
+    private void jButtonAddDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDrugActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButtonDealListActionPerformed
+        this.setVisible(false);
+        new AddDrugView().setVisible(true);
+    }//GEN-LAST:event_jButtonAddDrugActionPerformed
+
+    private void jButtonAddCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCompanyActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddCompanyView().setVisible(true);
+    }//GEN-LAST:event_jButtonAddCompanyActionPerformed
+
+    private void jButtonSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSummaryActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SummaryView().setVisible(true);
+    }//GEN-LAST:event_jButtonSummaryActionPerformed
+
+    private void jButtonSalesBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalesBillActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SalesBillView().setVisible(true);
+    }//GEN-LAST:event_jButtonSalesBillActionPerformed
+
+    private void jButtonSearchDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchDrugActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SearchDrugView().setVisible(true);
+    }//GEN-LAST:event_jButtonSearchDrugActionPerformed
+
+    private void jButtonMoveDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoveDrugActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new MoveDrugView().setVisible(true);
+    }//GEN-LAST:event_jButtonMoveDrugActionPerformed
+
+    private void jButtonDrugsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDrugsListActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DrugListView().setVisible(true);
+    }//GEN-LAST:event_jButtonDrugsListActionPerformed
+
+    private void jButtonCheckPlacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckPlacesActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new CheckPlacesView().setVisible(true);
+    }//GEN-LAST:event_jButtonCheckPlacesActionPerformed
+
+    private void jButtonExpireDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExpireDrugsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ExpiredDrugsView().setVisible(true);
+    }//GEN-LAST:event_jButtonExpireDrugsActionPerformed
+
+    private void jButtonRenewValidityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewValidityActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new RenewValidityView().setVisible(true);
+    }//GEN-LAST:event_jButtonRenewValidityActionPerformed
+
+    private void jButtonAlmostFinishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlmostFinishedActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AlmostFinishedDrugsView().setVisible(true);
+    }//GEN-LAST:event_jButtonAlmostFinishedActionPerformed
+
+    private void jButtonInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInboxActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new InboxView().setVisible(true);
+    }//GEN-LAST:event_jButtonInboxActionPerformed
+
+    private void jButtonChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangePasswordActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ChangePasswordView().setVisible(true);
+    }//GEN-LAST:event_jButtonChangePasswordActionPerformed
+
+    private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new LoginView().setVisible(true);
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+
+        String logout_time = formatter.format(date);
+        String duration = "not yet!";
+        ///for duration
+
+        /////////////////////////
+        Login login = new Login(LoginView.login_time, logout_time, duration);
+        new LoginDaoImp().update(login);
+        JOptionPane.showMessageDialog(null, "login table is updated successfully!");
+    }//GEN-LAST:event_jButtonLogoutActionPerformed
+
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+        // TODO add your handling code here:
+        //all the central buttons
+        jButtonSettings.setEnabled(true);
+        jButtonCompany.setEnabled(true);
+        jButtonSales.setEnabled(true);
+        jButtonPurchases.setEnabled(true);
+        jButtonDrugDetails.setEnabled(true);
+        jButtonDrugs.setEnabled(true);
+
+        jButtonRecord.setEnabled(true);
+
+        //all the subordinate buttons
+        //drug buttons
+        jButtonAddDrug.setVisible(false);
+
+        jButtonSearchDrug.setVisible(false);
+        jButtonMoveDrug.setVisible(false);
+        jButtonDrugsList.setVisible(false);
+
+        //Drug details
+        jButtonCheckPlaces.setVisible(false);
+
+        jButtonExpireDrugs.setVisible(false);
+        jButtonRenewValidity.setVisible(false);
+        jButtonAlmostFinished.setVisible(false);
+
+        //purchases
+        jButtonBuyDrugs.setVisible(false);
+
+        //Sales
+        jButtonSalesBill.setVisible(false);
+
+        //Company
+        jButtonAddCompany.setVisible(false);
+        jButtonUpdateCompany.setVisible(false);
+
+        //Settings
+        jButtonChangePassword.setVisible(false);
+        jButtonLogout.setVisible(false);
+
+        //Record
+        jButtonSummary.setVisible(false);
+
+        jButtonClientList.setVisible(false);
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
+
+    private void jButtonClientListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientListActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ClientList().setVisible(true);
+    }//GEN-LAST:event_jButtonClientListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -614,52 +727,44 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EmployeeDashBoard().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddCompany;
     private javax.swing.JButton jButtonAddDrug;
-    private javax.swing.JButton jButtonAddUser;
     private javax.swing.JButton jButtonAlmostFinished;
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonChangePassword;
     private javax.swing.JButton jButtonCheckPlaces;
-    private javax.swing.JButton jButtonDealList;
-    private javax.swing.JButton jButtonDeleteDrug;
-    private javax.swing.JButton jButtonDeleteUser;
+    private javax.swing.JButton jButtonClientList;
+    private javax.swing.JButton jButtonCompany;
     private javax.swing.JButton jButtonDrugDetails;
     private javax.swing.JButton jButtonDrugs;
     private javax.swing.JButton jButtonDrugsList;
-    private javax.swing.JButton jButtonEditPrices;
-    private javax.swing.JButton jButtonEndWith;
     private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonExpireDrugs;
-    private javax.swing.JButton jButtonLoginDetails;
+    private javax.swing.JButton jButtonInbox;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonMoveDrug;
-    private javax.swing.JButton jButtonNewCompany;
     private javax.swing.JButton jButtonPurchases;
     private javax.swing.JButton jButtonRecord;
+    private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonRenewValidity;
     private javax.swing.JButton jButtonSales;
     private javax.swing.JButton jButtonSalesBill;
     private javax.swing.JButton jButtonSearchDrug;
-    private javax.swing.JButton jButtonSettingCompany;
     private javax.swing.JButton jButtonSettings;
-    private javax.swing.JButton jButtonShiftSales;
     private javax.swing.JButton jButtonSummary;
-    private javax.swing.JButton jButtonUpdateDeals;
-    private javax.swing.JButton jButtonUpdateDrug;
-    private javax.swing.JButton jButtonUpdateUser;
-    private javax.swing.JButton jButtonUpdates;
-    private javax.swing.JButton jButtonUser;
+    private javax.swing.JButton jButtonUpdateCompany;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelDay;
     private javax.swing.JLabel jLabelTime;
+    private javax.swing.JLabel jLabelUser;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

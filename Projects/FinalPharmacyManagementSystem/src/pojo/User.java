@@ -106,6 +106,21 @@ public class User {
         this.pass = pass;
     }
 
+    public User(String userName, String pass) {
+        this.userName = userName;
+        this.pass = pass;
+    }
+
+    public User(int userID) {
+        this.userID = userID;
+    }
+
+ 
+
+    
+
+    
+
    
     
     

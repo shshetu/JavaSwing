@@ -22,7 +22,8 @@ public interface SummaryDao {
     void updateSum(Summary sum);
     void updatePlace(Summary sum);
     void updatePrice(Summary sum);
-    
+    void updateSales(Summary sum);
+    void updateExpireDate(Summary sum);
     //validation
     Summary getSummaryByDrugId(int id);
     Summary getSummaryByDrugName(String name);
@@ -35,14 +36,21 @@ public interface SummaryDao {
     List<Summary> getSummarySelectingName();
     List<Summary> getSummarySelectingType();
     List<Summary> getSummarySelectingExpiration();
+    List<Summary> getSummarySelectingDrugGroup();
+    List<Summary> getSummarySelectingDrugPlace();
     
     //search by 
     List<Summary> getSummarySearchingName(String name);
     List<Summary> getSummarySearchingBarcode(String name);
+    List<Summary> getSummarySearchingDrugGroup(String name);
+    //search by drugPlace
+    List<Summary> getSummarySearchingDrugPlace(String drug_place);
     
     //expired drugs
     List<Summary> getSummaryExpireDate();
     
     //Almost finished drug
     List<Summary> getSummaryAlmostFinished();
+
+    
 }

@@ -25,6 +25,7 @@ public class MoveDrugView extends javax.swing.JFrame {
     public MoveDrugView() {
         initComponents();
     }
+    String name;
 
     public void dipslayDateIntoTableForBarcode() {
         String barcode = jTextFieldDrugBarcode.getText().trim();
@@ -45,7 +46,7 @@ public class MoveDrugView extends javax.swing.JFrame {
     }
 
     public void dipslayDateIntoTableForDrugName() {
-        String name = jTextFieldDrugName.getText().trim();
+        name = jTextFieldDrugName.getText().trim();
 
         DefaultTableModel model = (DefaultTableModel) jTableMoveDrug.getModel();
         model.setRowCount(0);
@@ -87,32 +88,18 @@ public class MoveDrugView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldDrugName = new javax.swing.JTextField();
         jButtonBack = new javax.swing.JButton();
+        jButtonClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Move Drug");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 11, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(jLabel1)
-                .addContainerGap(368, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jTableMoveDrug.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,11 +126,11 @@ public class MoveDrugView extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxSection.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxSection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxSection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Section:", "A", "B", "C", "D" }));
 
         jTextFieldOldPlace.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldOldPlace.setText("Section:A,Place:Right");
         jTextFieldOldPlace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOldPlaceActionPerformed(evt);
@@ -153,12 +140,14 @@ public class MoveDrugView extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Old Place");
 
+        jComboBoxPlace.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxPlace.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxPlace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Place:", "Left", "Right", "Down", "Up" }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("New Place:");
 
+        jButtonUpdate.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -177,11 +166,21 @@ public class MoveDrugView extends javax.swing.JFrame {
             }
         });
 
+        jButtonBack.setBackground(new java.awt.Color(0, 102, 102));
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
+            }
+        });
+
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
             }
         });
 
@@ -194,23 +193,28 @@ public class MoveDrugView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(48, 48, 48)
-                                .addComponent(jTextFieldOldPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
-                                .addGap(40, 40, 40)
-                                .addComponent(jComboBoxSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jButtonBack)
-                                .addGap(203, 203, 203)
-                                .addComponent(jButtonUpdate)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jTextFieldOldPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5)
+                                        .addGap(40, 40, 40))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jButtonBack)
+                                        .addGap(223, 223, 223)
+                                        .addComponent(jButtonClear)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonUpdate)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jComboBoxSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -244,11 +248,12 @@ public class MoveDrugView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(jTextFieldOldPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBack)
                     .addComponent(jButtonUpdate)
-                    .addComponent(jButtonBack))
-                .addContainerGap())
+                    .addComponent(jButtonClear))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,17 +261,14 @@ public class MoveDrugView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -293,21 +295,26 @@ public class MoveDrugView extends javax.swing.JFrame {
         int i = jTableMoveDrug.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTableMoveDrug.getModel();
         String place = model.getValueAt(i, 3).toString();
+        String barcode = model.getValueAt(i, 2).toString();
         jTextFieldOldPlace.setText(place);
-    
+        jTextFieldDrugBarcode.setText(barcode);
 
     }//GEN-LAST:event_jTableMoveDrugMouseClicked
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        String name = jTextFieldDrugName.getText();
+        name = jTextFieldDrugName.getText();
         String new_place = jComboBoxSection.getItemAt(jComboBoxSection.getSelectedIndex()) + "-" + jComboBoxPlace.getItemAt(jComboBoxPlace.getSelectedIndex());
         Summary sumExist = new SummaryDaoImp().getSummaryByDrugName(name);
         Summary sum = new Summary(name, new_place);
         if (sumExist.getDrug_name() != null) {
             new SummaryDaoImp().updatePlace(sum);
             JOptionPane.showMessageDialog(null, "Drug place is updated successfully!");
-
+            jTextFieldDrugBarcode.setText("");
+            jTextFieldDrugName.setText("");
+            jTextFieldOldPlace.setText("");
+            jComboBoxSection.setSelectedIndex(0);
+            jComboBoxPlace.setSelectedIndex(0);
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
@@ -316,6 +323,15 @@ public class MoveDrugView extends javax.swing.JFrame {
         this.setVisible(false);
         new AdministrationDashBoard().setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        jTextFieldDrugBarcode.setText("");
+        jTextFieldDrugName.setText("");
+        jTextFieldOldPlace.setText("");
+        jComboBoxSection.setSelectedIndex(0);
+        jComboBoxPlace.setSelectedIndex(0);
+    }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,6 +371,7 @@ public class MoveDrugView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxPlace;
     private javax.swing.JComboBox<String> jComboBoxSection;

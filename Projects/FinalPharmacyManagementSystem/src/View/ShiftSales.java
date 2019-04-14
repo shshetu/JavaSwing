@@ -5,18 +5,37 @@
  */
 package View;
 
+import dao.SalesDao;
+import daoImp.LoginDaoImp;
+import daoImp.SalesDaoImp;
+import daoImp.UserDaoImp;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import pojo.Login;
+import pojo.Sales;
+
 /**
  *
  * @author shshe
  */
-public class ShiftSalesBillView extends javax.swing.JFrame {
+public class ShiftSales extends javax.swing.JFrame {
 
     /**
      * Creates new form SearchDrugView
      */
-    public ShiftSalesBillView() {
+    public ShiftSales() {
         initComponents();
+        displayUsersAtComboBox();
     }
+
+    public void displayUsersAtComboBox() {
+        jComboBoxUserName.addItem("Username");
+        List<Login> list = new LoginDaoImp().getLoginUsername();
+        for (Login l : list) {
+            jComboBoxUserName.addItem(l.getUsername());
+        }
+    }
+    double total_gain = 0.0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,12 +58,13 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
         jComboBoxUserName = new javax.swing.JComboBox<>();
         jComboBoxDate = new javax.swing.JComboBox<>();
         jComboBoxMonth = new javax.swing.JComboBox<>();
-        jComboBoxDate2 = new javax.swing.JComboBox<>();
+        jComboBoxYear = new javax.swing.JComboBox<>();
         jButtonBack = new javax.swing.JButton();
+        jButtonSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Shift Sales Form");
@@ -66,42 +86,62 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTableShiftSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Barcode", "Name", "Type", "Dose", "Quantity", "Price", "Amount", "Date"
+                "Username", "Drug Name", "Barcode", "Quantity", "Price", "Amount", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTableShiftSales);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 78, 759, 286));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Date:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Username:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Daily Gain:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 415, -1, -1));
 
         jLabelDailyGain.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelDailyGain.setText("00.0$");
+        jPanel2.add(jLabelDailyGain, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 393, -1, -1));
 
+        jComboBoxUserName.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxUserName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxUserName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Username:" }));
+        jComboBoxUserName.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxUserNameItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(jComboBoxUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 27, 168, -1));
 
+        jComboBoxDate.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxDate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Date:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel2.add(jComboBoxDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 27, -1, -1));
 
+        jComboBoxMonth.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jPanel2.add(jComboBoxMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 27, -1, -1));
 
-        jComboBoxDate2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxDate2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
+        jComboBoxYear.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBoxYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025" }));
+        jPanel2.add(jComboBoxYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 27, -1, -1));
 
+        jButtonBack.setBackground(new java.awt.Color(0, 102, 102));
         jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -109,78 +149,31 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
                 jButtonBackActionPerformed(evt);
             }
         });
+        jPanel2.add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 411, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jButtonBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelDailyGain)
-                .addGap(26, 26, 26))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(44, 44, 44)
-                        .addComponent(jComboBoxUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(169, 169, 169)
-                        .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
-                        .addComponent(jComboBoxDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBoxUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBoxDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabelDailyGain)
-                    .addComponent(jButtonBack))
-                .addGap(32, 32, 32))
-        );
+        jButtonSearch.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 411, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,6 +184,33 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
         this.setVisible(false);
         new AdministrationDashBoard().setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jComboBoxUserNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxUserNameItemStateChanged
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableShiftSales.getModel();
+        String username = jComboBoxUserName.getItemAt(jComboBoxUserName.getSelectedIndex());
+        List<Sales> list = new SalesDaoImp().getSalesByUserName(username);
+
+        Object[] cols = new Object[7];
+        for (int i = 0; i < list.size(); i++) {
+
+            cols[0] = list.get(i).getUser_name();
+            cols[1] = list.get(i).getDrug_name();
+            cols[2] = list.get(i).getDrug_barcode();
+            cols[3] = list.get(i).getSold_qty();
+            cols[4] = list.get(i).getSell_price();
+            double tot = list.get(i).getTotal_gain();
+            cols[5] = tot;
+            cols[6] = list.get(i).getSell_date();
+            total_gain+=tot;
+            model.addRow(cols);
+        }
+        jLabelDailyGain.setText(String.valueOf(total_gain));
+    }//GEN-LAST:event_jComboBoxUserNameItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -209,14 +229,22 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShiftSalesBillView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShiftSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShiftSalesBillView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShiftSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShiftSalesBillView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShiftSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShiftSalesBillView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShiftSales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -229,17 +257,18 @@ public class ShiftSalesBillView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShiftSalesBillView().setVisible(true);
+                new ShiftSales().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JComboBox<String> jComboBoxDate;
-    private javax.swing.JComboBox<String> jComboBoxDate2;
     private javax.swing.JComboBox<String> jComboBoxMonth;
     private javax.swing.JComboBox<String> jComboBoxUserName;
+    private javax.swing.JComboBox<String> jComboBoxYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

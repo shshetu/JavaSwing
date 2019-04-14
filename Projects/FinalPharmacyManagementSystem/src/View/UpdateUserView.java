@@ -7,7 +7,9 @@ package View;
 
 import dao.UserDao;
 import daoImp.UserDaoImp;
+import java.sql.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pojo.User;
 
@@ -27,10 +29,23 @@ public class UpdateUserView extends javax.swing.JFrame {
         displayDataIntoTable();
 
     }
+    int selecttedId;
 
     public void clearTable() {
         DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
         model.setRowCount(0);
+    }
+
+    public void clearForm() {
+        jTextFieldRoleName.setText("");
+        jTextFieldUsername.setText("");
+        jTextFieldDay.setText("Day:");
+        jTextFieldMonth.setText("Month:");
+        jTextFieldYear.setText("Year:");
+        jTextAreaAddress.setText("");
+        jTextFieldPhone.setText("");
+        jTextFieldSalary.setText("");
+        jTextFieldPassword.setText("");
     }
 
     public void displayDataIntoTable() {
@@ -83,37 +98,22 @@ public class UpdateUserView extends javax.swing.JFrame {
         jButtonClear = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaAddress = new javax.swing.JTextArea();
-        jComboBoxDay = new javax.swing.JComboBox<>();
-        jComboBoxMonth = new javax.swing.JComboBox<>();
-        jComboBoxYear = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldRoleName = new javax.swing.JTextField();
+        jTextFieldYear = new javax.swing.JTextField();
+        jTextFieldDay = new javax.swing.JTextField();
+        jTextFieldMonth = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("User Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(349, 349, 349)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jTableUserDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,12 +162,15 @@ public class UpdateUserView extends javax.swing.JFrame {
 
         jTextFieldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jButtonAddUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonAddUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddUser.setText("Add User");
 
+        jButtonDeleteUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDeleteUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteUser.setText("Delete User");
 
+        jButtonUpdateUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateUser.setText("Update User");
         jButtonUpdateUser.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +179,7 @@ public class UpdateUserView extends javax.swing.JFrame {
             }
         });
 
+        jButtonCancel.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -184,27 +188,34 @@ public class UpdateUserView extends javax.swing.JFrame {
             }
         });
 
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
         jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
 
         jTextAreaAddress.setColumns(20);
+        jTextAreaAddress.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jTextAreaAddress.setRows(5);
         jScrollPane2.setViewportView(jTextAreaAddress);
-
-        jComboBoxDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
-        jComboBoxMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
-        jComboBoxYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Role:");
 
         jTextFieldRoleName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jTextFieldYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldYear.setText("Year:");
+
+        jTextFieldDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldDay.setText("Day:");
+
+        jTextFieldMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldMonth.setText("Month:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -215,30 +226,32 @@ public class UpdateUserView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(47, 47, 47)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldPhone)
-                                            .addComponent(jTextFieldSalary)
-                                            .addComponent(jTextFieldPassword)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(34, 34, 34)
-                                        .addComponent(jComboBoxDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jTextFieldPhone)
+                                    .addComponent(jTextFieldSalary)
+                                    .addComponent(jTextFieldPassword)
+                                    .addComponent(jScrollPane2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jTextFieldDay, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -246,11 +259,7 @@ public class UpdateUserView extends javax.swing.JFrame {
                                 .addGap(66, 66, 66)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldRoleName, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButtonAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -258,17 +267,17 @@ public class UpdateUserView extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jTextFieldRoleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,21 +285,20 @@ public class UpdateUserView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBoxDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addGap(52, 52, 52)))
+                                .addComponent(jLabel4)
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -298,8 +306,10 @@ public class UpdateUserView extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jTextFieldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -308,29 +318,26 @@ public class UpdateUserView extends javax.swing.JFrame {
                     .addComponent(jButtonAddUser)
                     .addComponent(jButtonUpdateUser)
                     .addComponent(jButtonDeleteUser)
-                    .addComponent(jButtonCancel))
-                .addGap(38, 38, 38)
-                .addComponent(jButtonClear)
-                .addContainerGap(341, Short.MAX_VALUE))
+                    .addComponent(jButtonCancel)
+                    .addComponent(jButtonClear))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -344,8 +351,25 @@ public class UpdateUserView extends javax.swing.JFrame {
 
     private void jButtonUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateUserActionPerformed
         // TODO add your handling code here:
+        //all the variables
+        String role = jTextFieldRoleName.getText().trim();
+        String user_name = jTextFieldUsername.getText().trim();
+        int day = Integer.parseInt(jTextFieldDay.getText().trim());
+        int month = Integer.parseInt(jTextFieldMonth.getText().trim());
+        int year = Integer.parseInt(jTextFieldYear.getText().trim());
+        Date dob = Date.valueOf(year + "-" + month + "-" + day);
+        String address = jTextAreaAddress.getText().trim();
+        int phone = Integer.parseInt(jTextFieldPhone.getText().trim());
+        double salary = Double.parseDouble(jTextFieldSalary.getText().trim());
+        String password = jTextFieldPassword.getText().trim();
+        //call the method
+
+        User us = new User(selecttedId, role, user_name, dob, address, phone, salary, password);
+        new UserDaoImp().update(us);
+        displayDataIntoTable();
+        JOptionPane.showMessageDialog(null, "User data is successfully updated!");
     }//GEN-LAST:event_jButtonUpdateUserActionPerformed
-    int selecttedId;
+
     private void jTableUserDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUserDisplayMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
@@ -369,9 +393,10 @@ public class UpdateUserView extends javax.swing.JFrame {
         jTextFieldUsername.setText(username);
         //Date 
         //we have problem here
-        jComboBoxDay.setSelectedIndex(a1);
-        jComboBoxMonth.setSelectedIndex(a2);
-       //jComboBoxYear.setSelectedIndex(a3);
+        jTextFieldDay.setText(String.valueOf(a1));
+        jTextFieldMonth.setText(String.valueOf(a2));
+        jTextFieldYear.setText(String.valueOf(a3));
+
 //       jComboBoxYear.addItem(jComboBoxYear.setSelectedIndex(a3));
 ////////////////////////////
         jTextAreaAddress.setText(address);
@@ -381,6 +406,11 @@ public class UpdateUserView extends javax.swing.JFrame {
         String p = new UserDaoImp().getUserByUserName(username).getPass().toString();
         jTextFieldPassword.setText(p);
     }//GEN-LAST:event_jTableUserDisplayMouseClicked
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,9 +456,6 @@ public class UpdateUserView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDeleteUser;
     private javax.swing.JButton jButtonUpdateUser;
-    private javax.swing.JComboBox<String> jComboBoxDay;
-    private javax.swing.JComboBox<String> jComboBoxMonth;
-    private javax.swing.JComboBox<String> jComboBoxYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -443,10 +470,13 @@ public class UpdateUserView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableUserDisplay;
     private javax.swing.JTextArea jTextAreaAddress;
+    private javax.swing.JTextField jTextFieldDay;
+    private javax.swing.JTextField jTextFieldMonth;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldPhone;
     private javax.swing.JTextField jTextFieldRoleName;
     private javax.swing.JTextField jTextFieldSalary;
     private javax.swing.JTextField jTextFieldUsername;
+    private javax.swing.JTextField jTextFieldYear;
     // End of variables declaration//GEN-END:variables
 }

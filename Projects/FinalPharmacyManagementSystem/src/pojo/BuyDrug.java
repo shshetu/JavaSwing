@@ -5,6 +5,8 @@
  */
 package pojo;
 
+import java.sql.Date;
+
 /**
  *
  * @author shshe
@@ -15,10 +17,14 @@ public class BuyDrug {
     private String bar_code;
     private String drug_name;
     private String drug_type;
+    private String drug_group;
     Company company;
     private int quantity;
     private double buy_price;
     private double amount;
+    //buy_time and date
+    private Date buy_date;
+    private String buy_time;
 
     public int getSerial() {
         return serial;
@@ -50,6 +56,14 @@ public class BuyDrug {
 
     public void setDrug_type(String drug_type) {
         this.drug_type = drug_type;
+    }
+
+    public String getDrug_group() {
+        return drug_group;
+    }
+
+    public void setDrug_group(String drug_group) {
+        this.drug_group = drug_group;
     }
 
     public Company getCompany() {
@@ -84,25 +98,50 @@ public class BuyDrug {
         this.amount = amount;
     }
 
-    public BuyDrug(int serial, String bar_code, String drug_name, String drug_type, Company company, int quantity, double buy_price, double amount) {
+    public Date getBuy_date() {
+        return buy_date;
+    }
+
+    public void setBuy_date(Date buy_date) {
+        this.buy_date = buy_date;
+    }
+
+    public String getBuy_time() {
+        return buy_time;
+    }
+
+    public void setBuy_time(String buy_time) {
+        this.buy_time = buy_time;
+    }
+
+    public BuyDrug(int serial, String bar_code, String drug_name, String drug_type, String drug_group, Company company, int quantity, double buy_price, double amount, Date buy_date, String buy_time) {
         this.serial = serial;
         this.bar_code = bar_code;
         this.drug_name = drug_name;
         this.drug_type = drug_type;
+        this.drug_group = drug_group;
         this.company = company;
         this.quantity = quantity;
         this.buy_price = buy_price;
         this.amount = amount;
+        this.buy_date = buy_date;
+        this.buy_time = buy_time;
     }
 
-    public BuyDrug(String bar_code, String drug_name, String drug_type, Company company, int quantity, double buy_price, double amount) {
+    public BuyDrug(String bar_code, String drug_name, String drug_type, String drug_group, Company company, int quantity, double buy_price, double amount, Date buy_date, String buy_time) {
         this.bar_code = bar_code;
         this.drug_name = drug_name;
         this.drug_type = drug_type;
+        this.drug_group = drug_group;
         this.company = company;
         this.quantity = quantity;
         this.buy_price = buy_price;
         this.amount = amount;
+        this.buy_date = buy_date;
+        this.buy_time = buy_time;
     }
+   
+
+    
 
 }

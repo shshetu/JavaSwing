@@ -5,6 +5,14 @@
  */
 package View;
 
+import dao.UserDao;
+import daoImp.UserDaoImp;
+import java.sql.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pojo.User;
+
 /**
  *
  * @author shshe
@@ -18,6 +26,56 @@ public class DeleteUserView extends javax.swing.JFrame {
         initComponents();
         jButtonAddUser.setEnabled(false);
         jButtonUpdateUser.setEnabled(false);
+        displayDataIntoTable();
+        //editable
+        jTextFieldRoleName.setEditable(false);
+        jTextFieldUsername.setEditable(false);
+        jTextFieldDay.setEditable(false);
+        jTextFieldMonth.setEditable(false);
+        jTextFieldYear.setEditable(false);
+        jTextAreaAddress.setEditable(false);
+        jTextFieldPhone.setEditable(false);
+        jTextFieldSalary.setEditable(false);
+        jTextFieldPassword.setEditable(false);
+
+    }
+    int selecttedId;
+
+    public void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
+        model.setRowCount(0);
+    }
+
+    //clear form method
+    public void clearForm() {
+        jTextFieldRoleName.setText("");
+        jTextFieldUsername.setText("");
+        jTextFieldDay.setText("");
+        jTextFieldMonth.setText("");
+        jTextFieldYear.setText("");
+        jTextAreaAddress.setText("");
+        jTextFieldPhone.setText("");
+        jTextFieldSalary.setText("");
+        jTextFieldPassword.setText("");
+    }
+
+    public void displayDataIntoTable() {
+        clearTable();
+        DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
+        UserDao us = new UserDaoImp();
+        List<User> list = us.getUser();
+        Object[] cols = new Object[7];
+        for (int i = 0; i < list.size(); i++) {
+            cols[0] = list.get(i).getUserID();
+            cols[1] = list.get(i).getUserName();
+            cols[2] = list.get(i).getDob();
+            cols[3] = list.get(i).getAddress();
+            cols[4] = list.get(i).getPhone();
+            cols[5] = list.get(i).getSalary();
+            cols[6] = list.get(i).getRoleName();
+            model.addRow(cols);
+        }
+
     }
 
     /**
@@ -34,12 +92,9 @@ public class DeleteUserView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUserDisplay = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jTextUserId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldDOB = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldPhone = new javax.swing.JTextField();
@@ -54,10 +109,16 @@ public class DeleteUserView extends javax.swing.JFrame {
         jButtonClear = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaAddress = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldRoleName = new javax.swing.JTextField();
+        jTextFieldYear = new javax.swing.JTextField();
+        jTextFieldDay = new javax.swing.JTextField();
+        jTextFieldMonth = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("User Form");
@@ -69,7 +130,7 @@ public class DeleteUserView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(349, 349, 349)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,38 +140,34 @@ public class DeleteUserView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
 
         jTableUserDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NAME", "DOB", "ADDRESS", "PHONE", "SALARY"
+                "ID", "NAME", "DOB", "ADDRESS", "PHONE", "SALARY", "Role"
             }
         ));
+        jTableUserDisplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableUserDisplayMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableUserDisplay);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("User ID: ");
-
-        jTextUserId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextUserId.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Username:");
 
         jTextFieldUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUsername.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Date of Birth:");
-
-        jTextFieldDOB.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldDOB.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,28 +178,33 @@ public class DeleteUserView extends javax.swing.JFrame {
         jLabel6.setText("Phone:");
 
         jTextFieldPhone.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldPhone.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Salary:");
 
         jTextFieldSalary.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldSalary.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Password:");
 
         jTextFieldPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldPassword.setForeground(new java.awt.Color(255, 255, 255));
 
+        jButtonAddUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonAddUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonAddUser.setText("Add User");
 
+        jButtonDeleteUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonDeleteUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDeleteUser.setText("Delete User");
+        jButtonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteUserActionPerformed(evt);
+            }
+        });
 
+        jButtonUpdateUser.setBackground(new java.awt.Color(0, 102, 102));
         jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonUpdateUser.setText("Update User");
         jButtonUpdateUser.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +213,7 @@ public class DeleteUserView extends javax.swing.JFrame {
             }
         });
 
+        jButtonCancel.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -159,12 +222,34 @@ public class DeleteUserView extends javax.swing.JFrame {
             }
         });
 
+        jButtonClear.setBackground(new java.awt.Color(0, 102, 102));
         jButtonClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
 
         jTextAreaAddress.setColumns(20);
+        jTextAreaAddress.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jTextAreaAddress.setRows(5);
         jScrollPane2.setViewportView(jTextAreaAddress);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Role:");
+
+        jTextFieldRoleName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        jTextFieldYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldYear.setText("Year:");
+
+        jTextFieldDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldDay.setText("Day:");
+
+        jTextFieldMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldMonth.setText("Month:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,33 +259,41 @@ public class DeleteUserView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(66, 66, 66)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextUserId, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldUsername)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldDOB)
                                     .addComponent(jTextFieldPhone)
                                     .addComponent(jTextFieldSalary)
                                     .addComponent(jTextFieldPassword)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane2)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jTextFieldDay, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel9))
+                                .addGap(66, 66, 66)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldRoleName, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButtonAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -208,80 +301,61 @@ public class DeleteUserView extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26)
-                                .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9)
+                            .addComponent(jTextFieldRoleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addGap(52, 52, 52)))
+                                .addComponent(jLabel4)
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextFieldPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextFieldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAddUser)
                     .addComponent(jButtonUpdateUser)
                     .addComponent(jButtonDeleteUser)
-                    .addComponent(jButtonCancel))
-                .addGap(38, 38, 38)
-                .addComponent(jButtonClear)
-                .addContainerGap(341, Short.MAX_VALUE))
+                    .addComponent(jButtonCancel)
+                    .addComponent(jButtonClear))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, 890, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -294,7 +368,75 @@ public class DeleteUserView extends javax.swing.JFrame {
 
     private void jButtonUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateUserActionPerformed
         // TODO add your handling code here:
+        //all the variables
+        String role = jTextFieldRoleName.getText().trim();
+        String user_name = jTextFieldUsername.getText().trim();
+        int day = Integer.parseInt(jTextFieldDay.getText().trim());
+        int month = Integer.parseInt(jTextFieldMonth.getText().trim());
+        int year = Integer.parseInt(jTextFieldYear.getText().trim());
+        Date dob = Date.valueOf(year + "-" + month + "-" + day);
+        String address = jTextAreaAddress.getText().trim();
+        int phone = Integer.parseInt(jTextFieldPhone.getText().trim());
+        double salary = Double.parseDouble(jTextFieldSalary.getText().trim());
+        String password = jTextFieldPassword.getText().trim();
+        //call the method
+
+        User us = new User(selecttedId, role, user_name, dob, address, phone, salary, password);
+        new UserDaoImp().update(us);
+        displayDataIntoTable();
+        JOptionPane.showMessageDialog(null, "User data is successfully updated!");
     }//GEN-LAST:event_jButtonUpdateUserActionPerformed
+
+    private void jTableUserDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUserDisplayMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableUserDisplay.getModel();
+        int i = jTableUserDisplay.getSelectedRow();
+        /////////////////////               variables
+        selecttedId = Integer.parseInt(model.getValueAt(i, 0).toString());
+        String username = model.getValueAt(i, 1).toString();
+        ////DOB
+        String date = model.getValueAt(i, 2).toString();
+        String[] d1 = date.split("-");
+        int a1 = Integer.parseInt(d1[d1.length - 1]);
+        int a2 = Integer.parseInt(d1[d1.length - 2]);
+        int a3 = Integer.parseInt(d1[0]);
+
+        String address = model.getValueAt(i, 3).toString();
+        int phone = Integer.parseInt(model.getValueAt(i, 4).toString());
+        double salary = Double.parseDouble(model.getValueAt(i, 5).toString());
+        String role = model.getValueAt(i, 6).toString();
+////////////////////////////////////         Add to the fields
+        jTextFieldRoleName.setText(role);
+        jTextFieldUsername.setText(username);
+        //Date 
+        //we have problem here
+        jTextFieldDay.setText(String.valueOf(a1));
+        jTextFieldMonth.setText(String.valueOf(a2));
+        jTextFieldYear.setText(String.valueOf(a3));
+
+//       jComboBoxYear.addItem(jComboBoxYear.setSelectedIndex(a3));
+////////////////////////////
+        jTextAreaAddress.setText(address);
+        jTextFieldPhone.setText(String.valueOf(phone));
+        jTextFieldSalary.setText(String.valueOf(salary));
+        //password field
+//        String p = new UserDaoImp().getUserByUserName(username).getPass().toString();
+//        jTextFieldPassword.setText(p);
+    }//GEN-LAST:event_jTableUserDisplayMouseClicked
+
+    private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
+        // TODO add your handling code here:
+        User us = new User(selecttedId);
+        new UserDaoImp().delete(us);
+        clearForm();
+        displayDataIntoTable();
+        JOptionPane.showMessageDialog(null, "User Data is deleted successfully!");
+    }//GEN-LAST:event_jButtonDeleteUserActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,6 +471,14 @@ public class DeleteUserView extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -345,24 +495,26 @@ public class DeleteUserView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDeleteUser;
     private javax.swing.JButton jButtonUpdateUser;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableUserDisplay;
     private javax.swing.JTextArea jTextAreaAddress;
-    private javax.swing.JTextField jTextFieldDOB;
+    private javax.swing.JTextField jTextFieldDay;
+    private javax.swing.JTextField jTextFieldMonth;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldPhone;
+    private javax.swing.JTextField jTextFieldRoleName;
     private javax.swing.JTextField jTextFieldSalary;
     private javax.swing.JTextField jTextFieldUsername;
-    private javax.swing.JTextField jTextUserId;
+    private javax.swing.JTextField jTextFieldYear;
     // End of variables declaration//GEN-END:variables
 }

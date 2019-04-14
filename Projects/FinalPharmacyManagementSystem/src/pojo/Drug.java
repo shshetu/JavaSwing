@@ -18,7 +18,7 @@ public class Drug {
     private String drug_type;
     private String drug_barcode;  //primary key
     private String drug_dose;
-    private String drug_code;
+    private String drug_group;
     private double drug_buy_price;
     private double drug_sell_price;
     Company company; //foreign key 
@@ -28,6 +28,9 @@ public class Drug {
     private double drug_tax;
     private String drug_place;
     private int drug_quantity;
+    ///drug buy date and buy time
+    private Date buy_date;
+    private String buy_time;
 
     public int getDrug_serial() {
         return drug_serial;
@@ -69,12 +72,12 @@ public class Drug {
         this.drug_dose = drug_dose;
     }
 
-    public String getDrug_code() {
-        return drug_code;
+    public String getDrug_group() {
+        return drug_group;
     }
 
-    public void setDrug_code(String drug_code) {
-        this.drug_code = drug_code;
+    public void setDrug_group(String drug_group) {
+        this.drug_group = drug_group;
     }
 
     public double getDrug_buy_price() {
@@ -149,13 +152,13 @@ public class Drug {
         this.drug_quantity = drug_quantity;
     }
 
-    public Drug(int drug_serial, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double drug_buy_price, double drug_sell_price, Company company, Date production_date, Date expire_date, String expire_time, double drug_tax, String drug_place, int drug_quantity) {
+    public Drug(int drug_serial, String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_group, double drug_buy_price, double drug_sell_price, Company company, Date production_date, Date expire_date, String expire_time, double drug_tax, String drug_place, int drug_quantity) {
         this.drug_serial = drug_serial;
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;
         this.drug_dose = drug_dose;
-        this.drug_code = drug_code;
+        this.drug_group = drug_group;
         this.drug_buy_price = drug_buy_price;
         this.drug_sell_price = drug_sell_price;
         this.company = company;
@@ -167,12 +170,12 @@ public class Drug {
         this.drug_quantity = drug_quantity;
     }
 
-    public Drug(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_code, double drug_buy_price, double drug_sell_price, Company company, Date production_date, Date expire_date, String expire_time, double drug_tax, String drug_place, int drug_quantity) {
+    public Drug(String drug_name, String drug_type, String drug_barcode, String drug_dose, String drug_group, double drug_buy_price, double drug_sell_price, Company company, Date production_date, Date expire_date, String expire_time, double drug_tax, String drug_place, int drug_quantity) {
         this.drug_name = drug_name;
         this.drug_type = drug_type;
         this.drug_barcode = drug_barcode;
         this.drug_dose = drug_dose;
-        this.drug_code = drug_code;
+        this.drug_group = drug_group;
         this.drug_buy_price = drug_buy_price;
         this.drug_sell_price = drug_sell_price;
         this.company = company;
@@ -184,7 +187,6 @@ public class Drug {
         this.drug_quantity = drug_quantity;
     }
 
-    public Drug() {
-    }
+   
 
 }
