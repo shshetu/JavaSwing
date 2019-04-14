@@ -7,12 +7,14 @@ package View;
 
 import daoImp.CompanyDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.sql.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pojo.Company;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -76,7 +78,7 @@ public class RenewValidityView extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTableRenewValidity.getModel();
         model.setRowCount(0);
         List<Summary> list = new SummaryDaoImp().getSummarySearchingName(name);
-        Object[] cols = new Object[5];
+        Object[] cols = new Object[6];
         for (int i = 0; i < list.size(); i++) {
             cols[0] = list.get(i).getDrug_name();
             cols[1] = list.get(i).getDrug_type();
@@ -84,6 +86,7 @@ public class RenewValidityView extends javax.swing.JFrame {
             cols[3] = list.get(i).getDrug_place();
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[4] = com.getCompany_name();
+            cols[5] = list.get(i).getExpire_date();
             model.addRow(cols);
         }
     }
@@ -363,8 +366,14 @@ public class RenewValidityView extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+    User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed

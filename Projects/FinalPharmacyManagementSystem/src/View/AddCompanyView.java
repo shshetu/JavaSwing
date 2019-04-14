@@ -6,10 +6,12 @@
 package View;
 
 import daoImp.CompanyDaoImp;
+import daoImp.UserDaoImp;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pojo.Company;
+import pojo.User;
 
 /**
  *
@@ -24,7 +26,7 @@ public class AddCompanyView extends javax.swing.JFrame {
         initComponents();
         //drug button
         jButtonUpdateCompany.setEnabled(false);
-      
+
         ///
         new CompanyDaoImp().createTable();
         displayDataIntoTable();
@@ -255,8 +257,14 @@ public class AddCompanyView extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCompanyActionPerformed
@@ -286,8 +294,9 @@ public class AddCompanyView extends javax.swing.JFrame {
                 String address = jTextFieldCompanyAddress.getText().trim();
                 Company com = new Company(companyName, companyCountry, companyEmail, companyContact, address);
                 new CompanyDaoImp().insert(com);
-                JOptionPane.showMessageDialog(null, "Data is inserted successfully into company table!");
                 displayDataIntoTable();
+                JOptionPane.showMessageDialog(null, "Data is inserted successfully into company table!");
+
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Insert nubmers correctly in the fields!");

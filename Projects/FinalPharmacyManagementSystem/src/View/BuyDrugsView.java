@@ -9,6 +9,7 @@ import daoImp.BuyDrugDaoImp;
 import daoImp.CompanyDaoImp;
 import daoImp.DrugDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -17,6 +18,7 @@ import pojo.BuyDrug;
 import pojo.Company;
 import pojo.Drug;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -287,8 +289,14 @@ public class BuyDrugsView extends javax.swing.JFrame {
     int sold_qty = 0;
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonMakeDealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMakeDealActionPerformed
@@ -337,7 +345,7 @@ public class BuyDrugsView extends javax.swing.JFrame {
                 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
                 String time = formatter.format(buy_date);
                 try {
-                    BuyDrug buy_drug = new BuyDrug(bar_code, drug_name, drug_type, drug_group, com, quantity, buying_price, amount,buy_date,time);
+                    BuyDrug buy_drug = new BuyDrug(bar_code, drug_name, drug_type, drug_group, com, quantity, buying_price, amount, buy_date, time);
                     Drug existDrug = new DrugDaoImp().getDrugByDrugName(drug_name);
                     if (existDrug.getDrug_name() != null) {
                         ////update method will be called
@@ -358,7 +366,7 @@ public class BuyDrugsView extends javax.swing.JFrame {
 
                     }
                 } catch (Exception e) {
-                    BuyDrug buy_drug = new BuyDrug(bar_code, drug_name, drug_type, drug_group, com, quantity, buying_price, amount,buy_date,time);
+                    BuyDrug buy_drug = new BuyDrug(bar_code, drug_name, drug_type, drug_group, com, quantity, buying_price, amount, buy_date, time);
                     new BuyDrugDaoImp().insert(buy_drug);
                     JOptionPane.showMessageDialog(null, "Data inserted successfully into the database!");
                     this.setVisible(false);

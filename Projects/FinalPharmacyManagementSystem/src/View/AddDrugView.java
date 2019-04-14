@@ -9,6 +9,7 @@ import daoImp.BuyDrugDaoImp;
 import daoImp.CompanyDaoImp;
 import daoImp.DrugDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ import pojo.BuyDrug;
 import pojo.Company;
 import pojo.Drug;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -127,7 +129,7 @@ public class AddDrugView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(317, 317, 317)
                 .addComponent(jLabel1)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,12 +338,12 @@ public class AddDrugView extends javax.swing.JFrame {
         jComboBoxPMonth.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxPMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxPMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        jPanel2.add(jComboBoxPMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(598, 67, 70, -1));
+        jPanel2.add(jComboBoxPMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 80, -1));
 
         jComboBoxPYear.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxPYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxPYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year:", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
-        jPanel2.add(jComboBoxPYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 67, 72, -1));
+        jPanel2.add(jComboBoxPYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 72, -1));
 
         jComboBoxEYear.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxEYear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -351,12 +353,12 @@ public class AddDrugView extends javax.swing.JFrame {
         jComboBoxEMonth.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxEMonth.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxEMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        jPanel2.add(jComboBoxEMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 122, -1, -1));
+        jPanel2.add(jComboBoxEMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
 
         jComboBoxEDay.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxEDay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBoxEDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day:", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        jPanel2.add(jComboBoxEDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 122, -1, -1));
+        jPanel2.add(jComboBoxEDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, -1, -1));
 
         jComboBoxDrugType.setBackground(new java.awt.Color(0, 102, 102));
         jComboBoxDrugType.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -374,7 +376,7 @@ public class AddDrugView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -382,8 +384,14 @@ public class AddDrugView extends javax.swing.JFrame {
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+     User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonCancelActionPerformed
     ///for expire time
     int tot_qty = 0;

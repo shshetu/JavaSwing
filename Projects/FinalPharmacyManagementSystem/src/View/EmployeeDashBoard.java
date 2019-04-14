@@ -43,7 +43,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jButtonCheckPlaces.setVisible(false);
 
         jButtonExpireDrugs.setVisible(false);
-        jButtonRenewValidity.setVisible(false);
+
         jButtonAlmostFinished.setVisible(false);
 
         //purchases
@@ -54,16 +54,12 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
 
         //Company
         jButtonAddCompany.setVisible(false);
-        jButtonUpdateCompany.setVisible(false);
 
         //Settings
         jButtonChangePassword.setVisible(false);
         jButtonLogout.setVisible(false);
 
         //Record
-        jButtonSummary.setVisible(false);
-        jButtonClientList.setVisible(false);
-
         //inbox
         jButtonInbox.setVisible(false);
         //labels
@@ -117,17 +113,12 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jButtonMoveDrug = new javax.swing.JButton();
         jButtonCheckPlaces = new javax.swing.JButton();
         jButtonExpireDrugs = new javax.swing.JButton();
-        jButtonRenewValidity = new javax.swing.JButton();
         jButtonAlmostFinished = new javax.swing.JButton();
         jButtonBuyDrugs = new javax.swing.JButton();
         jButtonSalesBill = new javax.swing.JButton();
         jButtonChangePassword = new javax.swing.JButton();
         jButtonLogout = new javax.swing.JButton();
         jButtonAddCompany = new javax.swing.JButton();
-        jButtonUpdateCompany = new javax.swing.JButton();
-        jButtonRecord = new javax.swing.JButton();
-        jButtonSummary = new javax.swing.JButton();
-        jButtonClientList = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
@@ -242,7 +233,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonCompanyActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 117, -1, -1));
+        getContentPane().add(jButtonCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
 
         jButtonSales.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -252,7 +243,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonSalesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 117, -1, -1));
+        getContentPane().add(jButtonSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 120, -1, -1));
 
         jButtonPurchases.setBackground(new java.awt.Color(0, 102, 204));
         jButtonPurchases.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -262,7 +253,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonPurchasesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonPurchases, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 117, 123, -1));
+        getContentPane().add(jButtonPurchases, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 123, -1));
 
         jButtonDrugDetails.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugDetails.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -272,7 +263,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonDrugDetailsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDrugDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 117, 131, -1));
+        getContentPane().add(jButtonDrugDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 120, 131, -1));
 
         jButtonDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -282,7 +273,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonDrugsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(799, 120, 120, -1));
+        getContentPane().add(jButtonDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 120, -1));
 
         jButtonAddDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAddDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -292,7 +283,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonAddDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 121, -1));
+        getContentPane().add(jButtonAddDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 121, -1));
 
         jButtonSearchDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSearchDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -302,7 +293,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonSearchDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSearchDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, 121, -1));
+        getContentPane().add(jButtonSearchDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 121, -1));
 
         jButtonDrugsList.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugsList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -312,7 +303,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonDrugsListActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDrugsList, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, 121, -1));
+        getContentPane().add(jButtonDrugsList, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 121, -1));
 
         jButtonMoveDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonMoveDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -322,7 +313,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonMoveDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonMoveDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 121, -1));
+        getContentPane().add(jButtonMoveDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 121, -1));
 
         jButtonCheckPlaces.setBackground(new java.awt.Color(0, 102, 204));
         jButtonCheckPlaces.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -332,7 +323,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonCheckPlacesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCheckPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 173, 141, -1));
+        getContentPane().add(jButtonCheckPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 141, -1));
 
         jButtonExpireDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonExpireDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -342,17 +333,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonExpireDrugsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonExpireDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 140, -1));
-
-        jButtonRenewValidity.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonRenewValidity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonRenewValidity.setText("Renew Validity");
-        jButtonRenewValidity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRenewValidityActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonRenewValidity, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 141, -1));
+        getContentPane().add(jButtonExpireDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, 140, -1));
 
         jButtonAlmostFinished.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAlmostFinished.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -362,7 +343,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonAlmostFinishedActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAlmostFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
+        getContentPane().add(jButtonAlmostFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, -1, -1));
 
         jButtonBuyDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonBuyDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -372,7 +353,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonBuyDrugsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuyDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 173, 123, -1));
+        getContentPane().add(jButtonBuyDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 123, -1));
 
         jButtonSalesBill.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSalesBill.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -382,7 +363,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonSalesBillActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSalesBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 173, 103, -1));
+        getContentPane().add(jButtonSalesBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 180, 103, -1));
 
         jButtonChangePassword.setBackground(new java.awt.Color(0, 102, 204));
         jButtonChangePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -412,47 +393,7 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
                 jButtonAddCompanyActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 153, -1, -1));
-
-        jButtonUpdateCompany.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonUpdateCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonUpdateCompany.setText("Update Company");
-        jButtonUpdateCompany.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateCompanyActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonUpdateCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 189, 147, -1));
-
-        jButtonRecord.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonRecord.setText("Record");
-        jButtonRecord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRecordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 120, -1, -1));
-
-        jButtonSummary.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonSummary.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonSummary.setText("Summary");
-        jButtonSummary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSummaryActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonSummary, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 170, 157, -1));
-
-        jButtonClientList.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonClientList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonClientList.setText("Client List");
-        jButtonClientList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClientListActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonClientList, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 210, 157, -1));
+        getContentPane().add(jButtonAddCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         jButtonRefresh.setBackground(new java.awt.Color(0, 153, 102));
         jButtonRefresh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -490,7 +431,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jButtonCheckPlaces.setVisible(true);
 
         jButtonExpireDrugs.setVisible(true);
-        jButtonRenewValidity.setVisible(true);
         jButtonAlmostFinished.setVisible(true);
         jButtonDrugDetails.setEnabled(false);
     }//GEN-LAST:event_jButtonDrugDetailsActionPerformed
@@ -512,7 +452,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
     private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         // TODO add your handling code here:
         jButtonAddCompany.setVisible(true);
-        jButtonUpdateCompany.setVisible(true);
 
         jButtonCompany.setEnabled(false);
 
@@ -526,26 +465,11 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jButtonSettings.setEnabled(false);
     }//GEN-LAST:event_jButtonSettingsActionPerformed
 
-    private void jButtonRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecordActionPerformed
-        // TODO add your handling code here:
-        jButtonSummary.setVisible(true);
-
-        jButtonClientList.setVisible(true);
-        jButtonRecord.setEnabled(false);
-    }//GEN-LAST:event_jButtonRecordActionPerformed
-
     private void jButtonBuyDrugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDrugsActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         new BuyDrugsView().setVisible(true);
     }//GEN-LAST:event_jButtonBuyDrugsActionPerformed
-
-    private void jButtonUpdateCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateCompanyActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new UpdateCompanyView().setVisible(true);
-
-    }//GEN-LAST:event_jButtonUpdateCompanyActionPerformed
 
     private void jButtonAddDrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDrugActionPerformed
         // TODO add your handling code here:
@@ -558,12 +482,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         this.setVisible(false);
         new AddCompanyView().setVisible(true);
     }//GEN-LAST:event_jButtonAddCompanyActionPerformed
-
-    private void jButtonSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSummaryActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new SummaryView().setVisible(true);
-    }//GEN-LAST:event_jButtonSummaryActionPerformed
 
     private void jButtonSalesBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalesBillActionPerformed
         // TODO add your handling code here:
@@ -600,12 +518,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         this.setVisible(false);
         new ExpiredDrugsView().setVisible(true);
     }//GEN-LAST:event_jButtonExpireDrugsActionPerformed
-
-    private void jButtonRenewValidityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenewValidityActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new RenewValidityView().setVisible(true);
-    }//GEN-LAST:event_jButtonRenewValidityActionPerformed
 
     private void jButtonAlmostFinishedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlmostFinishedActionPerformed
         // TODO add your handling code here:
@@ -652,8 +564,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jButtonDrugDetails.setEnabled(true);
         jButtonDrugs.setEnabled(true);
 
-        jButtonRecord.setEnabled(true);
-
         //all the subordinate buttons
         //drug buttons
         jButtonAddDrug.setVisible(false);
@@ -666,7 +576,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
         jButtonCheckPlaces.setVisible(false);
 
         jButtonExpireDrugs.setVisible(false);
-        jButtonRenewValidity.setVisible(false);
         jButtonAlmostFinished.setVisible(false);
 
         //purchases
@@ -677,23 +586,13 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
 
         //Company
         jButtonAddCompany.setVisible(false);
-        jButtonUpdateCompany.setVisible(false);
 
         //Settings
         jButtonChangePassword.setVisible(false);
         jButtonLogout.setVisible(false);
 
-        //Record
-        jButtonSummary.setVisible(false);
 
-        jButtonClientList.setVisible(false);
     }//GEN-LAST:event_jButtonRefreshActionPerformed
-
-    private void jButtonClientListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientListActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new ClientList().setVisible(true);
-    }//GEN-LAST:event_jButtonClientListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -739,7 +638,6 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuyDrugs;
     private javax.swing.JButton jButtonChangePassword;
     private javax.swing.JButton jButtonCheckPlaces;
-    private javax.swing.JButton jButtonClientList;
     private javax.swing.JButton jButtonCompany;
     private javax.swing.JButton jButtonDrugDetails;
     private javax.swing.JButton jButtonDrugs;
@@ -750,15 +648,11 @@ public class EmployeeDashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonMoveDrug;
     private javax.swing.JButton jButtonPurchases;
-    private javax.swing.JButton jButtonRecord;
     private javax.swing.JButton jButtonRefresh;
-    private javax.swing.JButton jButtonRenewValidity;
     private javax.swing.JButton jButtonSales;
     private javax.swing.JButton jButtonSalesBill;
     private javax.swing.JButton jButtonSearchDrug;
     private javax.swing.JButton jButtonSettings;
-    private javax.swing.JButton jButtonSummary;
-    private javax.swing.JButton jButtonUpdateCompany;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

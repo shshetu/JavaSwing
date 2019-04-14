@@ -171,5 +171,23 @@ public class BuyDrugDaoImp implements BuyDrugDao {
         }
         return list;
     }
+    
+    ///get only distinct drug types
+    @Override
+    public List<BuyDrug> getBuyDrugForDistinctDrugType() {
+
+        List<BuyDrug> list = new ArrayList<>();
+        String sql = "select distinct * from buydrug ";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                BuyDrug buy_drug = new BuyDrug(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), new Company(rs.getInt(6)), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDate(10), rs.getString(11));
+                list.add(buy_drug);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BuyDrugDaoImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;    }
 
 }

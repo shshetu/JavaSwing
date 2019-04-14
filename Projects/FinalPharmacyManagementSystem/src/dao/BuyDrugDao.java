@@ -32,4 +32,7 @@ public interface BuyDrugDao {
 
     //get data from the database
     List<BuyDrug> getBuyDrug();
+    
+    ///get only distinct drug types
+     List<BuyDrug> getBuyDrugForDistinctDrugType();
 }

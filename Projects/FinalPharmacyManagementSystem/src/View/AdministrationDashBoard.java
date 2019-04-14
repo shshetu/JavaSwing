@@ -252,7 +252,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonSettingsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 117, -1, -1));
+        getContentPane().add(jButtonSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 160, -1));
 
         jButtonCompany.setBackground(new java.awt.Color(0, 102, 204));
         jButtonCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -262,7 +262,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonCompanyActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 117, -1, -1));
+        getContentPane().add(jButtonCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 150, -1));
 
         jButtonSales.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -272,7 +272,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonSalesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 117, -1, -1));
+        getContentPane().add(jButtonSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, 100, -1));
 
         jButtonPurchases.setBackground(new java.awt.Color(0, 102, 204));
         jButtonPurchases.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -282,7 +282,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonPurchasesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonPurchases, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 117, 123, -1));
+        getContentPane().add(jButtonPurchases, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 123, -1));
 
         jButtonDrugDetails.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugDetails.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -292,7 +292,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonDrugDetailsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDrugDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 117, 131, -1));
+        getContentPane().add(jButtonDrugDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 140, -1));
 
         jButtonDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -302,7 +302,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonDrugsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 117, 109, -1));
+        getContentPane().add(jButtonDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 120, -1));
 
         jButtonUser.setBackground(new java.awt.Color(0, 102, 204));
         jButtonUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -312,7 +312,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonUserActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 117, 111, -1));
+        getContentPane().add(jButtonUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, 111, -1));
 
         jButtonAddUser.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAddUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -322,7 +322,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonAddUserActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 160, 111, -1));
+        getContentPane().add(jButtonAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 160, 111, -1));
 
         jButtonDeleteUser.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDeleteUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -332,7 +332,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonDeleteUserActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 195, -1, -1));
+        getContentPane().add(jButtonDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 210, -1, -1));
 
         jButtonUpdateUser.setBackground(new java.awt.Color(0, 102, 204));
         jButtonUpdateUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -342,7 +342,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonUpdateUserActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonUpdateUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(955, 238, -1, -1));
+        getContentPane().add(jButtonUpdateUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 260, -1, -1));
 
         jButtonAddDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAddDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -352,7 +352,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonAddDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 173, 121, -1));
+        getContentPane().add(jButtonAddDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 121, -1));
 
         jButtonDeleteDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDeleteDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -362,7 +362,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonDeleteDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDeleteDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 208, 121, -1));
+        getContentPane().add(jButtonDeleteDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 121, -1));
 
         jButtonUpdateDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonUpdateDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -372,7 +372,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonUpdateDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonUpdateDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 251, -1, -1));
+        getContentPane().add(jButtonUpdateDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
         jButtonSearchDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSearchDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -382,7 +382,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonSearchDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSearchDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 294, 121, -1));
+        getContentPane().add(jButtonSearchDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 121, -1));
 
         jButtonDrugsList.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDrugsList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -392,7 +392,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonDrugsListActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDrugsList, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 360, 121, -1));
+        getContentPane().add(jButtonDrugsList, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 121, -1));
 
         jButtonMoveDrug.setBackground(new java.awt.Color(0, 102, 204));
         jButtonMoveDrug.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -402,7 +402,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonMoveDrugActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonMoveDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(796, 329, 121, -1));
+        getContentPane().add(jButtonMoveDrug, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 121, -1));
 
         jButtonCheckPlaces.setBackground(new java.awt.Color(0, 102, 204));
         jButtonCheckPlaces.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -412,7 +412,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonCheckPlacesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCheckPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 173, 141, -1));
+        getContentPane().add(jButtonCheckPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, 140, -1));
 
         jButtonEditPrices.setBackground(new java.awt.Color(0, 102, 204));
         jButtonEditPrices.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -422,7 +422,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonEditPricesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEditPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 208, 141, -1));
+        getContentPane().add(jButtonEditPrices, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, 140, -1));
 
         jButtonExpireDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonExpireDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -432,7 +432,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonExpireDrugsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonExpireDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 251, 140, -1));
+        getContentPane().add(jButtonExpireDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 140, -1));
 
         jButtonRenewValidity.setBackground(new java.awt.Color(0, 102, 204));
         jButtonRenewValidity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -442,7 +442,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonRenewValidityActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRenewValidity, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 302, 141, -1));
+        getContentPane().add(jButtonRenewValidity, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 140, -1));
 
         jButtonAlmostFinished.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAlmostFinished.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -452,7 +452,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonAlmostFinishedActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAlmostFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 337, -1, -1));
+        getContentPane().add(jButtonAlmostFinished, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, -1, -1));
 
         jButtonBuyDrugs.setBackground(new java.awt.Color(0, 102, 204));
         jButtonBuyDrugs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -462,7 +462,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonBuyDrugsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuyDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 173, 123, -1));
+        getContentPane().add(jButtonBuyDrugs, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 123, -1));
 
         jButtonUpdateDeals.setBackground(new java.awt.Color(0, 102, 204));
         jButtonUpdateDeals.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -472,7 +472,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonUpdateDealsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonUpdateDeals, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 216, -1, -1));
+        getContentPane().add(jButtonUpdateDeals, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
 
         jButtonDealList.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDealList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -482,7 +482,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonDealListActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDealList, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 259, 123, -1));
+        getContentPane().add(jButtonDealList, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 123, -1));
 
         jButtonSalesBill.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSalesBill.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -492,7 +492,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonSalesBillActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSalesBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 173, 103, -1));
+        getContentPane().add(jButtonSalesBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, 103, -1));
 
         jButtonShiftSales.setBackground(new java.awt.Color(0, 102, 204));
         jButtonShiftSales.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -502,7 +502,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonShiftSalesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonShiftSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 208, -1, -1));
+        getContentPane().add(jButtonShiftSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 210, -1, -1));
 
         jButtonLoginDetails.setBackground(new java.awt.Color(0, 102, 204));
         jButtonLoginDetails.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -512,7 +512,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonLoginDetailsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonLoginDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 173, 157, -1));
+        getContentPane().add(jButtonLoginDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 160, -1));
 
         jButtonChangePassword.setBackground(new java.awt.Color(0, 102, 204));
         jButtonChangePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -522,7 +522,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonChangePasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 216, -1, -1));
+        getContentPane().add(jButtonChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jButtonLogout.setBackground(new java.awt.Color(0, 102, 204));
         jButtonLogout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -532,7 +532,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonLogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 259, 157, -1));
+        getContentPane().add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 157, -1));
 
         jButtonAddCompany.setBackground(new java.awt.Color(0, 102, 204));
         jButtonAddCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -542,7 +542,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonAddCompanyActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 153, -1, -1));
+        getContentPane().add(jButtonAddCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 150, -1));
 
         jButtonUpdateCompany.setBackground(new java.awt.Color(0, 102, 204));
         jButtonUpdateCompany.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -552,7 +552,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonUpdateCompanyActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonUpdateCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 189, 147, -1));
+        getContentPane().add(jButtonUpdateCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
 
         jButtonRecord.setBackground(new java.awt.Color(0, 102, 204));
         jButtonRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -562,7 +562,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonRecordActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 117, -1, -1));
+        getContentPane().add(jButtonRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(1121, 120, 120, -1));
 
         jButtonSummary.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSummary.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -572,17 +572,27 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonSummaryActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSummary, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 153, 157, -1));
+        getContentPane().add(jButtonSummary, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 160, 120, -1));
 
         jButtonDailyRecord.setBackground(new java.awt.Color(0, 102, 204));
         jButtonDailyRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonDailyRecord.setText("Daily Record");
-        getContentPane().add(jButtonDailyRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 189, 157, -1));
+        jButtonDailyRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDailyRecordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonDailyRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 210, 120, -1));
 
         jButtonClientList.setBackground(new java.awt.Color(0, 102, 204));
         jButtonClientList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonClientList.setText("Client List");
-        getContentPane().add(jButtonClientList, new org.netbeans.lib.awtextra.AbsoluteConstraints(1084, 225, 157, -1));
+        jButtonClientList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClientListActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonClientList, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 260, 120, -1));
 
         jButtonSalesTable.setBackground(new java.awt.Color(0, 102, 204));
         jButtonSalesTable.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -592,7 +602,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonSalesTableActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonSalesTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 244, -1, -1));
+        getContentPane().add(jButtonSalesTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 260, 110, -1));
 
         jButtonRefresh.setBackground(new java.awt.Color(0, 153, 102));
         jButtonRefresh.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -602,7 +612,7 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
                 jButtonRefreshActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 157, -1));
+        getContentPane().add(jButtonRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 157, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/88775440-medical-background-medical-care-health-care-vector-medicine-illustration.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -613,17 +623,17 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
 //        // TODO add your handling code here:
-//        Date date = new Date(System.currentTimeMillis());
-//        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-//
-//        String logout_time = formatter.format(date);
-//        String duration = "not yet!";
-//        ///for duration
-//
-//        /////////////////////////
-//        Login login = new Login(LoginView.login_time, logout_time, duration);
-//        new LoginDaoImp().update(login);
-//        JOptionPane.showMessageDialog(null, "login table is updated successfully!");
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+
+        String logout_time = formatter.format(date);
+        String duration = "not yet!";
+        ///for duration
+
+        /////////////////////////
+        Login login = new Login(LoginView.login_time, logout_time, duration);
+        new LoginDaoImp().update(login);
+        JOptionPane.showMessageDialog(null, "login table is updated successfully!");
         System.exit(0);
     }//GEN-LAST:event_jButtonExitActionPerformed
 
@@ -929,6 +939,18 @@ public class AdministrationDashBoard extends javax.swing.JFrame {
         this.setVisible(false);
         new UpdateDrugView().setVisible(true);
     }//GEN-LAST:event_jButtonUpdateDrugActionPerformed
+
+    private void jButtonDailyRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDailyRecordActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DailyRecordViw().setVisible(true);
+    }//GEN-LAST:event_jButtonDailyRecordActionPerformed
+
+    private void jButtonClientListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientListActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ClientList().setVisible(true);
+    }//GEN-LAST:event_jButtonClientListActionPerformed
 
     /**
      * @param args the command line arguments

@@ -196,10 +196,10 @@ public class ChangePasswordView extends javax.swing.JFrame {
     int sold_qty = 0;
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         // TODO add your handling code here:
-       jTextFieldUsername.setText("");
-       jPasswordFieldOldPassword.setText("");
-       jPasswordFieldNewPassword.setText("");
-       jPasswordFieldConfirmNewPassword.setText("");
+        jTextFieldUsername.setText("");
+        jPasswordFieldOldPassword.setText("");
+        jPasswordFieldNewPassword.setText("");
+        jPasswordFieldConfirmNewPassword.setText("");
     }//GEN-LAST:event_jButtonClearActionPerformed
 
     private void jButtonUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdatePasswordActionPerformed
@@ -239,8 +239,14 @@ public class ChangePasswordView extends javax.swing.JFrame {
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-         this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jPasswordFieldNewPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldNewPasswordKeyReleased

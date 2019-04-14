@@ -8,6 +8,7 @@ package View;
 import daoImp.CompanyDaoImp;
 import daoImp.SalesDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import pojo.Company;
 import pojo.Sales;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -104,6 +106,7 @@ System.out.println(date + " " + time);*/
         jTableSalesBill = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableFromSummary = new javax.swing.JTable();
+        jButtonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,7 +178,7 @@ System.out.println(date + " " + time);*/
                 jButtonBillActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(896, 428, -1, -1));
+        jPanel2.add(jButtonBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 430, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Total");
@@ -193,7 +196,7 @@ System.out.println(date + " " + time);*/
                 jButtonClearActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(989, 428, -1, -1));
+        jPanel2.add(jButtonClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 430, -1, -1));
 
         jButtonCancel1.setBackground(new java.awt.Color(0, 102, 102));
         jButtonCancel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -246,6 +249,16 @@ System.out.println(date + " " + time);*/
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, 1160, 170));
 
+        jButtonDelete.setBackground(new java.awt.Color(0, 102, 102));
+        jButtonDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 430, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,13 +283,21 @@ System.out.println(date + " " + time);*/
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) jTableSalesBill.getModel();
         model.setRowCount(0);
+        jLabelTotal.setText("0.00");
+        total = 0.00;
 
     }//GEN-LAST:event_jButtonClearActionPerformed
 
     private void jButtonCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancel1ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonCancel1ActionPerformed
 
     private void jTextFieldDrugNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugNameKeyTyped
@@ -388,10 +409,12 @@ System.out.println(date + " " + time);*/
 //  
             Sales s = new Sales(name, drug_type, drug_barcode, drug_dose, drug_group, buy_price, sell_price, com_name, pro_date, exp_date, exp_time, validity, drug_tax, drug_place, total_qty, available_qty2, sold_qty2, sell_date, sell_time, username, total_gain);
             new SalesDaoImp().insert(s);
-            JOptionPane.showMessageDialog(null, "Data is inserted successfully into Sales Table!");
+//            JOptionPane.showMessageDialog(null, "Data is inserted successfully into Sales Table!");
             total = 0.0;
             jLabelTotal.setText(String.valueOf(total));
         }
+
+        model.setRowCount(0);
         JOptionPane.showMessageDialog(null, rowCount + " products have been sold!");
 
 
@@ -432,6 +455,10 @@ System.out.println(date + " " + time);*/
 //        }
 
     }//GEN-LAST:event_jTextFieldDrugNameKeyReleased
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -488,6 +515,7 @@ System.out.println(date + " " + time);*/
     private javax.swing.JButton jButtonBill;
     private javax.swing.JButton jButtonCancel1;
     private javax.swing.JButton jButtonClear;
+    private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonPrint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

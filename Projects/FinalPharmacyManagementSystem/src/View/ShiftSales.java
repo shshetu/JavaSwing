@@ -94,7 +94,7 @@ public class ShiftSales extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Username", "Drug Name", "Barcode", "Quantity", "Price", "Amount", "Date"
+                "Username", "Drug Name", "Barcode", "Quantity", "Price", "Amount", "Date", "Time"
             }
         ));
         jScrollPane1.setViewportView(jTableShiftSales);
@@ -194,8 +194,8 @@ public class ShiftSales extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTableShiftSales.getModel();
         String username = jComboBoxUserName.getItemAt(jComboBoxUserName.getSelectedIndex());
         List<Sales> list = new SalesDaoImp().getSalesByUserName(username);
-
-        Object[] cols = new Object[7];
+        model.setRowCount(0);
+        Object[] cols = new Object[8];
         for (int i = 0; i < list.size(); i++) {
 
             cols[0] = list.get(i).getUser_name();
@@ -206,10 +206,13 @@ public class ShiftSales extends javax.swing.JFrame {
             double tot = list.get(i).getTotal_gain();
             cols[5] = tot;
             cols[6] = list.get(i).getSell_date();
-            total_gain+=tot;
+            cols[7] = list.get(i).getSell_time();
+            total_gain += tot;
             model.addRow(cols);
         }
         jLabelDailyGain.setText(String.valueOf(total_gain));
+        total_gain = 0.0;
+
     }//GEN-LAST:event_jComboBoxUserNameItemStateChanged
 
     /**

@@ -7,11 +7,13 @@ package View;
 
 import daoImp.CompanyDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pojo.Company;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -261,7 +263,7 @@ public class EditPirceView extends javax.swing.JFrame {
             cols[0] = list.get(i).getDrug_name();
             cols[1] = list.get(i).getDrug_barcode();
             cols[2] = list.get(i).getSell_price();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getDrug_id());
+            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[3] = com.getCompany_name();
             model.addRow(cols);
         }
@@ -269,11 +271,12 @@ public class EditPirceView extends javax.swing.JFrame {
 
     private void jTextFieldOldPriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldOldPriceMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTextFieldOldPriceMouseClicked
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableEditPriceDisplay.getModel();
         String name = jTextFieldDrugName.getText();
         Double new_price = Double.parseDouble(jTextFieldNewPrice.getText().trim());
         Summary sumExist = new SummaryDaoImp().getSummaryByDrugName(name);
@@ -285,6 +288,7 @@ public class EditPirceView extends javax.swing.JFrame {
             jTextFieldDrugName.setText("");
             jTextFieldOldPrice.setText("");
             jTextFieldNewPrice.setText("");
+            model.setRowCount(0);
 
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
@@ -297,13 +301,19 @@ public class EditPirceView extends javax.swing.JFrame {
         String barcode = model.getValueAt(i, 1).toString();
         jTextFieldOldPrice.setText(price);
         jTextFieldDrugBarcode.setText(barcode);
-        
+
     }//GEN-LAST:event_jTableEditPriceDisplayMouseClicked
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+       User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**

@@ -381,6 +381,19 @@ public class AddUserView extends javax.swing.JFrame {
                     User u = new User(role_name, user_name, dob, address, phone, salary, pass);
                     us.insert(u);
                     displayDataIntoTable();
+                    //clear data fields
+                    jComboBoxRole.setSelectedIndex(0);
+                    jTextFieldUsername.setText("");
+                    jComboBoxDay.setSelectedIndex(0);
+                    jComboBoxMonth.setSelectedIndex(0);
+                    jComboBoxYear.setSelectedIndex(0);
+
+                    jTextAreaAddress.setText("");
+                    jTextFieldPhone.setText("");
+                    jTextFieldSalary.setText("");
+                    jTextFieldPassword.setText("");
+
+                    ////
                     JOptionPane.showMessageDialog(null, "Data is inserted successfully into user table!");
 
                 } catch (Exception e) {

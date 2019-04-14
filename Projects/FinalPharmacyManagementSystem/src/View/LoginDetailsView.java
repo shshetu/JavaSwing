@@ -99,6 +99,7 @@ public class LoginDetailsView extends javax.swing.JFrame {
                 "Name", "Role", "Date", "Login Time", "Logout Time"
             }
         ));
+        jTableLoginDetails.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTableLoginDetails);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -115,6 +116,11 @@ public class LoginDetailsView extends javax.swing.JFrame {
 
         jComboBoxUserName.setBackground(new java.awt.Color(0, 153, 153));
         jComboBoxUserName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboBoxUserName.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxUserNameItemStateChanged(evt);
+            }
+        });
 
         jComboBoxDate.setBackground(new java.awt.Color(0, 153, 153));
         jComboBoxDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -216,9 +222,20 @@ public class LoginDetailsView extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jComboBoxUserNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxUserNameItemStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBoxUserNameItemStateChanged
 
     /**
      * @param args the command line arguments

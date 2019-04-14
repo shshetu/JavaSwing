@@ -7,11 +7,13 @@ package View;
 
 import daoImp.CompanyDaoImp;
 import daoImp.SummaryDaoImp;
+import daoImp.UserDaoImp;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import pojo.Company;
 import pojo.Summary;
+import pojo.User;
 
 /**
  *
@@ -171,7 +173,7 @@ public class SearchDrugView extends javax.swing.JFrame {
                 cols[6] = list.get(i).getAvailable_qty();
                 cols[7] = list.get(i).getExpire_date();
                 cols[8] = list.get(i).getValidity();
-            Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
+                Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
                 cols[9] = com.getCompany_name();
                 model.addRow(cols);
             }
@@ -207,8 +209,14 @@ public class SearchDrugView extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AdministrationDashBoard().setVisible(true);
+        User user = new UserDaoImp().getUserByUserName(LoginView.user_name);
+        if (user.getRoleName().equalsIgnoreCase("admin")) {
+            this.setVisible(false);
+            new AdministrationDashBoard().setVisible(true);
+        } else if (user.getRoleName().equalsIgnoreCase("employee")) {
+            this.setVisible(false);
+            new EmployeeDashBoard().setVisible(true);
+        }
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jTextFieldDrugBarcodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDrugBarcodeKeyReleased
@@ -232,12 +240,12 @@ public class SearchDrugView extends javax.swing.JFrame {
             Company com = new CompanyDaoImp().getCompanyById(list.get(i).getCompany().getCompany_id());
             cols[9] = com.getCompany_name();
             model.addRow(cols);
-           
+
         }
     }//GEN-LAST:event_jTextFieldDrugBarcodeKeyReleased
 
     private void jTextFieldNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyTyped
-       
+
 //         String name = jTextFieldName.getText().trim();
 //
 //        DefaultTableModel model = (DefaultTableModel) jTableSearchDrug.getModel();
